@@ -16,3 +16,6 @@ Makefile
 */.rcc
 */*/.rcc
 */*/*.rcc
+*.make
+*/*.make
+*/*/*.make
