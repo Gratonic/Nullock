@@ -1,5 +1,4 @@
-*Build/
-*build
+Build/*
 Tests/CMakeFiles
 .qt/*
 .rcc/*
