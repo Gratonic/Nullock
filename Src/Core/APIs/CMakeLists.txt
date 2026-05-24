@@ -4,10 +4,13 @@ add_library(APIs SHARED
     ExtensionsAPI/extensions_api.hpp
     ManagerAPI/manager_api.cpp
     ManagerAPI/manager_api.hpp
+    ThemesAPI/themes_api.cpp
+    ThemesAPI/themes_api.hpp
 )
 
 # Link Qt libraries
 target_link_libraries(APIs PRIVATE
+    Qt6::Gui
     Qt6::Core
     Qt6::Network
 )
