@@ -1,7 +1,7 @@
 *Build/
 *build
-Tests/*
-.qt/*
-.rcc/*
-*.qt
-*.rcc
+./Tests/*
+./.qt/*
+./.rcc/*
+./*.qt
+./*.rcc
