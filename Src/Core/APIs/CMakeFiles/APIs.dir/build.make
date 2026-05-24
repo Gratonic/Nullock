@@ -114,11 +114,26 @@ Src/Core/APIs/CMakeFiles/APIs.dir/ManagerAPI/manager_api.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/APIs.dir/ManagerAPI/manager_api.cpp.s"
 	cd /home/gratonic/Desktop/Programming/Nullock/Src/Core/APIs && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/gratonic/Desktop/Programming/Nullock/Src/Core/APIs/ManagerAPI/manager_api.cpp -o CMakeFiles/APIs.dir/ManagerAPI/manager_api.cpp.s
 
+Src/Core/APIs/CMakeFiles/APIs.dir/ThemesAPI/themes_api.cpp.o: Src/Core/APIs/CMakeFiles/APIs.dir/flags.make
+Src/Core/APIs/CMakeFiles/APIs.dir/ThemesAPI/themes_api.cpp.o: Src/Core/APIs/ThemesAPI/themes_api.cpp
+Src/Core/APIs/CMakeFiles/APIs.dir/ThemesAPI/themes_api.cpp.o: Src/Core/APIs/CMakeFiles/APIs.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/gratonic/Desktop/Programming/Nullock/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object Src/Core/APIs/CMakeFiles/APIs.dir/ThemesAPI/themes_api.cpp.o"
+	cd /home/gratonic/Desktop/Programming/Nullock/Src/Core/APIs && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Src/Core/APIs/CMakeFiles/APIs.dir/ThemesAPI/themes_api.cpp.o -MF CMakeFiles/APIs.dir/ThemesAPI/themes_api.cpp.o.d -o CMakeFiles/APIs.dir/ThemesAPI/themes_api.cpp.o -c /home/gratonic/Desktop/Programming/Nullock/Src/Core/APIs/ThemesAPI/themes_api.cpp
+
+Src/Core/APIs/CMakeFiles/APIs.dir/ThemesAPI/themes_api.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/APIs.dir/ThemesAPI/themes_api.cpp.i"
+	cd /home/gratonic/Desktop/Programming/Nullock/Src/Core/APIs && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/gratonic/Desktop/Programming/Nullock/Src/Core/APIs/ThemesAPI/themes_api.cpp > CMakeFiles/APIs.dir/ThemesAPI/themes_api.cpp.i
+
+Src/Core/APIs/CMakeFiles/APIs.dir/ThemesAPI/themes_api.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/APIs.dir/ThemesAPI/themes_api.cpp.s"
+	cd /home/gratonic/Desktop/Programming/Nullock/Src/Core/APIs && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/gratonic/Desktop/Programming/Nullock/Src/Core/APIs/ThemesAPI/themes_api.cpp -o CMakeFiles/APIs.dir/ThemesAPI/themes_api.cpp.s
+
 # Object files for target APIs
 APIs_OBJECTS = \
 "CMakeFiles/APIs.dir/APIs_autogen/mocs_compilation.cpp.o" \
 "CMakeFiles/APIs.dir/ExtensionsAPI/extensions_api.cpp.o" \
-"CMakeFiles/APIs.dir/ManagerAPI/manager_api.cpp.o"
+"CMakeFiles/APIs.dir/ManagerAPI/manager_api.cpp.o" \
+"CMakeFiles/APIs.dir/ThemesAPI/themes_api.cpp.o"
 
 # External object files for target APIs
 APIs_EXTERNAL_OBJECTS =
@@ -126,12 +141,16 @@ APIs_EXTERNAL_OBJECTS =
 Src/Core/APIs/libAPIs.so.1.0.0: Src/Core/APIs/CMakeFiles/APIs.dir/APIs_autogen/mocs_compilation.cpp.o
 Src/Core/APIs/libAPIs.so.1.0.0: Src/Core/APIs/CMakeFiles/APIs.dir/ExtensionsAPI/extensions_api.cpp.o
 Src/Core/APIs/libAPIs.so.1.0.0: Src/Core/APIs/CMakeFiles/APIs.dir/ManagerAPI/manager_api.cpp.o
+Src/Core/APIs/libAPIs.so.1.0.0: Src/Core/APIs/CMakeFiles/APIs.dir/ThemesAPI/themes_api.cpp.o
 Src/Core/APIs/libAPIs.so.1.0.0: Src/Core/APIs/CMakeFiles/APIs.dir/build.make
 Src/Core/APIs/libAPIs.so.1.0.0: Src/Core/APIs/CMakeFiles/APIs.dir/compiler_depend.ts
+Src/Core/APIs/libAPIs.so.1.0.0: /usr/lib64/libQt6Gui.so.6.10.3
 Src/Core/APIs/libAPIs.so.1.0.0: /usr/lib64/libQt6Network.so.6.10.3
+Src/Core/APIs/libAPIs.so.1.0.0: /usr/lib64/libGLX.so
+Src/Core/APIs/libAPIs.so.1.0.0: /usr/lib64/libOpenGL.so
 Src/Core/APIs/libAPIs.so.1.0.0: /usr/lib64/libQt6Core.so.6.10.3
 Src/Core/APIs/libAPIs.so.1.0.0: Src/Core/APIs/CMakeFiles/APIs.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/gratonic/Desktop/Programming/Nullock/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX shared library libAPIs.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/gratonic/Desktop/Programming/Nullock/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX shared library libAPIs.so"
 	cd /home/gratonic/Desktop/Programming/Nullock/Src/Core/APIs && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/APIs.dir/link.txt --verbose=$(VERBOSE)
 	cd /home/gratonic/Desktop/Programming/Nullock/Src/Core/APIs && $(CMAKE_COMMAND) -E cmake_symlink_library libAPIs.so.1.0.0 libAPIs.so.1 libAPIs.so
 

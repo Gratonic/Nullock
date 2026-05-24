@@ -240,6 +240,30 @@ ManagerAPI/manager_api.cpp.s:
 	cd /home/gratonic/Desktop/Programming/Nullock && $(MAKE) $(MAKESILENT) -f Src/Core/APIs/CMakeFiles/APIs.dir/build.make Src/Core/APIs/CMakeFiles/APIs.dir/ManagerAPI/manager_api.cpp.s
 .PHONY : ManagerAPI/manager_api.cpp.s
 
+ThemesAPI/themes_api.o: ThemesAPI/themes_api.cpp.o
+.PHONY : ThemesAPI/themes_api.o
+
+# target to build an object file
+ThemesAPI/themes_api.cpp.o:
+	cd /home/gratonic/Desktop/Programming/Nullock && $(MAKE) $(MAKESILENT) -f Src/Core/APIs/CMakeFiles/APIs.dir/build.make Src/Core/APIs/CMakeFiles/APIs.dir/ThemesAPI/themes_api.cpp.o
+.PHONY : ThemesAPI/themes_api.cpp.o
+
+ThemesAPI/themes_api.i: ThemesAPI/themes_api.cpp.i
+.PHONY : ThemesAPI/themes_api.i
+
+# target to preprocess a source file
+ThemesAPI/themes_api.cpp.i:
+	cd /home/gratonic/Desktop/Programming/Nullock && $(MAKE) $(MAKESILENT) -f Src/Core/APIs/CMakeFiles/APIs.dir/build.make Src/Core/APIs/CMakeFiles/APIs.dir/ThemesAPI/themes_api.cpp.i
+.PHONY : ThemesAPI/themes_api.cpp.i
+
+ThemesAPI/themes_api.s: ThemesAPI/themes_api.cpp.s
+.PHONY : ThemesAPI/themes_api.s
+
+# target to generate assembly for a file
+ThemesAPI/themes_api.cpp.s:
+	cd /home/gratonic/Desktop/Programming/Nullock && $(MAKE) $(MAKESILENT) -f Src/Core/APIs/CMakeFiles/APIs.dir/build.make Src/Core/APIs/CMakeFiles/APIs.dir/ThemesAPI/themes_api.cpp.s
+.PHONY : ThemesAPI/themes_api.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -261,6 +285,9 @@ help:
 	@echo "... ManagerAPI/manager_api.o"
 	@echo "... ManagerAPI/manager_api.i"
 	@echo "... ManagerAPI/manager_api.s"
+	@echo "... ThemesAPI/themes_api.o"
+	@echo "... ThemesAPI/themes_api.i"
+	@echo "... ThemesAPI/themes_api.s"
 .PHONY : help
 
 

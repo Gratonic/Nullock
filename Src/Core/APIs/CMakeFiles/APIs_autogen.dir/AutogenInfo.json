@@ -25,12 +25,25 @@
 			"MU",
 			"XNBOJLFFVO/moc_manager_api.cpp",
 			null
+		],
+		[
+			"/home/gratonic/Desktop/Programming/Nullock/Src/Core/APIs/ThemesAPI/themes_api.hpp",
+			"MU",
+			"4KHVSEXDQT/moc_themes_api.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
 	"INCLUDE_DIR" : "/home/gratonic/Desktop/Programming/Nullock/Src/Core/APIs/APIs_autogen/include",
 	"MOC_COMPILATION_FILE" : "/home/gratonic/Desktop/Programming/Nullock/Src/Core/APIs/APIs_autogen/mocs_compilation.cpp",
-	"MOC_DEFINITIONS" : [ "APIs_EXPORTS", "QT_CORE_LIB", "QT_NETWORK_LIB", "QT_NO_DEBUG" ],
+	"MOC_DEFINITIONS" : 
+	[
+		"APIs_EXPORTS",
+		"QT_CORE_LIB",
+		"QT_GUI_LIB",
+		"QT_NETWORK_LIB",
+		"QT_NO_DEBUG"
+	],
 	"MOC_DEPEND_FILTERS" : 
 	[
 		[
@@ -41,16 +54,17 @@
 	"MOC_INCLUDES" : 
 	[
 		"/home/gratonic/Desktop/Programming/Nullock/Src/Core/APIs",
-		"/usr/include/qt6/QtCore",
+		"/usr/include/qt6/QtGui",
 		"/usr/include/qt6",
+		"/usr/include/qt6/QtCore",
 		"/usr/lib64/qt6/mkspecs/linux-g++",
 		"/usr/include/qt6/QtNetwork",
+		"/usr/include",
 		"/usr/include/c++/15",
 		"/usr/include/c++/15/x86_64-redhat-linux",
 		"/usr/include/c++/15/backward",
 		"/usr/lib/gcc/x86_64-redhat-linux/15/include",
-		"/usr/local/include",
-		"/usr/include"
+		"/usr/local/include"
 	],
 	"MOC_MACRO_NAMES" : 
 	[
@@ -92,6 +106,11 @@
 		],
 		[
 			"/home/gratonic/Desktop/Programming/Nullock/Src/Core/APIs/ManagerAPI/manager_api.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/gratonic/Desktop/Programming/Nullock/Src/Core/APIs/ThemesAPI/themes_api.cpp",
 			"MU",
 			null
 		]

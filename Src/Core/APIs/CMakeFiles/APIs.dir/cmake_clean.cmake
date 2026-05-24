@@ -10,6 +10,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/APIs.dir/ExtensionsAPI/extensions_api.cpp.o.d"
   "CMakeFiles/APIs.dir/ManagerAPI/manager_api.cpp.o"
   "CMakeFiles/APIs.dir/ManagerAPI/manager_api.cpp.o.d"
+  "CMakeFiles/APIs.dir/ThemesAPI/themes_api.cpp.o"
+  "CMakeFiles/APIs.dir/ThemesAPI/themes_api.cpp.o.d"
   "libAPIs.pdb"
   "libAPIs.so"
   "libAPIs.so.1"

@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/gratonic/Desktop/Programming/Nullock/Src/Core/APIs/APIs_autogen/mocs_compilation.cpp" "Src/Core/APIs/CMakeFiles/APIs.dir/APIs_autogen/mocs_compilation.cpp.o" "gcc" "Src/Core/APIs/CMakeFiles/APIs.dir/APIs_autogen/mocs_compilation.cpp.o.d"
   "/home/gratonic/Desktop/Programming/Nullock/Src/Core/APIs/ExtensionsAPI/extensions_api.cpp" "Src/Core/APIs/CMakeFiles/APIs.dir/ExtensionsAPI/extensions_api.cpp.o" "gcc" "Src/Core/APIs/CMakeFiles/APIs.dir/ExtensionsAPI/extensions_api.cpp.o.d"
   "/home/gratonic/Desktop/Programming/Nullock/Src/Core/APIs/ManagerAPI/manager_api.cpp" "Src/Core/APIs/CMakeFiles/APIs.dir/ManagerAPI/manager_api.cpp.o" "gcc" "Src/Core/APIs/CMakeFiles/APIs.dir/ManagerAPI/manager_api.cpp.o.d"
+  "/home/gratonic/Desktop/Programming/Nullock/Src/Core/APIs/ThemesAPI/themes_api.cpp" "Src/Core/APIs/CMakeFiles/APIs.dir/ThemesAPI/themes_api.cpp.o" "gcc" "Src/Core/APIs/CMakeFiles/APIs.dir/ThemesAPI/themes_api.cpp.o.d"
   "" "Src/Core/APIs/libAPIs.so" "gcc" "Src/Core/APIs/CMakeFiles/APIs.dir/link.d"
   )
 
