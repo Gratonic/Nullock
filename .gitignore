@@ -1,5 +1,12 @@
 *Build/
 Tests/CMakeFiles
+*/Makefile
+*/*Makefile
+*/*/*Makefile
+*/*.qt
+*/*/*.qt
+*/*.rcc
+*/*/*.rcc
 .qt/*
 .rcc/*
 *.qt/
