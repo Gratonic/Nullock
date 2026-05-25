@@ -17,7 +17,7 @@ target_link_libraries(NullockApp PRIVATE
     APIs
     Database
     Networking
-    Nullem
+    NullE
     Utils
 )
 
