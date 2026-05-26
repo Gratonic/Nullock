@@ -23,14 +23,6 @@ Nullock is more than just a tool for the individual; it is a Web Hacking Suite t
 
 ---
 
-## Preview
-
-![Nullock UI](nullock-ui.png)
-
-> Modern interface focused on usability, workflow efficiency, and extensibility.
-
----
-
 ## Overview
 
 Nullock is a modern open-source Web Hacking Suite designed for penetration testers, bug bounty hunters, researchers, and cybersecurity enthusiasts.
@@ -84,17 +76,6 @@ We believe powerful security tooling should be accessible to everyone.
 
 ---
 
-## Screenshots
-
-### Main Interface
-
-![Main UI](assets/main-ui.png)
-
-### Workflow Example
-
-![Workflow](assets/workflow.png)
-
----
 
 ## Installation
 
@@ -111,14 +92,18 @@ cd Nullock
 
 ### Install Dependencies
 
+*install a compiler with support for C++20*
+
 ```bash
-npm install
+sudo apt install qt6
+sudo apt install cmake
 ```
 
 or
 
 ```bash
-pnpm install
+sudo dnf install qt6
+sudo dnf install cmake
 ```
 
 ---
