@@ -108,14 +108,6 @@ sudo dnf install cmake
 
 ---
 
-### Run Development Environment
-
-```bash
-npm run dev
-```
-
----
-
 ## Roadmap
 
 - [ ] Extension Marketplace
