@@ -4,11 +4,11 @@
 
 <div align="center">
 
-![Contributors](https://github.com/Gratonic/Nullock/graphs/contributors)
-![Forks](https://github.com/Gratonic/Nullock/network/members)
-![Stargazers](https://github.com/Gratonic/Nullock/stargazers)
-![License](https://img.shields.io/badge/license-MIT-blue)
-[![Discord](https://img.shields.io/discord/Nullock?color=7289da&label=Discord&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/UYKFAjf9gk)
+[![Contributors](https://img.shields.io/github/contributors/Gratonic/Nullock)](https://github.com/Gratonic/Nullock/graphs/contributors)
+[![Forks](https://img.shields.io/github/forks/Gratonic/Nullock)](https://github.com/Gratonic/Nullock/network/members)
+[![Stargazers](https://img.shields.io/github/stars/Gratonic/Nullock)](https://github.com/Gratonic/Nullock/stargazers)
+[![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/Gratonic/Nullock/blob/main/LICENSE)
+[![Discord](https://img.shields.io/discord/1505709336121311332?color=7289da&label=Discord&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/UYKFAjf9g)
 
 </div>
 
