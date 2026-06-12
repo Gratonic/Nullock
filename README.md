@@ -5,7 +5,7 @@
 <div align="center">
 
 [![Contributors](https://img.shields.io/github/contributors/Gratonic/Nullock?style=for-the-badge)](https://github.com/Gratonic/Nullock/graphs/contributors)
-[![Forks](https://img.shields.io/github/forks/Gratonic/Nullock?style=for-the-badge)](https://github.com/Gratonic/Nullock/network/members)
+[![Forks](https://img.shields.io/github/forks/Gratonic/Nullock?style=for-the-badge)](https://github.com/Gratonic/Nullock/forks)
 [![Stargazers](https://img.shields.io/github/stars/Gratonic/Nullock?style=for-the-badge)](https://github.com/Gratonic/Nullock/stargazers)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](https://github.com/Gratonic/Nullock/blob/main/LICENSE)
 [![Discord](https://img.shields.io/badge/Discord-Join%20Us-7289da?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/UYKFAjf9gk)
