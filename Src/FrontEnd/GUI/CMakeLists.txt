@@ -1,9 +1,8 @@
-# Define QML module with sources
-qt_add_qml_module(FrontEndGUI
-    URI Nullock.FrontEnd
+# this took so fucking long to write...so don't mess with it unless you really need to
+qt_add_qml_module(guiModule
+    URI GUI
     VERSION 1.0
-    PLUGIN_TARGET FrontEndGUIPlugin
-    CLASS_NAME FrontEndGUIPlugin
+    
     SOURCES
     Models/DevicesHub/devices_hub_model.cpp
     Models/DevicesHub/devices_hub_model.hpp
@@ -21,7 +20,9 @@ qt_add_qml_module(FrontEndGUI
     Models/Workspace/workspace_model.hpp
     Themes/themes_manager.cpp
     Themes/themes_manager.hpp
+    
     QML_FILES
+    Main/nullock.qml
     DevicesHub/devices_hub.qml
     DevicesHub/Components/devices_console.qml
     DevicesHub/Components/devices.qml
@@ -47,17 +48,9 @@ qt_add_qml_module(FrontEndGUI
     Workspace/Components/themes.qml
 )
 
-# Link Qt libraries
-target_link_libraries(FrontEndGUI PRIVATE
+target_link_libraries(guiModule PRIVATE
     Qt6::Core
+    # Qt6::Qml
     Qt6::Gui
-    Qt6::Qml
     Qt6::Quick
 )
-
-# Include directories
-target_include_directories(FrontEndGUI PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/Models
-    ${CMAKE_CURRENT_SOURCE_DIR}/Themes
-)
-

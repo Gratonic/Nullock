@@ -38,7 +38,7 @@ We swear to do our best to uphold and maintain:
 
 - CMake 3.31+
 - A C++20 compiler (MSVC 2022 / GCC 13+ / Clang 16+)
-- Qt6.10.x (Core, Gui, Qml, Quick, Network, etc.)
+- Qt6.2.x (Core, Gui, Qml, Quick, Network, etc.)
 - OpenSSL 3.5.x 
 
 ### CMake Build and Compile Commands

@@ -1,15 +1,8 @@
-# Create static library for Cache
-add_library(Cache STATIC
+add_library(cacheLib STATIC
     cache_handler.cpp
     cache_handler.hpp
 )
 
-# Link Qt libraries
-target_link_libraries(Cache PRIVATE
-    Qt6::Core
-)
-
-# Include directories
-target_include_directories(Cache PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}
+target_link_libraries(cacheLib
+    PRIVATE Qt6::Core
 )

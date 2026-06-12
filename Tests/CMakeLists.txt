@@ -13,9 +13,6 @@ target_sources(NullockTests PRIVATE
 # Link libraries for testing
 target_link_libraries(NullockTests PRIVATE
     Qt6::Test
-    AppController
-    Database
-    Networking
 )
 
 # Register tests

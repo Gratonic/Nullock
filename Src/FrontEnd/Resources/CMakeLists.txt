@@ -1,12 +1,10 @@
-# Create resource library
-qt_add_resources(FrontEndResources
+qt_add_resources(uiResources
     resources.qrc
 )
 
-# Add resource target as library
-add_library(FrontEndResources STATIC ${FrontEndResources})
+# add resource target as library
+add_library(uiResourcesLib STATIC ${uiResources})
 
-# Link Qt libraries
-target_link_libraries(FrontEndResources PRIVATE
-    Qt6::Core
+target_link_libraries(uiResourcesLib PRIVATE
+    Qt6::Core 
 )
