@@ -1,5 +1,5 @@
 qt_add_qml_module(themeEngineLib
-    URI themeEngineLib
+    URI ThemeEngine
     VERSION 1.0
 
     SOURCES
@@ -7,8 +7,8 @@ qt_add_qml_module(themeEngineLib
         theme_engine.hpp
 
     # RESOURCES
-        # themes.qrc
-        # fonts.qrc
+    #     theme.qrc
+    #     RESOURCES font.qrc
 )
 
 target_link_libraries(themeEngineLib

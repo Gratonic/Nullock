@@ -1,8 +1,68 @@
 import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
+import QtQuick.Layouts
+import QtQuick.Shapes
+
+import "../Components/Overview/"
+import "../Components/Proxy/"
+import "../Components/RepeaterHub/"
+import "../Components/IntruderHub/"
+import "../Components/ExtensionsHub/"
+import "../Components/DevicesHub/"
+import "../Components/Workspace/"
+
+
+// note: components must be defined in main app window....
+// Component {
+//     id: initialBlueprint
+//     InitItem { }
+// }
+
+// ApplicationWindow {
+//     id: root
+//     visible: true
+//     width: 800
+//     height: 600
+//     flags: Qt.FramelessWindowHint
+//     color: "transparent"
+
+//     Rectangle {
+//         // ... your existing structure ...
+
+//         Rectangle {
+//             id: hubPlaceholder
+//             width: (parent.width - parent.spacing) * 0.8
+//             height: parent.height
+//             radius: 10
+//             color: "transparent"
+
+//             Loader {
+//                 id: hubLoader
+//                 anchors.fill: parent
+//                 sourceComponent: initialBlueprint
+//             }
+//         }
+//     }
+// }
+
+// Component {
+//     id: scopeBlueprint
+//     Scope {}
+// }
 
 ApplicationWindow {
+    Component {
+        id: scopeBlueprint
+        Scope {}
+    }
+
+    Component {
+        id: httpHistoryBlueprint
+
+        HttpHistory {}
+    }
+
     id: root
     visible: true
     width: 800
@@ -11,19 +71,25 @@ ApplicationWindow {
     color: "transparent"
 
     Rectangle {
+        id: mainArea
         anchors.fill: parent
-        radius: 16
-        color: "#AAAAAA"
+        radius: 10
 
-        // title bar with rounded top corners
+        // fixes some weird white spots
+        border.color: "#22232B"
+        border.width: 1
+
+        // app bar with rounded top corners
         Rectangle {
-            id: titleBar
+            id: appBar
+            height: 0.07 * parent.height // 7% of parent
+            radius: mainArea.radius
+            color: "#22232B"
+
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
-            height: 50
-            color: "#f6f5f4"
-            radius: 16
+
             clip: true
 
             // inner rectangle to square off the bottom
@@ -33,7 +99,7 @@ ApplicationWindow {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.bottom: parent.bottom
-                color: "#f6f5f4"
+                color: "#22232B"
             }
         }
 
@@ -41,17 +107,18 @@ ApplicationWindow {
         MouseArea {
             anchors.left: parent.left
             anchors.top: parent.top
-            anchors.bottom: titleBar.bottom
+            anchors.bottom: appBar.bottom
             width: parent.width - 150
 
             onPressed: root.startSystemMove()
 
+            // nullock Text
             Text {
                 anchors.left: parent.left
                 anchors.leftMargin: 16
                 anchors.verticalCenter: parent.verticalCenter
                 text: "Nullock"
-                color: "#333333"
+                color: "#48B584"
                 font.pixelSize: 14
                 font.weight: Font.Medium
             }
@@ -60,24 +127,25 @@ ApplicationWindow {
         // window control buttons
         Row {
             anchors.right: parent.right
-            anchors.rightMargin: 8
-            anchors.verticalCenter: titleBar.verticalCenter
-            spacing: 8
+            anchors.rightMargin: 7
+            anchors.verticalCenter: appBar.verticalCenter
+            spacing: 7
             z: 1
 
-            // Minimize Button
+            // Hide Button
             Button {
-                width: 32
-                height: 32
+                id: hideButton
+                width: 25
+                height: 25
                 background: Rectangle {
-                    color: "#e8e7e6"
-                    radius: 4
+                    color: hideButton.hovered ? "#4B4F59" : "#3D414B"
+                    radius: 180
                 }
 
                 contentItem: Text {
-                    text: "−"
+                    text: "🗕"
                     font.pixelSize: 20
-                    color: "#333333"
+                    color: "#FFFFFF"
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                 }
@@ -85,19 +153,20 @@ ApplicationWindow {
                 onClicked: root.showMinimized()
             }
 
-            // Maximize/Restore Button
+            // Resize Button
             Button {
-                width: 32
-                height: 32
+                id: resizeButton
+                width: 25
+                height: 25
                 background: Rectangle {
-                    color: "#e8e7e6"
-                    radius: 4
+                    color: resizeButton.hovered ? "#4B4F59" : "#3D414B"
+                    radius: 180
                 }
 
                 contentItem: Text {
-                    text: root.visibility === Window.Maximized ? "❒" : "☐"
-                    font.pixelSize: 16
-                    color: "#333333"
+                    text: root.visibility === Window.Maximized ? "⛶" : "□"
+                    font.pixelSize: 20
+                    color: "#FFFFFF"
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                 }
@@ -113,17 +182,18 @@ ApplicationWindow {
 
             // close Button
             Button {
-                width: 32
-                height: 32
+                id: closeButton
+                width: 25
+                height: 25
                 background: Rectangle {
-                    color: "#e8e7e6"
-                    radius: 4
+                    color: closeButton.hovered ? "#4B4F59" : "#3D414B"
+                    radius: 180
                 }
 
                 contentItem: Text {
-                    text: "✕"
-                    font.pixelSize: 18
-                    color: "#333333"
+                    text: "🗙"
+                    font.pixelSize: 20
+                    color: "#FFFFFF"
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                 }
@@ -134,16 +204,142 @@ ApplicationWindow {
 
         // content Area
         Rectangle {
-            anchors.top: titleBar.bottom
+            id: contentArea
+            anchors.top: appBar.bottom
             anchors.bottom: parent.bottom
             anchors.left: parent.left
             anchors.right: parent.right
-            color: "transparent"
+            bottomLeftRadius: mainArea.radius
+            bottomRightRadius: mainArea.radius
+            color: "#25272D"
 
-            Text {
-                anchors.centerIn: parent
-                text: "content here"
-                color: "#333333"
+            Column {
+                anchors.fill: parent
+                anchors.margins: 15
+                spacing: 15
+
+                Rectangle {
+                    id: controlPanel
+                    width: parent.width
+                    height: parent.height * 0.1
+                    radius: mainArea.radius
+                    color: "#25272D"
+                }
+
+                Row {
+                    width: parent.width
+                    height:  parent.height - controlPanel.height - parent.spacing
+                    spacing: 15
+
+                    Rectangle {
+                        id: dashboardPanel
+                        width: (parent.width - parent.spacing) * 0.2
+                        height: parent.height
+                        radius: mainArea.radius
+
+                        // note: without this there would be some white showing
+                        gradient: RadialGradient {
+                            centerX: 200
+                            centerY: 200
+                            centerRadius: 100
+
+                            GradientStop { position: 0.0; color: "#2E3139" }
+                            GradientStop { position: 1.0; color: "#2F323A" }
+                        }
+
+                        // Hubs and Buttons
+                        Rectangle {
+                            anchors.fill: parent
+                            radius: mainArea.radius
+
+                            gradient: RadialGradient {
+                                centerX: 200
+                                centerY: 200
+                                centerRadius: 100
+
+                                GradientStop { position: 0.0; color: "#2E3139" }
+                                GradientStop { position: 1.0; color: "#2F323A" }
+                            }
+
+                            StackView {
+                                id: hubArea
+                                anchors.fill: parent
+
+                                Rectangle {
+                                    id: overview
+                                    width: parent.width
+                                    height: parent.height / 7
+                                    color: "transparent"
+                                }
+
+                                Rectangle {
+                                    id: proxy
+                                    width: parent.width
+                                    height: parent.height / 7
+                                    color: "transparent"
+                                }
+
+                                Rectangle {
+                                    id: repeaterHub
+                                    width: parent.width
+                                    height: parent.height / 7
+                                    color: "transparent"
+                                }
+
+                                Rectangle {
+                                    id: intruderHub
+                                    width: parent.width
+                                    height: parent.height / 7
+                                    color: "transparent"
+                                }
+
+                                Rectangle {
+                                    id: extensionsHub
+                                    width: parent.width
+                                    height: parent.height / 7
+                                    color: "transparent"
+                                }
+
+                                Rectangle {
+                                    id: devicesHub
+                                    width: parent.width
+                                    height: parent.height / 7
+                                    color: "transparent"
+                                }
+
+                                Rectangle {
+                                    id: workspace
+                                    width: parent.width
+                                    height: parent.height / 7
+                                    color: "transparent"
+                                }
+                            }
+                        }
+                    }
+
+                    Rectangle {
+                        id: tabPanel
+                        width: (parent.width - parent.spacing) * 0.8
+                        height: parent.height
+                        radius: mainArea.radius
+
+                        gradient: RadialGradient {
+                            centerX: 200
+                            centerY: 200
+                            centerRadius: 100
+
+                            GradientStop { position: 0.0; color: "#2E3139" }
+                            GradientStop { position: 1.0; color: "#2F323A" }
+                        }
+
+                        Loader {
+                            id: tabLoader
+                            anchors.fill: parent
+
+                            sourceComponent: httpHistoryBlueprint
+                        }
+                    }
+                }
             }
         }
     }

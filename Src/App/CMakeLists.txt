@@ -28,5 +28,6 @@ target_link_libraries(Nullock
 
     # FrontEnd libs/modules 
     guiModule
+    uiResourcesLib
     # FrontEndResources
 )
