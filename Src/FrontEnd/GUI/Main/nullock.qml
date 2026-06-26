@@ -28,8 +28,6 @@ import "../Components/Workspace/"
 //     color: "transparent"
 
 //     Rectangle {
-//         // ... your existing structure ...
-
 //         Rectangle {
 //             id: hubPlaceholder
 //             width: (parent.width - parent.spacing) * 0.8
@@ -69,6 +67,10 @@ ApplicationWindow {
     height: 600
     flags: Qt.FramelessWindowHint
     color: "transparent"
+
+    // ensures the user does not make the window too small
+    minimumWidth: 800
+    minimumHeight: 600
 
     Rectangle {
         id: mainArea
@@ -138,7 +140,7 @@ ApplicationWindow {
                 width: 25
                 height: 25
                 background: Rectangle {
-                    color: hideButton.hovered ?  "#22232B" : "#22232B"
+                    color: "#22232B"
                     border.color: hideButton.hovered ? "#FF6C50" : "#22232B"
                     border.width: 1
                     radius: 180
@@ -161,7 +163,7 @@ ApplicationWindow {
                 width: 25
                 height: 25
                 background: Rectangle {
-                    color: resizeButton.hovered ?  "#22232B" : "#22232B"
+                    color: "#22232B"
                     border.color: resizeButton.hovered ? "#48B584" : "#22232B"
                     border.width: 1
                     radius: 180
@@ -190,7 +192,7 @@ ApplicationWindow {
                 width: 25
                 height: 25
                 background: Rectangle {
-                    color: closeButton.hovered ?  "#22232B" : "#22232B"
+                    color: "#22232B"
                     border.color: closeButton.hovered ? "#C45051" : "#22232B"
                     border.width: 1
                     radius: 180
@@ -224,12 +226,13 @@ ApplicationWindow {
                 anchors.margins: 15
                 spacing: 15
 
+                // controlPanel: start
                 Rectangle {
                     id: controlPanel
                     width: parent.width
-                    height: parent.height * 0.1
+                    height: parent.height * 0.050
                     radius: mainArea.radius
-                    // color: "#25272D"
+                    // color: "transparent"
                     gradient: RadialGradient {
                         centerX: 200
                         centerY: 200
@@ -238,13 +241,154 @@ ApplicationWindow {
                         GradientStop { position: 0.0; color: "#2E3139" }
                         GradientStop { position: 1.0; color: "#2F323A" }
                     }
+
+                    Rectangle {
+                        anchors.fill: parent
+                        radius: mainArea.radius
+                        color: "transparent"
+
+                        Text {
+                            id: titleText
+                            text: "Nullock"
+                            color: "#48B584"
+                            font.pixelSize: 24
+                            font.weight: Font.Light
+
+                            anchors.leftMargin: 5
+                            anchors.left: parent.left
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
+                        // note: the controlArea is needed to position the dropdowns, buttons, and search bar correctly
+                        Rectangle {
+                            id: controlArea
+                            width: (parent.width - 15) * 0.8 // this is the same as the tabPanel length: (parent.width - parent.spacing) * 0.8
+                            height: parent.height
+                            color: "transparent"
+
+                            anchors.right: parent.right
+
+                            topRightRadius: mainArea.radius
+                            bottomRightRadius: mainArea.radius
+
+                            Rectangle {
+                                id: controlBox
+                                anchors.fill: parent
+                                radius: mainArea.radius
+                                color: "transparent"
+
+                                ComboBox {
+                                    id: projectDropdown
+                                    width: 0.1625 * parent.width
+                                    height: parent.height
+                                    palette.buttonText: "#48B584"
+
+                                    anchors.left: parent.left
+                                    anchors.leftMargin: 0
+                                    anchors.verticalCenter: parent.verticalCenter
+
+                                    palette.text: "#48B584"
+                                    model: ["Project", "Option 1", "Option 2"]
+                                    palette.highlight: "#80929292"
+                                    palette.highlightedText: "#AA48B584"
+
+                                    background: Rectangle {
+                                        color: "transparent"
+                                        border.color: "#48B584"
+                                        border.width: 1
+                                        radius: 3
+                                    }
+
+                                    popup.background: Rectangle {
+                                        color: "#22232B"
+                                        radius: 3
+                                        border.color: "#48B584"
+                                        border.width: 1
+                                    }
+                                }
+
+                                Button {
+                                    id: sendToRepeaterButton
+                                    width: 0.1625 * parent.width
+                                    height: parent.height
+
+                                    anchors.left: projectDropdown.right
+                                    anchors.leftMargin: 7.5
+                                    anchors.verticalCenter: parent.verticalCenter
+
+                                    background: Rectangle {
+                                        radius: 3
+                                        color: "red"
+                                    }
+                                }
+
+                                Rectangle {
+                                    id: searchBox
+                                    width: (0.35 * parent.width) - 30 // note: 30 is removed for margin cost (7.5 * 4)
+                                    height: parent.height
+                                    radius: 3
+                                    color: "green"
+
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    anchors.verticalCenter: parent.verticalCenter
+                                }
+
+                                Button {
+                                    id: sendToIntruderButton
+                                    width: 0.1625 * parent.width
+                                    height: parent.height
+
+                                    anchors.right: scopeDropdown.left
+                                    anchors.rightMargin: 7.5
+                                    anchors.verticalCenter: parent.verticalCenter
+
+                                    background: Rectangle {
+                                        radius: 3
+                                        color: "red"
+                                    }
+                                }
+
+                                ComboBox {
+                                    id: scopeDropdown
+                                    width: 0.1625 * parent.width
+                                    height: parent.height
+                                    palette.buttonText: "#48B584"
+
+                                    anchors.right: parent.right
+                                    anchors.rightMargin: 0
+                                    anchors.verticalCenter: parent.verticalCenter
+
+                                    palette.text: "#48B584"
+                                    model: ["Show In-Scope", "Option 1", "Option 2"]
+                                    palette.highlight: "#80929292"
+                                    palette.highlightedText: "#AA48B584"
+
+                                    background: Rectangle {
+                                        color: "transparent"
+                                        border.color: "#48B584"
+                                        border.width: 1
+                                        radius: 3
+                                    }
+
+                                    popup.background: Rectangle {
+                                        color: "#22232B"
+                                        radius: 3
+                                        border.color: "#48B584"
+                                        border.width: 1
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
+                // controlPanel: end
 
                 Row {
                     width: parent.width
-                    height:  parent.height - controlPanel.height - parent.spacing
+                    height:  (parent.height - controlPanel.height) - parent.spacing
                     spacing: 15
 
+                    // dashboardPanel: start
                     Rectangle {
                         id: dashboardPanel
                         width: (parent.width - parent.spacing) * 0.2
@@ -295,6 +439,7 @@ ApplicationWindow {
                                     height: parent.height / 8
                                     color: "transparent"
 
+                                    // note: when a 100% transparent color is returned (#00RRGGBB) in the Button gradients code it is done to avoid a weird color rendering issue
                                     StackView {
                                         anchors.fill: parent
 
@@ -358,7 +503,7 @@ ApplicationWindow {
                                                             } else if (sitemapTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2E3139"
+                                                                return "#002E3139"
                                                             }
                                                         }
                                                     }
@@ -370,7 +515,7 @@ ApplicationWindow {
                                                             } else if (sitemapTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2F323A"
+                                                                return "#002F323A"
                                                             }
                                                         }
                                                     }
@@ -427,7 +572,7 @@ ApplicationWindow {
                                                             } else if (scopeTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2E3139"
+                                                                return "#002E3139"
                                                             }
                                                         }
                                                     }
@@ -439,7 +584,7 @@ ApplicationWindow {
                                                             } else if (scopeTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2F323A"
+                                                                return "#002F323A"
                                                             }
                                                         }
                                                     }
@@ -519,7 +664,7 @@ ApplicationWindow {
                                                             } else if (httpHistoryTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2E3139"
+                                                                return "#002E3139"
                                                             }
                                                         }
                                                     }
@@ -531,7 +676,7 @@ ApplicationWindow {
                                                             } else if (httpHistoryTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2F323A"
+                                                                return "#002F323A"
                                                             }
                                                         }
                                                     }
@@ -588,7 +733,7 @@ ApplicationWindow {
                                                             } else if (interceptTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2E3139"
+                                                                return "#002E3139"
                                                             }
                                                         }
                                                     }
@@ -600,7 +745,7 @@ ApplicationWindow {
                                                             } else if (interceptTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2F323A"
+                                                                return "#002F323A"
                                                             }
                                                         }
                                                     }
@@ -680,7 +825,7 @@ ApplicationWindow {
                                                             } else if (repeaterTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2E3139"
+                                                                return "#002E3139"
                                                             }
                                                         }
                                                     }
@@ -692,7 +837,7 @@ ApplicationWindow {
                                                             } else if (repeaterTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2F323A"
+                                                                return "#002F323A"
                                                             }
                                                         }
                                                     }
@@ -749,7 +894,7 @@ ApplicationWindow {
                                                             } else if (repeaterConsoleTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2E3139"
+                                                                return "#002E3139"
                                                             }
                                                         }
                                                     }
@@ -761,7 +906,7 @@ ApplicationWindow {
                                                             } else if (repeaterConsoleTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2F323A"
+                                                                return "#002F323A"
                                                             }
                                                         }
                                                     }
@@ -841,7 +986,7 @@ ApplicationWindow {
                                                             } else if (intruderTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2E3139"
+                                                                return "#002E3139"
                                                             }
                                                         }
                                                     }
@@ -853,7 +998,7 @@ ApplicationWindow {
                                                             } else if (intruderTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2F323A"
+                                                                return "#002F323A"
                                                             }
                                                         }
                                                     }
@@ -910,7 +1055,7 @@ ApplicationWindow {
                                                             } else if (intruderConsoleTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2E3139"
+                                                                return "#002E3139"
                                                             }
                                                         }
                                                     }
@@ -922,7 +1067,7 @@ ApplicationWindow {
                                                             } else if (intruderConsoleTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2F323A"
+                                                                return "#002F323A"
                                                             }
                                                         }
                                                     }
@@ -1002,7 +1147,7 @@ ApplicationWindow {
                                                             } else if (extensionsTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2E3139"
+                                                                return "#002E3139"
                                                             }
                                                         }
                                                     }
@@ -1014,7 +1159,7 @@ ApplicationWindow {
                                                             } else if (extensionsTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2F323A"
+                                                                return "#002F323A"
                                                             }
                                                         }
                                                     }
@@ -1071,7 +1216,7 @@ ApplicationWindow {
                                                             } else if (extensionsConsoleTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2E3139"
+                                                                return "#002E3139"
                                                             }
                                                         }
                                                     }
@@ -1083,7 +1228,7 @@ ApplicationWindow {
                                                             } else if (extensionsConsoleTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2F323A"
+                                                                return "#002F323A"
                                                             }
                                                         }
                                                     }
@@ -1163,7 +1308,7 @@ ApplicationWindow {
                                                             } else if (devicesTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2E3139"
+                                                                return "#002E3139"
                                                             }
                                                         }
                                                     }
@@ -1175,7 +1320,7 @@ ApplicationWindow {
                                                             } else if (devicesTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2F323A"
+                                                                return "#002F323A"
                                                             }
                                                         }
                                                     }
@@ -1232,7 +1377,7 @@ ApplicationWindow {
                                                             } else if (devicesConsoleTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2E3139"
+                                                                return "#002E3139"
                                                             }
                                                         }
                                                     }
@@ -1244,7 +1389,7 @@ ApplicationWindow {
                                                             } else if (devicesConsoleTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2F323A"
+                                                                return "#002F323A"
                                                             }
                                                         }
                                                     }
@@ -1323,7 +1468,7 @@ ApplicationWindow {
                                                             } else if (reportGeneratorTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2E3139"
+                                                                return "#002E3139"
                                                             }
                                                         }
                                                     }
@@ -1335,7 +1480,7 @@ ApplicationWindow {
                                                             } else if (reportGeneratorTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2F323A"
+                                                                return "#002F323A"
                                                             }
                                                         }
                                                     }
@@ -1392,7 +1537,7 @@ ApplicationWindow {
                                                             } else if (notesTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2E3139"
+                                                                return "#002E3139"
                                                             }
                                                         }
                                                     }
@@ -1404,7 +1549,7 @@ ApplicationWindow {
                                                             } else if (notesTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2F323A"
+                                                                return "#002F323A"
                                                             }
                                                         }
                                                     }
@@ -1461,7 +1606,7 @@ ApplicationWindow {
                                                             } else if (themesTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2E3139"
+                                                                return "#002E3139"
                                                             }
                                                         }
                                                     }
@@ -1473,7 +1618,7 @@ ApplicationWindow {
                                                             } else if (themesTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2F323A"
+                                                                return "#002F323A"
                                                             }
                                                         }
                                                     }
@@ -1530,7 +1675,7 @@ ApplicationWindow {
                                                             } else if (settingsTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2E3139"
+                                                                return "#002E3139"
                                                             }
                                                         }
                                                     }
@@ -1542,7 +1687,7 @@ ApplicationWindow {
                                                             } else if (settingsTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#2F323A"
+                                                                return "#002F323A"
                                                             }
                                                         }
                                                     }
@@ -1554,7 +1699,9 @@ ApplicationWindow {
                             }
                         }
                     }
+                    // dashboardPanel: end
 
+                    // tabPanel: start
                     Rectangle {
                         id: tabPanel
                         width: (parent.width - parent.spacing) * 0.8
@@ -1577,6 +1724,7 @@ ApplicationWindow {
                             sourceComponent: httpHistoryBlueprint
                         }
                     }
+                    // tabPanel: end
                 }
             }
         }
