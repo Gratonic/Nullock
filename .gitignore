@@ -20,7 +20,7 @@ Makefile
 *.make
 */*.make
 */*/*.make
-CMakeLists.txt.user
+./CMakeLists.txt.user
 */CMakeLists.txt.user
 */*/CMakeLists.txt.user
 */*/*/CMakeLists.txt.user
