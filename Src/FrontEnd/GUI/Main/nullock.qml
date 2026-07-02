@@ -309,7 +309,7 @@ ApplicationWindow {
                 width: 30
                 height: 30
 
-                source: "qrc:/icons/nullock_icon.png"
+                source: "qrc:/icons/nullock.png"
 
                 anchors.verticalCenter: parent.verticalCenter
             }

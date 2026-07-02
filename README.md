@@ -21,7 +21,7 @@ We envision a Web Hacking Suite that the community can freely clone, modify, and
 
 A tool that is so customizable and transformable that people can't help but love it.
 
-Nullock is more than just a tool for the individual; it is a Web Hacking Suite that the FOSS and Cybersecurity community can build, improve, and evolve together.
+Nullock is more than just a tool for the individual or company; it is a Web Hacking Suite that the FOSS and Cybersecurity community can build, improve, and evolve together. Businesses are more than welcome to use it free of charge and any support from an individual or company is highly appreciated.
 
 We swear to do our best to uphold and maintain:
 

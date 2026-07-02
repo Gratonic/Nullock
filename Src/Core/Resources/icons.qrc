@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/icons">
-        <file>nullock_icon.png</file>
+        <file>nullock.png</file>
 
         <file>sitemap_icon.png</file>
         <file>scope_icon.svg</file>
