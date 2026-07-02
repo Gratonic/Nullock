@@ -1008,6 +1008,104 @@ ApplicationWindow {
                 }
 
             }
+
+            Button {
+                id: extensionsButton
+                width: implicitWidth // dynamically calculated based on text size
+                height: appBar.height
+
+                property bool colorFlashActive: false
+
+                contentItem: Text {
+                    text: "Extensions"
+                    font.pixelSize: 15
+                    font.family: "georgia"
+                    font.weight: Font.ExtraLight
+                    color: {
+                        if (extensionsButton.hovered && !extensionsButton.colorFlashActive) {
+                            return "#8048B584"
+                        } else {
+                            return "#48B584"
+                        }
+                    }
+
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                background: Rectangle {
+                    color: {
+                        if (extensionsButton.hovered && !extensionsButton.colorFlashActive) {
+                            return "#80929292"
+                        } else if (extensionsButton.colorFlashActive) {
+                            return "#929292"
+                        } else {
+                            return "transparent"
+                        }
+                    }
+                }
+
+                Popup {
+                    id: extensionsButtonPopupMenu
+                    parent: extensionsButton
+                    width: implicitWidth
+                    height: implicitHeight
+
+                    x: extensionsButton.width - extensionsButton.width // gets the projectButton's left position (can't use projectButton.left)
+                    y: extensionsButton.height
+
+                    background: Rectangle {
+                        color: "#25272D"
+
+                        border.width: 1
+                        border.color: "#EDEAE8"
+                    }
+
+                    contentItem: Column {
+                        spacing: 0
+
+                        MenuItem {
+                            id: extensionsPlaceholderMenuItem
+                            text: "Extension Name"
+
+                            palette.text: "#48B584"
+
+                            palette.highlight: "#80929292"
+                            palette.highlightedText: "#8048B584"
+
+                            onClicked: {
+                                extensionsButtonPopupMenu.close()
+                            }
+
+                            // note: HoverHandler is used over MouseArea because it detects hovering without blocking signals and events
+                            HoverHandler {
+                                cursorShape: extensionsPlaceholderMenuItem.hovered ? Qt.PointingHandCursor : Qt.ArrowCursor
+                            }
+                        }
+                    }
+                }
+
+                onClicked: {
+                    extensionsButton.colorFlashActive = true
+                    extensionsButtonResetTimer.start()
+
+                    extensionsButtonPopupMenu.open()
+                }
+
+                Timer {
+                    id: extensionsButtonResetTimer
+                    interval: 75 // miliseconds (near instant to the human eye according to MIT scientists)
+                    onTriggered: {
+                        extensionsButton.colorFlashActive = false
+                    }
+                }
+
+                // note: HoverHandler is used over MouseArea because it detects hovering without blocking signals and events
+                HoverHandler {
+                    cursorShape: extensionsButton.hovered ? Qt.PointingHandCursor : Qt.ArrowCursor
+                }
+
+            }
         }
 
         // window control buttons
