@@ -1,9 +1,9 @@
-qt_add_resources(uiResources
-    resources.qrc
+qt_add_resources(uiResourcesLib
+    nullock_logo.png
 )
 
 # add resource target as library
-add_library(uiResourcesLib STATIC ${uiResources})
+add_library(uiResourcesLib STATIC)
 
 target_link_libraries(uiResourcesLib PRIVATE
     Qt6::Core 

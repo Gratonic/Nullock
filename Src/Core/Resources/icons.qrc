@@ -1,0 +1,33 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>nullock_icon.png</file>
+
+        <file>sitemap_icon.png</file>
+        <file>scope_icon.svg</file>
+        <file>http_history_icon.svg</file>
+        <file>intercept_icon.png</file>
+        <file>repeater_icon.svg</file>
+        <file>intruder_icon.png</file>
+        <file>extensions_icon.svg</file>
+        <file>devices_icon.svg</file>
+        <file>console_icon.svg</file>
+        <file>report_generator_icon.png</file>
+        <file>notes_icon.png</file>
+        <file>themes_icon.png</file>
+        <file>settings_icon.png</file>
+
+        <file>console_clicked_icon.svg</file>
+        <file>devices_clicked_icon.svg</file>
+        <file>extensions_clicked_icon.svg</file>
+        <file>http_history_clicked_icon.svg</file>
+        <file>intercept_clicked_icon.png</file>
+        <file>intruder_clicked_icon.png</file>
+        <file>notes_clicked_icon.png</file>
+        <file>repeater_clicked_icon.svg</file>
+        <file>report_generator_clicked_icon.png</file>
+        <file>scope_clicked_icon.svg</file>
+        <file>settings_clicked_icon.png</file>
+        <file>sitemap_clicked_icon.png</file>
+        <file>themes_clicked_icon.png</file>
+    </qresource>
+</RCC>

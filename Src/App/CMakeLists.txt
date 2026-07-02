@@ -1,9 +1,8 @@
 # main executable
 add_executable(Nullock
     nullock.cpp
-
     AppController/app_controller.cpp
-    AppController/app_controller.hpp
+    ../Core/Resources/icons.qrc
 )
 
 target_link_directories(Nullock 
@@ -28,6 +27,6 @@ target_link_libraries(Nullock
 
     # FrontEnd libs/modules 
     guiModule
-    uiResourcesLib
+    # uiResourcesLib
     # FrontEndResources
 )

@@ -11,34 +11,36 @@ Item {
         anchors.fill: parent
         color: "transparent"
 
-        StackView {
-            anchors.fill: parent
+        // Positioner :) (should be super helpful with the httpHistory display box
 
-            Rectangle {
-                width: parent.width
-                height: 100
-                color: "transparent"
+        // StackView {
+        //     anchors.fill: parent
 
-                anchors.topMargin: 15
-            }
+        //     Rectangle {
+        //         width: parent.width
+        //         height: 100
+        //         color: "transparent"
 
-            Rectangle {
-                anchors.bottomMargin: 15
-                color: "transparent"
+        //         anchors.topMargin: 15
+        //     }
 
-                ColumnLayout {
-                    Rectangle {
-                        width: parent.width / 2
-                        height: 100
-                    }
+        //     Rectangle {
+        //         anchors.bottomMargin: 15
+        //         color: "transparent"
 
-                    Rectangle {
-                        width: parent.width / 2
-                        height: 100
-                    }
-                }
-            }
-        }
+        //         ColumnLayout {
+        //             Rectangle {
+        //                 width: parent.width / 2
+        //                 height: 100
+        //             }
+
+        //             Rectangle {
+        //                 width: parent.width / 2
+        //                 height: 100
+        //             }
+        //         }
+        //     }
+        // }
     }
 }
 
