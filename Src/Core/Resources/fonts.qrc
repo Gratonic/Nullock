@@ -1,1 +1,13 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/fonts">
+        <file>Gotham-Bold.ttf</file>
+        <file>Gotham-Light.ttf</file>
+        <file>Gotham-Medium.ttf</file>
+        <file>Gotham-Regular.ttf</file>
+
+        <file>NotoSerifGeorgian-Bold.ttf</file>
+        <file>NotoSerifGeorgian-Light.ttf</file>
+        <file>NotoSerifGeorgian-Medium.ttf</file>
+        <file>NotoSerifGeorgian-Regular.ttf</file>
+    </qresource>
+</RCC>

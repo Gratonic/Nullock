@@ -14,4 +14,6 @@ qt_add_qml_module(themeEngineLib
 target_link_libraries(themeEngineLib
     PRIVATE Qt6::Core
     PRIVATE Qt6::Gui
+
+    utilsLib
 )

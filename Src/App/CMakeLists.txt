@@ -2,6 +2,7 @@
 add_executable(Nullock
     nullock.cpp
     AppController/app_controller.cpp
+
     ../Core/Resources/icons.qrc
 )
 
