@@ -5,6 +5,9 @@ import QtQuick.Layouts
 import QtQuick.Shapes
 import QtQuick.Dialogs
 
+// note: for HttpHistoryRectangleModel, which backs the HTTP History tab
+import GUI
+
 import "../Components/Overview/"
 import "../Components/Proxy/"
 import "../Components/RepeaterHub/"
@@ -56,10 +59,24 @@ ApplicationWindow {
         Scope {}
     }
 
+    /*
+     *  note: the history model lives HERE, not inside HttpHistory.qml, because the tab is
+     *        built by a Loader -- and a Loader destroys its item every time the user switches
+     *        away from the tab. A model owned by the tab would take the whole capture history
+     *        with it each time. Owned here, it outlives the tab.
+     *  note: this is also the object the proxy should write to once the networking layer is
+     *        connected -- httpHistoryModel.addEntry(method, url, status, hasParams, mime)
+    */
+    HttpHistoryRectangleModel {
+        id: httpHistoryModel
+    }
+
     Component {
         id: httpHistoryBlueprint
 
-        HttpHistory {}
+        HttpHistory {
+            historyModel: httpHistoryModel
+        }
     }
 
     id: root

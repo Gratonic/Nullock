@@ -38,6 +38,12 @@ qt_add_qml_module(guiModule
     Components/Workspace/Themes.qml
 )
 
+# note: qt_add_qml_module generates a type-registration .cpp that includes each QML_ELEMENT
+# header by BASENAME, so the directories holding those headers have to be on the include path
+target_include_directories(guiModule PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/Models/Proxy
+)
+
 target_link_libraries(guiModule PRIVATE
     Qt6::Core
     # Qt6::Qml
