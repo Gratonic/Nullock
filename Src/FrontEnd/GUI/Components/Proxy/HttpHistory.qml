@@ -20,114 +20,133 @@ Item {
     */
     property var historyModel: null
 
-    // note: the row the two panes at the bottom are showing
+    // note: -1 means "nothing picked". Deliberately NOT 0: a hardcoded 0 forces a phantom
+    // selection the user never made, and means the panes' empty state can never appear.
     readonly property int selectedRow: historyList.currentIndex
+    readonly property bool hasSelection: selectedRow >= 0
 
     /*
-     *  note: column widths live in one place so the title bar, the row delegate and the empty
-     *        grid behind them all read the SAME numbers -- written out three times they drift
-     *        apart the first time one gets edited
+     *  note: column widths live in one place so the header and the rows read the SAME
+     *        numbers -- written out twice they drift apart the first time one gets edited
      *  note: the url column takes whatever is left over, so long urls get the room
     */
-    readonly property int numberColumnWidth:    56
-    readonly property int methodColumnWidth:    92
-    readonly property int statusColumnWidth:    96
-    readonly property int paramsColumnWidth:    96
-    readonly property int mimeColumnWidth:      96
+    readonly property int numberColumnWidth:    52
+    readonly property int methodColumnWidth:    82
+    readonly property int statusColumnWidth:    72
+    readonly property int paramsColumnWidth:    72
+    readonly property int mimeColumnWidth:      88
     readonly property int timestampColumnWidth: 150
-    readonly property int flagColumnWidth:      56
+    readonly property int flagColumnWidth:      48
+    readonly property int rowInset:             14
 
     readonly property int fixedColumnsWidth: numberColumnWidth + methodColumnWidth
                                            + statusColumnWidth + paramsColumnWidth
                                            + mimeColumnWidth + timestampColumnWidth
                                            + flagColumnWidth
 
-    // note: how much room the url column has left after the fixed ones have taken theirs
     function urlColumnWidth(total_width) {
-        return Math.max(80, total_width - fixedColumnsWidth);
+        return Math.max(80, total_width - fixedColumnsWidth - rowInset * 2);
     }
 
-    readonly property int rowHeight: 34
+    readonly property int rowHeight: 32
 
-    // note: the grid lines that make the table read as a table. Deliberately dim -- they
-    // should separate cells without competing with the text.
-    readonly property color gridLine:   "#3A3D45"
+    // note: ONE hairline, used only for the panel edges and under the header. The columns
+    // are defined by alignment, not by ruled lines -- 8 vertical rules per row across 400
+    // rows is a lot of ink competing with the data the user is actually scanning.
+    readonly property color hairline:   "#33363E"
     readonly property color headerFill: "#22232B"
-    readonly property color rowFill:    "#8022232B"
+    readonly property color zebraFill:  "#0AFFFFFF"   // ~4% white, just enough to group rows
+    readonly property color textPrimary: "#EDEAE8"
+    readonly property color textMuted:   "#929292"
 
     /*
-     *  note: flag colours, per NullE's verdict on the request:
-     *          none     white   -- nothing found
-     *          info     blue    -- informational CVE/CWE, or a leak
-     *          warning  yellow  -- low/medium severity
-     *          critical red     -- critical severity
-     *  note: the user can click any flag to override NullE -- see the TapHandler below.
-     *  note: white and red come from the existing palette (#EDEAE8, #C34143). Blue and
-     *        yellow are NEW -- there is no blue or yellow anywhere else in nullock.qml, so
-     *        these two are a judgement call and easy to swap.
+     *  note: severity, per NullE's verdict. Contrast checked against the #2E3139 panel;
+     *        info/warning/critical are all >= 4:1, comfortably over the 3:1 floor for a
+     *        non-text UI mark.
+     *
+     *  note: COLOUR ALONE IS NOT ENOUGH HERE. Under deuteranopia (~1 in 12 men) amber and
+     *        red converge -- simulated, the two sit at a 1.03 contrast ratio, i.e. the same
+     *        colour. No choice of red and amber fixes that, so critical ALSO tints its whole
+     *        row (see criticalTint below). That second, non-chromatic channel is what makes
+     *        "is this row dangerous" answerable without hue.
+     *
+     *  note: "none" renders NOTHING unless the row is hovered. Most rows are clean, and a
+     *        bright mark on every clean row makes the column noise instead of signal; the
+     *        hover state is what keeps it discoverable as clickable.
     */
+    readonly property color flagInfo:     "#5A9FBF"
+    readonly property color flagWarning:  "#D89B3C"
+    readonly property color flagCritical: "#E4696B"
+    readonly property color flagIdle:     "#565964"
+    readonly property color criticalTint: "#1AE4696B"
+
     function flagColor(flag_value) {
         switch (flag_value) {
-        case 1:  return "#4A90D9";   // info
-        case 2:  return "#E5B341";   // warning
-        case 3:  return "#C34143";   // critical
-        default: return "#EDEAE8";   // none
+        case 1:  return flagInfo;
+        case 2:  return flagWarning;
+        case 3:  return flagCritical;
+        default: return flagIdle;
         }
     }
 
-    // note: a title-bar cell. Centred, matching the plan.
-    component HeaderCell: Item {
-        property string label: ""
-        property int cellWidth: 0
-        width: cellWidth
-        height: parent.height
+    /*
+     *  note: status class ramp -- the single biggest scan-speed win on this screen.
+     *  note: 2xx is deliberately MUTED rather than green. Most requests succeed, so
+     *        colouring success spends the contrast budget on the case nobody is hunting
+     *        for and makes the 4xx/5xx rows fight to be seen. Same principle as the idle
+     *        flag and the GET verb: the common case recedes, the interesting case shouts.
+     *  note: 4xx/5xx separate by hue for most people. For a red-green colour-blind user
+     *        they do not -- which is why a row NullE rates critical is also tinted.
+    */
+    function statusColor(code) {
+        if (code >= 500) return flagCritical;
+        if (code >= 400) return flagWarning;
+        if (code >= 300) return textPrimary;
+        return textMuted;
+    }
 
-        Text {
-            anchors.centerIn: parent
-            text: parent.label
-            color: "#EDEAE8"
-            font.pixelSize: 14
-            font.weight: Font.Medium
-        }
-        // note: right-hand separator, so the header reads as columns
-        Rectangle {
-            anchors.right: parent.right
-            width: 1
-            height: parent.height
-            color: httpHistoryItem.gridLine
+    // note: safe verbs recede, state-changing verbs come forward. A page load is mostly GET;
+    // the POST/PUT/PATCH/DELETE rows are the ones worth finding.
+    function methodColor(verb) {
+        switch (verb) {
+        case "GET":
+        case "HEAD":
+        case "OPTIONS": return textMuted;
+        default:        return textPrimary;
         }
     }
 
-    // note: a body cell. Centred like the header, with the same right separator so the
-    // column edges line up exactly between header, rows and the empty grid below them.
-    component Cell: Item {
-        property string label: ""
+    // note: a header label. Quiet uppercase micro-type -- the header should orient, not
+    // compete with the rows.
+    component HeaderCell: Text {
         property int cellWidth: 0
-        property color textColor: "#EDEAE8"
-        property bool elide: false
         width: cellWidth
         height: parent.height
+        verticalAlignment: Text.AlignVCenter
+        color: httpHistoryItem.textMuted
+        font.pixelSize: 11
+        font.weight: Font.Medium
+        font.letterSpacing: 0.6
+        elide: Text.ElideRight
+    }
 
-        Text {
-            anchors.centerIn: parent
-            width: parent.width - 12
-            horizontalAlignment: Text.AlignHCenter
-            text: parent.label
-            color: parent.textColor
-            font.pixelSize: 13
-            elide: parent.elide ? Text.ElideRight : Text.ElideNone
-        }
-        Rectangle {
-            anchors.right: parent.right
-            width: 1
-            height: parent.height
-            color: httpHistoryItem.gridLine
-        }
+    // note: a body cell. Alignment is what defines the column now that the vertical rules
+    // are gone, so it is a first-class property rather than a fixed centre.
+    component Cell: Text {
+        property int cellWidth: 0
+        width: cellWidth
+        height: parent.height
+        verticalAlignment: Text.AlignVCenter
+        color: httpHistoryItem.textPrimary
+        font.pixelSize: 12
+        elide: Text.ElideRight
     }
 
     // note: turns raw HTTP into lightly highlighted rich text for the two panes -- header
-    // NAMES in coral, the first line's method/version in green, values left plain. Escapes
-    // first: the text is attacker-controlled, and these panes are the whole point of the tab.
+    // NAMES in coral, HTTP/x.x in green, the first line's verb in violet.
+    // note: ESCAPES FIRST. This text comes off the wire from a target under test, and these
+    // panes render RichText -- an unescaped "<img src=x onerror=...>" in a response would be
+    // parsed as markup by the pane itself.
     function highlight(raw_text) {
         if (!raw_text || raw_text.length === 0)
             return "";
@@ -139,7 +158,6 @@ Item {
         for (var i = 0; i < lines.length; ++i) {
             var line = lines[i];
             if (i === 0) {
-                // request line or status line -- colour the verb/version tokens
                 out.push('<span style="color:#B084E0">'
                          + line.replace(/(HTTP\/[0-9.]+)/g,
                                         '</span><span style="color:#48B584">$1</span><span style="color:#B084E0">')
@@ -163,7 +181,7 @@ Item {
         anchors.margins: 15
 
         // =====================================================================
-        // HTTP history table -- the top half of the panel
+        // History table -- the top half
         // =====================================================================
         Rectangle {
             id: historyTable
@@ -174,109 +192,67 @@ Item {
             height: parent.height * 0.5
 
             color: "transparent"
-            border.color: httpHistoryItem.gridLine
+            border.color: httpHistoryItem.hairline
             border.width: 1
             radius: 3
             clip: true
 
-            // ---- title bar --------------------------------------------------
+            // ---- header ------------------------------------------------------
             Rectangle {
                 id: historyHeader
                 anchors.top: parent.top
                 anchors.left: parent.left
                 anchors.right: parent.right
-                height: httpHistoryItem.rowHeight + 8
+                height: httpHistoryItem.rowHeight
                 color: httpHistoryItem.headerFill
-                // note: square the bottom corners so the header sits flush on the grid
-                radius: 3
 
                 Row {
                     anchors.fill: parent
+                    anchors.leftMargin: httpHistoryItem.rowInset
+                    anchors.rightMargin: httpHistoryItem.rowInset
 
-                    HeaderCell { label: qsTr("#");        cellWidth: httpHistoryItem.numberColumnWidth }
-                    HeaderCell { label: qsTr("Method");   cellWidth: httpHistoryItem.methodColumnWidth }
                     HeaderCell {
-                        label: qsTr("User Resource Locater (URL)")
+                        text: qsTr("#")
+                        cellWidth: httpHistoryItem.numberColumnWidth
+                        horizontalAlignment: Text.AlignRight
+                        rightPadding: 12
+                    }
+                    HeaderCell { text: qsTr("METHOD"); cellWidth: httpHistoryItem.methodColumnWidth }
+                    HeaderCell {
+                        text: qsTr("URL")
                         cellWidth: httpHistoryItem.urlColumnWidth(historyHeader.width)
                     }
-                    HeaderCell { label: qsTr("Status");    cellWidth: httpHistoryItem.statusColumnWidth }
-                    HeaderCell { label: qsTr("Params");    cellWidth: httpHistoryItem.paramsColumnWidth }
-                    HeaderCell { label: qsTr("MIME");      cellWidth: httpHistoryItem.mimeColumnWidth }
-                    HeaderCell { label: qsTr("Timestamp"); cellWidth: httpHistoryItem.timestampColumnWidth }
-
-                    // note: the flag column's header is the flag glyph itself, per the plan
-                    Item {
-                        width: httpHistoryItem.flagColumnWidth
-                        height: parent.height
-                        Text {
-                            anchors.centerIn: parent
-                            text: "⚑"
-                            color: "#EDEAE8"
-                            font.pixelSize: 15
-                        }
+                    HeaderCell {
+                        text: qsTr("STATUS")
+                        cellWidth: httpHistoryItem.statusColumnWidth
+                        horizontalAlignment: Text.AlignRight
+                        rightPadding: 12
+                    }
+                    HeaderCell {
+                        text: qsTr("PARAMS")
+                        cellWidth: httpHistoryItem.paramsColumnWidth
+                        horizontalAlignment: Text.AlignHCenter
+                    }
+                    HeaderCell { text: qsTr("MIME");      cellWidth: httpHistoryItem.mimeColumnWidth }
+                    HeaderCell { text: qsTr("TIMESTAMP"); cellWidth: httpHistoryItem.timestampColumnWidth }
+                    HeaderCell {
+                        text: qsTr("FLAG")
+                        cellWidth: httpHistoryItem.flagColumnWidth
+                        horizontalAlignment: Text.AlignHCenter
                     }
                 }
 
+                // note: the one horizontal rule that earns its place -- it separates the
+                // header from the data, which is a real boundary
                 Rectangle {
                     anchors.bottom: parent.bottom
                     width: parent.width
                     height: 1
-                    color: httpHistoryItem.gridLine
+                    color: httpHistoryItem.hairline
                 }
             }
 
-            // ---- empty grid behind the rows ---------------------------------
-            // note: the plan draws the full grid even where there is no data yet, so the
-            // table reads as a table on an empty session instead of as a blank box.
-            Column {
-                id: emptyGrid
-                anchors.top: historyHeader.bottom
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.bottom: parent.bottom
-
-                Repeater {
-                    model: Math.ceil(emptyGrid.height / httpHistoryItem.rowHeight)
-                    delegate: Item {
-                        required property int index
-                        width: emptyGrid.width
-                        height: httpHistoryItem.rowHeight
-
-                        Row {
-                            anchors.fill: parent
-                            Repeater {
-                                model: [ httpHistoryItem.numberColumnWidth,
-                                         httpHistoryItem.methodColumnWidth,
-                                         httpHistoryItem.urlColumnWidth(emptyGrid.width),
-                                         httpHistoryItem.statusColumnWidth,
-                                         httpHistoryItem.paramsColumnWidth,
-                                         httpHistoryItem.mimeColumnWidth,
-                                         httpHistoryItem.timestampColumnWidth,
-                                         httpHistoryItem.flagColumnWidth ]
-                                delegate: Item {
-                                    required property int modelData
-                                    width: modelData
-                                    height: httpHistoryItem.rowHeight
-                                    Rectangle {
-                                        anchors.right: parent.right
-                                        width: 1
-                                        height: parent.height
-                                        color: httpHistoryItem.gridLine
-                                    }
-                                }
-                            }
-                        }
-                        Rectangle {
-                            anchors.bottom: parent.bottom
-                            width: parent.width
-                            height: 1
-                            color: httpHistoryItem.gridLine
-                        }
-                    }
-                }
-            }
-
-            // ---- the rows ---------------------------------------------------
+            // ---- rows --------------------------------------------------------
             ListView {
                 id: historyList
                 anchors.top: historyHeader.bottom
@@ -286,14 +262,17 @@ Item {
 
                 clip: true
                 model: httpHistoryItem.historyModel
-                currentIndex: 0
                 boundsBehavior: Flickable.StopAtBounds
+                reuseItems: true
 
-                /*
-                 *  note: a thin overlay handle rather than a full gutter with arrows -- it
-                 *        only appears while it is needed, so an empty or short history has
-                 *        no chrome at all. Rounded and inset to match the panel's radius.
-                */
+                // note: nothing is selected until the user picks something
+                currentIndex: -1
+
+                // note: arrow keys move the selection, and the panes follow. Cheap to add
+                // and the difference between a toy and a tool you live in.
+                focus: true
+                keyNavigationEnabled: true
+
                 ScrollBar.vertical: ScrollBar {
                     id: historyScroll
                     policy: historyList.contentHeight > historyList.height
@@ -309,8 +288,8 @@ Item {
                         color: historyScroll.pressed ? "#FF6C50"
                              : historyScroll.hovered ? "#EDEAE8"
                              : "#80929292"
-                        opacity: historyScroll.active ? 1.0 : 0.45
-                        Behavior on color   { ColorAnimation { duration: 120 } }
+                        opacity: historyScroll.active ? 1.0 : 0.4
+                        Behavior on color   { ColorAnimation  { duration: 120 } }
                         Behavior on opacity { NumberAnimation { duration: 150 } }
                     }
                     background: Item {}
@@ -331,21 +310,37 @@ Item {
                     required property string timestamp
                     required property int flag
 
-                    // note: selected / hovered / idle
+                    readonly property bool isCritical: flag === 3
+
+                    // note: zebra groups rows without drawing a line per row; selection and
+                    // hover sit on top of it.
                     Rectangle {
                         anchors.fill: parent
                         color: historyRow.ListView.isCurrentItem ? httpHistoryItem.headerFill
-                             : rowHover.hovered                  ? httpHistoryItem.rowFill
+                             : rowHover.hovered                  ? "#8022232B"
+                             : (historyRow.index % 2 === 1)      ? httpHistoryItem.zebraFill
                              : "transparent"
                     }
 
-                    // note: the coral edge marker on the selected row, straight from the plan
+                    /*
+                     *  note: the SECOND channel for critical severity. Amber and red are
+                     *        indistinguishable under red-green colour blindness, so a
+                     *        critical row is also tinted -- that reads without any hue at all.
+                    */
+                    Rectangle {
+                        anchors.fill: parent
+                        color: httpHistoryItem.criticalTint
+                        visible: historyRow.isCritical
+                    }
+
+                    // note: edge marker -- coral for the selected row, red for a critical one
                     Rectangle {
                         anchors.left: parent.left
                         width: 3
                         height: parent.height
-                        color: "#FF6C50"
-                        visible: historyRow.ListView.isCurrentItem
+                        visible: historyRow.ListView.isCurrentItem || historyRow.isCritical
+                        color: historyRow.ListView.isCurrentItem ? "#FF6C50"
+                                                                 : httpHistoryItem.flagCritical
                     }
 
                     HoverHandler {
@@ -358,42 +353,58 @@ Item {
 
                     Row {
                         anchors.fill: parent
+                        anchors.leftMargin: httpHistoryItem.rowInset
+                        anchors.rightMargin: httpHistoryItem.rowInset
 
                         Cell {
-                            label: historyRow.number
+                            text: historyRow.number
                             cellWidth: httpHistoryItem.numberColumnWidth
+                            horizontalAlignment: Text.AlignRight
+                            rightPadding: 12
+                            color: httpHistoryItem.textMuted
+                            font.family: "monospace"
                         }
                         Cell {
-                            label: historyRow.method
+                            text: historyRow.method
                             cellWidth: httpHistoryItem.methodColumnWidth
+                            color: httpHistoryItem.methodColor(historyRow.method)
+                            font.weight: historyRow.method === "GET" ? Font.Normal : Font.Medium
                         }
                         Cell {
-                            label: historyRow.url
+                            text: historyRow.url
                             cellWidth: httpHistoryItem.urlColumnWidth(historyRow.width)
-                            elide: true
                         }
                         Cell {
                             // note: status is 0 until the response lands -- show nothing, not "0"
-                            label: historyRow.status === 0 ? "" : historyRow.status
+                            text: historyRow.status === 0 ? "" : historyRow.status
                             cellWidth: httpHistoryItem.statusColumnWidth
+                            horizontalAlignment: Text.AlignRight
+                            rightPadding: 12
+                            color: httpHistoryItem.statusColor(historyRow.status)
+                            font.family: "monospace"
+                            font.weight: Font.Medium
                         }
                         Cell {
-                            label: historyRow.hasParams ? "✓" : ""
+                            text: historyRow.hasParams ? "✓" : ""
                             cellWidth: httpHistoryItem.paramsColumnWidth
+                            horizontalAlignment: Text.AlignHCenter
+                            color: httpHistoryItem.textMuted
                         }
                         Cell {
-                            label: historyRow.mime
+                            text: historyRow.mime
                             cellWidth: httpHistoryItem.mimeColumnWidth
-                            elide: true
+                            color: httpHistoryItem.textMuted
                         }
                         Cell {
-                            label: historyRow.timestamp
+                            text: historyRow.timestamp
                             cellWidth: httpHistoryItem.timestampColumnWidth
-                            elide: true
+                            color: httpHistoryItem.textMuted
+                            font.family: "monospace"
+                            font.pixelSize: 11
                         }
 
-                        // note: the flag cell is interactive -- clicking it cycles NullE's
-                        // verdict, so the user can raise something NullE missed or clear
+                        // note: the flag cell is interactive -- clicking cycles NullE's
+                        // verdict so the user can raise something it missed or clear
                         // something it got wrong.
                         Item {
                             width: httpHistoryItem.flagColumnWidth
@@ -401,11 +412,18 @@ Item {
 
                             Text {
                                 anchors.centerIn: parent
-                                text: "⚑"
-                                font.pixelSize: 16
+                                // note: unflagged rows show nothing until hovered. Most rows
+                                // are clean; a mark on every one of them is noise, and the
+                                // hover state is what keeps the control discoverable.
+                                text: historyRow.flag === 0 ? "⚐" : "⚑"
+                                visible: historyRow.flag !== 0 || flagHover.hovered
+                                font.pixelSize: 15
                                 color: httpHistoryItem.flagColor(historyRow.flag)
                             }
-                            HoverHandler { cursorShape: Qt.PointingHandCursor }
+                            HoverHandler {
+                                id: flagHover
+                                cursorShape: Qt.PointingHandCursor
+                            }
                             TapHandler {
                                 onTapped: {
                                     historyList.currentIndex = historyRow.index;
@@ -414,21 +432,29 @@ Item {
                                         httpHistoryItem.historyModel.cycleFlag(historyRow.index);
                                 }
                             }
-                            Rectangle {
-                                anchors.right: parent.right
-                                width: 1
-                                height: parent.height
-                                color: httpHistoryItem.gridLine
-                            }
                         }
                     }
+                }
+            }
 
-                    Rectangle {
-                        anchors.bottom: parent.bottom
-                        width: parent.width
-                        height: 1
-                        color: httpHistoryItem.gridLine
-                    }
+            // note: a real empty state, not a grid of ruled blank rows pretending to be data
+            Column {
+                anchors.centerIn: parent
+                spacing: 6
+                visible: historyList.count === 0
+
+                Text {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: qsTr("No traffic captured yet")
+                    color: httpHistoryItem.textPrimary
+                    font.family: "georgia"
+                    font.pixelSize: 15
+                }
+                Text {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: qsTr("Requests routed through the proxy will appear here.")
+                    color: httpHistoryItem.textMuted
+                    font.pixelSize: 12
                 }
             }
         }
@@ -445,8 +471,6 @@ Item {
             anchors.bottom: parent.bottom
             spacing: 12
 
-            // note: one pane. Both halves are identical apart from their title and body,
-            // so they are one inline component rather than two near-copies.
             component MessagePane: Rectangle {
                 // note: id rather than parent.parent chains -- those resolve to QQuickItem
                 // and break the moment anything is nested differently
@@ -455,7 +479,7 @@ Item {
                 property string bodyText: ""
 
                 color: "transparent"
-                border.color: httpHistoryItem.gridLine
+                border.color: httpHistoryItem.hairline
                 border.width: 1
                 radius: 3
                 clip: true
@@ -465,17 +489,17 @@ Item {
                     anchors.top: parent.top
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    height: httpHistoryItem.rowHeight + 8
+                    height: httpHistoryItem.rowHeight
                     color: httpHistoryItem.headerFill
 
                     Text {
                         anchors.left: parent.left
-                        anchors.leftMargin: 13
+                        anchors.leftMargin: httpHistoryItem.rowInset
                         anchors.verticalCenter: parent.verticalCenter
                         text: paneRoot.title
-                        color: "#EDEAE8"
+                        color: httpHistoryItem.textPrimary
+                        font.family: "georgia"
                         font.pixelSize: 14
-                        font.weight: Font.Medium
                     }
 
                     // note: the view selector from the plan. Only "Pretty" exists so far --
@@ -486,29 +510,29 @@ Item {
                         anchors.right: parent.right
                         anchors.rightMargin: 8
                         anchors.verticalCenter: parent.verticalCenter
-                        width: 110
-                        height: 26
+                        width: 96
+                        height: 24
                         model: [ qsTr("Pretty") ]
 
                         contentItem: Text {
                             leftPadding: 10
                             text: viewMode.displayText
                             color: "#48B584"
-                            font.pixelSize: 13
+                            font.pixelSize: 12
                             verticalAlignment: Text.AlignVCenter
                         }
                         background: Rectangle {
                             color: "transparent"
-                            border.color: "#48B584"
+                            border.color: viewMode.hovered ? "#48B584" : "#8048B584"
                             border.width: 1
                             radius: 3
                         }
                         indicator: Text {
-                            x: viewMode.width - width - 10
+                            x: viewMode.width - width - 9
                             y: (viewMode.height - height) / 2
                             text: "⌄"
                             color: "#48B584"
-                            font.pixelSize: 14
+                            font.pixelSize: 13
                         }
                     }
 
@@ -516,7 +540,7 @@ Item {
                         anchors.bottom: parent.bottom
                         width: parent.width
                         height: 1
-                        color: httpHistoryItem.gridLine
+                        color: httpHistoryItem.hairline
                     }
                 }
 
@@ -527,6 +551,7 @@ Item {
                     anchors.bottom: parent.bottom
                     anchors.margins: 10
                     clip: true
+                    visible: httpHistoryItem.hasSelection
 
                     TextArea {
                         readOnly: true
@@ -535,10 +560,20 @@ Item {
                         textFormat: TextArea.RichText
                         text: httpHistoryItem.highlight(paneRoot.bodyText)
                         font.family: "monospace"
-                        font.pixelSize: 13
-                        color: "#EDEAE8"
+                        font.pixelSize: 12
+                        color: httpHistoryItem.textPrimary
                         background: Item {}
                     }
+                }
+
+                // note: with nothing selected the pane says so, rather than showing an
+                // empty box the user reads as "this request had no headers"
+                Text {
+                    anchors.centerIn: parent
+                    visible: !httpHistoryItem.hasSelection
+                    text: qsTr("Select a request")
+                    color: httpHistoryItem.textMuted
+                    font.pixelSize: 12
                 }
             }
 
@@ -547,8 +582,8 @@ Item {
              *        historyList.currentItem. A ListView recycles delegates, so currentItem
              *        is null the moment the selected row scrolls out of view -- binding to it
              *        blanks both panes while the row is still perfectly well selected.
-             *  note: the guard also covers a plain QML ListModel (used by the standalone
-             *        preview), which has no requestTextAt.
+             *  note: the requestTextAt guard also covers a plain QML ListModel, which the
+             *        standalone preview uses and which has no such method.
             */
             MessagePane {
                 width: (paneRow.width - paneRow.spacing) / 2
