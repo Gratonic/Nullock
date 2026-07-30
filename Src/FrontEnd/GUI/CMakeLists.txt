@@ -40,7 +40,9 @@ qt_add_qml_module(guiModule
 
 # note: qt_add_qml_module generates a type-registration .cpp that includes each QML_ELEMENT
 # header by BASENAME, so the directories holding those headers have to be on the include path
-target_include_directories(guiModule PRIVATE
+# note: PUBLIC, not PRIVATE -- AppController (Src/App) holds the history model and needs
+# its header. Anything linking guiModule gets the model headers on its include path.
+target_include_directories(guiModule PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/Models/Proxy
 )
 
