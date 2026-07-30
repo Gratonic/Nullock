@@ -13,8 +13,10 @@ import "../Components/ExtensionsHub/"
 import "../Components/DevicesHub/"
 import "../Components/Workspace/"
 
-// note: for HttpHistoryRectangleModel, which backs the HTTP History tab
-// import GUI // note: QML module not found error
+// note: the App singleton (registered in nullock.cpp). Gives QML the ThemeEngine and the
+// HTTP History model. NOT `import GUI` -- this file is part of the GUI module itself, and a
+// module cannot import itself, which is where the "QML module not found" error came from.
+import Nullock
 
 
 // note: components must be defined in main app window....
@@ -3607,25 +3609,28 @@ ApplicationWindow {
                         }
 
                         /*
-                         *  note: the history model lives HERE, not inside HttpHistory.qml, because the tab is
-                         *        built by a Loader -- and a Loader destroys its item every time the user switches
-                         *        away from the tab. A model owned by the tab would take the whole capture history
-                         *        with it each time. Owned here, it outlives the tab.
-                         *  note: this is also the object the proxy should write to once the networking layer is
-                         *        connected -- httpHistoryModel.addEntry(method, url, status, hasParams, mime)
+                         *  note: the history model is NOT created here, and not inside
+                         *        HttpHistory.qml either -- it lives in C++ on AppController and
+                         *        is reached as App.HttpHistoryModel.
+                         *
+                         *  note: that is what fixes the "QML module not found" error. This file
+                         *        is itself PART of the GUI module, and a module cannot import
+                         *        itself, so `import GUI` could never resolve here. The App
+                         *        singleton (registered in nullock.cpp) is the bridge that
+                         *        already works, and it only needs `import Nullock`.
+                         *
+                         *  note: owning it in C++ also solves two real problems. This tab is
+                         *        built by a Loader, which DESTROYS its item on every tab switch
+                         *        -- a model owned by QML would take the whole capture history
+                         *        with it each time the user clicked away. And the proxy needs to
+                         *        write to it from C++ once networking lands:
+                         *            app_controller.httpHistoryModel()->addEntry(...)
                         */
-
-                        // note/todo: unknown component because the QML Module (GUI) can not be found; uncomment when issue is fixed
-                        // HttpHistoryRectangleModel {
-                        //     id: httpHistoryModel
-                        // }
-
                         Component {
                             id: httpHistoryBlueprint
 
                             HttpHistory {
-                                // note: see line 3618 to discover why this line is commented out
-                                // historyModel: httpHistoryModel
+                                historyModel: App.HttpHistoryModel
                             }
                         }
 

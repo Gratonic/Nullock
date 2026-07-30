@@ -15,3 +15,7 @@ void AppController::loadTheme(const QString& theme_name) {
 QVariantMap AppController::ThemeEngineInstance() {
     return ThemeEngine::getThemeEngineInstance()->getTheme();
 }
+
+HttpHistoryRectangleModel* AppController::httpHistoryModel() {
+    return &http_history_model;
+}
