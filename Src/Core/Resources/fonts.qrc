@@ -5,9 +5,9 @@
         <file>Gotham-Medium.ttf</file>
         <file>Gotham-Regular.ttf</file>
 
-        <file>NotoSerifGeorgian-Bold.ttf</file>
-        <file>NotoSerifGeorgian-Light.ttf</file>
-        <file>NotoSerifGeorgian-Medium.ttf</file>
-        <file>NotoSerifGeorgian-Regular.ttf</file>
+        <file>Georgian-Bold.ttf</file>
+        <file>Georgian-Light.ttf</file>
+        <file>Georgian-Medium.ttf</file>
+        <file>Georgian-Regular.ttf</file>
     </qresource>
 </RCC>

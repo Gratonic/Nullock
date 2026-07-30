@@ -13,6 +13,9 @@ import "../Components/ExtensionsHub/"
 import "../Components/DevicesHub/"
 import "../Components/Workspace/"
 
+// note: for HttpHistoryRectangleModel, which backs the HTTP History tab
+// import GUI // note: QML module not found error
+
 
 // note: components must be defined in main app window....
 // Component {
@@ -51,17 +54,6 @@ import "../Components/Workspace/"
 // }
 
 ApplicationWindow {
-    Component {
-        id: scopeBlueprint
-        Scope {}
-    }
-
-    Component {
-        id: httpHistoryBlueprint
-
-        HttpHistory {}
-    }
-
     id: root
     visible: true
     width: 800
@@ -1265,7 +1257,7 @@ ApplicationWindow {
                             anchors.verticalCenter: parent.verticalCenter
                         }
 
-                        // note: the controlArea is needed to position the dropdowns, buttons, and searchBox correctly
+                        // note: the controlArea is needed to position the comboBox's, buttons, and keywordSearchBox correctly
                         Rectangle {
                             id: controlArea
                             width: (parent.width - 15) * 0.8 // this is the same as the tabPanel length: (parent.width - parent.spacing) * 0.8
@@ -1284,11 +1276,11 @@ ApplicationWindow {
                                 color: "transparent"
 
                                 ComboBox {
-                                    id: projectDropdown
+                                    id: projectComboBox
                                     width: 0.18 * parent.width
                                     height: parent.height
                                     palette.buttonText: {
-                                        if (projectDropdown.hovered) {
+                                        if (projectComboBox.hovered) {
                                             return "#8048B584"
                                         } else {
                                             return "#48B584"
@@ -1308,7 +1300,7 @@ ApplicationWindow {
                                     background: Rectangle {
                                         color: "transparent"
                                         border.color: {
-                                            if (projectDropdown.hovered) {
+                                            if (projectComboBox.hovered) {
                                                 return "#8048B584"
                                             } else {
                                                 return "#48B584"
@@ -1331,20 +1323,20 @@ ApplicationWindow {
                                      * note: needed for the HoverHandler to work for the popup items
                                     */
                                     delegate: ItemDelegate {
-                                        width: projectDropdown.width
-                                        highlighted: projectDropdown.highlightedIndex === index
+                                        width: projectComboBox.width
+                                        highlighted: projectComboBox.highlightedIndex === index
                                         background: Rectangle {
                                             color: highlighted ? "#80929292" : "transparent"
                                         }
 
                                         contentItem: Text {
                                             text: modelData
-                                            color: highlighted ? "#AA48B584" : "#48B584"
+                                            color: highlighted ? "#8048B584" : "#48B584"
 
                                             font.pixelSize: 15
                                             font.family: "georgia"
                                             font.weight: Font.ExtraLight
-                                            font.bold: index === projectDropdown.currentIndex
+                                            font.bold: index === projectComboBox.currentIndex
 
                                             verticalAlignment: Text.AlignVCenter
                                             leftPadding: 5
@@ -1356,7 +1348,7 @@ ApplicationWindow {
                                     }
 
                                     HoverHandler {
-                                        cursorShape: projectDropdown.hovered ? Qt.PointingHandCursor : Qt.ArrowCursor
+                                        cursorShape: projectComboBox.hovered ? Qt.PointingHandCursor : Qt.ArrowCursor
                                     }
                                 }
 
@@ -1366,7 +1358,7 @@ ApplicationWindow {
                                     width: 0.18 * parent.width
                                     height: parent.height
 
-                                    anchors.left: projectDropdown.right
+                                    anchors.left: projectComboBox.right
                                     anchors.leftMargin: 7.5
                                     anchors.verticalCenter: parent.verticalCenter
 
@@ -1376,6 +1368,7 @@ ApplicationWindow {
                                         id: sendToRepeaterButtonText
                                         font.pixelSize: 15
                                         font.weight: Font.Medium
+
                                         color: {
                                             if (sendToRepeaterButton.hovered && !sendToRepeaterButton.colorFlashActive) {
                                                 return "#80FF6C50"
@@ -1430,7 +1423,7 @@ ApplicationWindow {
                                 }
 
                                 SearchField {
-                                    id: searchBox
+                                    id: keywordSearchBox
                                     width: (0.28 * parent.width) - 30 // note: 30 is removed for margin cost (7.5 * 4)
                                     height: parent.height
 
@@ -1440,15 +1433,15 @@ ApplicationWindow {
                                     anchors.centerIn: parent
 
                                     contentItem: TextField {
-                                        id: searchBoxTextContainer
+                                        id: keywordSearchBoxTextContainer
 
                                         /*
-                                         * note: this line keeps the TextField's text synchronized with searchBox.text so that the internal clear button will work as intended
+                                         * note: this line keeps the TextField's text synchronized with keywordSearchBox.text so that the internal clear button will work as intended
                                          * note: when the clear button is pressed, this text will have a length of 0
                                         */
-                                        text: searchBox.text
+                                        text: keywordSearchBox.text
 
-                                        // note: when this TextField's text's (linked to searchBox.text) length is 0, this placeholderText will take it's place
+                                        // note: when this TextField's text's (linked to keywordSearchBox.text) length is 0, this placeholderText will take it's place
                                         placeholderText: "keyword"
                                         placeholderTextColor: "#929292"
 
@@ -1469,12 +1462,12 @@ ApplicationWindow {
 
                                     // note: HoverHandler is used over MouseArea because it detects hovering without blocking signals and events
                                     HoverHandler {
-                                        cursorShape: searchBox.searchIndicator.hovered ? Qt.PointingHandCursor : Qt.ArrowCursor
+                                        cursorShape: keywordSearchBox.searchIndicator.hovered ? Qt.PointingHandCursor : Qt.ArrowCursor
                                     }
 
                                     // ensures the user's cursor stays focused on the SearchBox (SearchField) when they click the clear button
                                     onClearButtonPressed: {
-                                        searchBoxTextContainer.forceActiveFocus()
+                                        keywordSearchBoxTextContainer.forceActiveFocus()
                                     }
                                 }
 
@@ -1483,7 +1476,7 @@ ApplicationWindow {
                                     width: 0.18 * parent.width
                                     height: parent.height
 
-                                    anchors.right: scopeDropdown.left
+                                    anchors.right: scopeComboBox.left
                                     anchors.rightMargin: 7.5
                                     anchors.verticalCenter: parent.verticalCenter
 
@@ -1547,11 +1540,11 @@ ApplicationWindow {
                                 }
 
                                 ComboBox {
-                                    id: scopeDropdown
+                                    id: scopeComboBox
                                     width: 0.18 * parent.width
                                     height: parent.height
                                     palette.buttonText: {
-                                        if (scopeDropdown.hovered) {
+                                        if (scopeComboBox.hovered) {
                                             return "#8048B584"
                                         } else {
                                             return "#48B584"
@@ -1574,7 +1567,7 @@ ApplicationWindow {
                                     background: Rectangle {
                                         color: "transparent"
                                         border.color: {
-                                            if (scopeDropdown.hovered) {
+                                            if (scopeComboBox.hovered) {
                                                 return "#8048B584"
                                             } else {
                                                 return "#48B584"
@@ -1597,20 +1590,20 @@ ApplicationWindow {
                                      * note: needed for the HoverHandler to work for the popup items
                                     */
                                     delegate: ItemDelegate {
-                                        width: scopeDropdown.width
-                                        highlighted: scopeDropdown.highlightedIndex === index
+                                        width: scopeComboBox.width
+                                        highlighted: scopeComboBox.highlightedIndex === index
                                         background: Rectangle {
                                             color: highlighted ? "#80929292" : "transparent"
                                         }
 
                                         contentItem: Text {
                                             text: modelData
-                                            color: highlighted ? "#AA48B584" : "#48B584"
+                                            color: highlighted ? "#8048B584" : "#48B584"
 
                                             font.pixelSize: 15
                                             font.family: "georgia"
                                             font.weight: Font.ExtraLight
-                                            font.bold: index === scopeDropdown.currentIndex
+                                            font.bold: index === scopeComboBox.currentIndex
 
                                             verticalAlignment: Text.AlignVCenter
                                             leftPadding: 5
@@ -1622,7 +1615,7 @@ ApplicationWindow {
                                     }
 
                                     HoverHandler {
-                                        cursorShape: scopeDropdown.hovered ? Qt.PointingHandCursor : Qt.ArrowCursor
+                                        cursorShape: scopeComboBox.hovered ? Qt.PointingHandCursor : Qt.ArrowCursor
                                     }
                                 }
                             }
@@ -1689,6 +1682,7 @@ ApplicationWindow {
                                 // property double bigContentSpace: 0.90 * ((parent.height / 8)  +  (parent.height / 12))
                                 // property double bigExtraContentSpace: 0.10 * ((parent.height / 8)  +  (parent.height / 12))
 
+                                // note: a gradient is used for the button background hover/checked/pressed color in order to give theme creators/artist more control
                                 Rectangle {
                                     id: overviewArea
                                     width: parent.width
@@ -1733,10 +1727,10 @@ ApplicationWindow {
                                                 }
 
                                                 text: qsTr("Sitemap")
+                                                verticalAlignment: Text.AlignVCenter
 
                                                 leftPadding: 3
                                                 anchors.left: sitemapTabButtonIcon.right
-                                                anchors.verticalCenter: parent.verticalCenter
                                             }
 
                                             Image {
@@ -1788,7 +1782,7 @@ ApplicationWindow {
                                                             } else if (sitemapTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002E3139"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -1800,7 +1794,7 @@ ApplicationWindow {
                                                             } else if (sitemapTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002F323A"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -1841,10 +1835,10 @@ ApplicationWindow {
                                                 }
 
                                                 text: qsTr("Scope")
+                                                verticalAlignment: Text.AlignVCenter
 
                                                 leftPadding: 3
                                                 anchors.left: scopeTabButtonIcon.right
-                                                anchors.verticalCenter: parent.verticalCenter
                                             }
 
                                             Image {
@@ -1896,7 +1890,7 @@ ApplicationWindow {
                                                             } else if (scopeTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002E3139"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -1908,7 +1902,7 @@ ApplicationWindow {
                                                             } else if (scopeTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002F323A"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -1971,10 +1965,10 @@ ApplicationWindow {
                                                 }
 
                                                 text: qsTr("HTTP History")
+                                                verticalAlignment: Text.AlignVCenter
 
                                                 leftPadding: 3
                                                 anchors.left: httpHistoryTabButtonIcon.right
-                                                anchors.verticalCenter: parent.verticalCenter
                                             }
 
                                             Image {
@@ -2027,7 +2021,7 @@ ApplicationWindow {
                                                             } else if (httpHistoryTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002E3139"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -2039,7 +2033,7 @@ ApplicationWindow {
                                                             } else if (httpHistoryTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002F323A"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -2080,10 +2074,10 @@ ApplicationWindow {
                                                 }
 
                                                 text: qsTr("Intercept")
+                                                verticalAlignment: Text.AlignVCenter
 
                                                 leftPadding: 3
                                                 anchors.left: interceptTabButtonIcon.right
-                                                anchors.verticalCenter: parent.verticalCenter
                                             }
 
                                             Image {
@@ -2135,7 +2129,7 @@ ApplicationWindow {
                                                             } else if (interceptTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002E3139"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -2147,7 +2141,7 @@ ApplicationWindow {
                                                             } else if (interceptTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002F323A"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -2210,10 +2204,10 @@ ApplicationWindow {
                                                 }
 
                                                 text: qsTr("Repeater")
+                                                verticalAlignment: Text.AlignVCenter
 
                                                 leftPadding: 3
                                                 anchors.left: repeaterTabButtonIcon.right
-                                                anchors.verticalCenter: parent.verticalCenter
                                             }
 
                                             Image {
@@ -2266,7 +2260,7 @@ ApplicationWindow {
                                                             } else if (repeaterTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002E3139"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -2278,7 +2272,7 @@ ApplicationWindow {
                                                             } else if (repeaterTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002F323A"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -2319,10 +2313,10 @@ ApplicationWindow {
                                                 }
 
                                                 text: qsTr("Repeater Console")
+                                                verticalAlignment: Text.AlignVCenter
 
                                                 leftPadding: 3
                                                 anchors.left: repeaterConsoleTabButtonIcon.right
-                                                anchors.verticalCenter: parent.verticalCenter
                                             }
 
                                             Image {
@@ -2374,7 +2368,7 @@ ApplicationWindow {
                                                             } else if (repeaterConsoleTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002E3139"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -2386,7 +2380,7 @@ ApplicationWindow {
                                                             } else if (repeaterConsoleTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002F323A"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -2449,10 +2443,10 @@ ApplicationWindow {
                                                 }
 
                                                 text: qsTr("Intruder")
+                                                verticalAlignment: Text.AlignVCenter
 
                                                 leftPadding: 3
                                                 anchors.left: intruderTabButtonIcon.right
-                                                anchors.verticalCenter: parent.verticalCenter
                                             }
 
                                             Image {
@@ -2505,7 +2499,7 @@ ApplicationWindow {
                                                             } else if (intruderTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002E3139"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -2517,7 +2511,7 @@ ApplicationWindow {
                                                             } else if (intruderTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002F323A"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -2558,10 +2552,10 @@ ApplicationWindow {
                                                 }
 
                                                 text: qsTr("Intruder Console")
+                                                verticalAlignment: Text.AlignVCenter
 
                                                 leftPadding: 3
                                                 anchors.left: intruderConsoleTabButtonIcon.right
-                                                anchors.verticalCenter: parent.verticalCenter
                                             }
 
                                             Image {
@@ -2613,7 +2607,7 @@ ApplicationWindow {
                                                             } else if (intruderConsoleTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002E3139"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -2625,7 +2619,7 @@ ApplicationWindow {
                                                             } else if (intruderConsoleTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002F323A"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -2688,10 +2682,10 @@ ApplicationWindow {
                                                 }
 
                                                 text: qsTr("Extensions")
+                                                verticalAlignment: Text.AlignVCenter
 
                                                 leftPadding: 3
                                                 anchors.left: extensionsTabButtonIcon.right
-                                                anchors.verticalCenter: parent.verticalCenter
                                             }
 
                                             Image {
@@ -2744,7 +2738,7 @@ ApplicationWindow {
                                                             } else if (extensionsTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002E3139"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -2756,7 +2750,7 @@ ApplicationWindow {
                                                             } else if (extensionsTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002F323A"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -2797,10 +2791,10 @@ ApplicationWindow {
                                                 }
 
                                                 text: qsTr("Extensions Console")
+                                                verticalAlignment: Text.AlignVCenter
 
                                                 leftPadding: 3
                                                 anchors.left: extensionsConsoleTabButtonIcon.right
-                                                anchors.verticalCenter: parent.verticalCenter
                                             }
 
                                             Image {
@@ -2852,7 +2846,7 @@ ApplicationWindow {
                                                             } else if (extensionsConsoleTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002E3139"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -2864,7 +2858,7 @@ ApplicationWindow {
                                                             } else if (extensionsConsoleTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002F323A"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -2927,10 +2921,10 @@ ApplicationWindow {
                                                 }
 
                                                 text: qsTr("Devices")
+                                                verticalAlignment: Text.AlignVCenter
 
                                                 leftPadding: 3
                                                 anchors.left: devicesTabButtonIcon.right
-                                                anchors.verticalCenter: parent.verticalCenter
                                             }
 
                                             Image {
@@ -2983,7 +2977,7 @@ ApplicationWindow {
                                                             } else if (devicesTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002E3139"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -2995,7 +2989,7 @@ ApplicationWindow {
                                                             } else if (devicesTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002F323A"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -3036,10 +3030,10 @@ ApplicationWindow {
                                                 }
 
                                                 text: qsTr("Devices Console")
+                                                verticalAlignment: Text.AlignVCenter
 
                                                 leftPadding: 3
                                                 anchors.left: devicesConsoleTabButtonIcon.right
-                                                anchors.verticalCenter: parent.verticalCenter
                                             }
 
                                             Image {
@@ -3091,7 +3085,7 @@ ApplicationWindow {
                                                             } else if (devicesConsoleTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002E3139"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -3103,7 +3097,7 @@ ApplicationWindow {
                                                             } else if (devicesConsoleTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002F323A"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -3166,10 +3160,10 @@ ApplicationWindow {
                                                 }
 
                                                 text: qsTr("Report Generator")
+                                                verticalAlignment: Text.AlignVCenter
 
                                                 leftPadding: 3
                                                 anchors.left: reportGeneratorTabButtonIcon.right
-                                                anchors.verticalCenter: parent.verticalCenter
                                             }
 
                                             Image {
@@ -3221,7 +3215,7 @@ ApplicationWindow {
                                                             } else if (reportGeneratorTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002E3139"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -3233,7 +3227,7 @@ ApplicationWindow {
                                                             } else if (reportGeneratorTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002F323A"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -3274,10 +3268,10 @@ ApplicationWindow {
                                                 }
 
                                                 text: qsTr("Notes")
+                                                verticalAlignment: Text.AlignVCenter
 
                                                 leftPadding: 3
                                                 anchors.left: notesTabButtonIcon.right
-                                                anchors.verticalCenter: parent.verticalCenter
                                             }
 
                                             Image {
@@ -3329,7 +3323,7 @@ ApplicationWindow {
                                                             } else if (notesTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002E3139"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -3341,7 +3335,7 @@ ApplicationWindow {
                                                             } else if (notesTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002F323A"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -3382,10 +3376,10 @@ ApplicationWindow {
                                                 }
 
                                                 text: qsTr("Themes")
+                                                verticalAlignment: Text.AlignVCenter
 
                                                 leftPadding: 3
                                                 anchors.left: themesTabButtonIcon.right
-                                                anchors.verticalCenter: parent.verticalCenter
                                             }
 
                                             Image {
@@ -3437,7 +3431,7 @@ ApplicationWindow {
                                                             } else if (themesTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002E3139"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -3449,7 +3443,7 @@ ApplicationWindow {
                                                             } else if (themesTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002F323A"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -3490,10 +3484,10 @@ ApplicationWindow {
                                                 }
 
                                                 text: qsTr("Settings")
+                                                verticalAlignment: Text.AlignVCenter
 
                                                 leftPadding: 3
                                                 anchors.left: settingsTabButtonIcon.right
-                                                anchors.verticalCenter: parent.verticalCenter
                                             }
 
                                             Image {
@@ -3545,7 +3539,7 @@ ApplicationWindow {
                                                             } else if (settingsTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002E3139"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -3557,7 +3551,7 @@ ApplicationWindow {
                                                             } else if (settingsTabButton.hovered) {
                                                                 return "#8022232B"
                                                             } else {
-                                                                return "#002F323A"
+                                                                return "transparent"
                                                             }
                                                         }
                                                     }
@@ -3587,21 +3581,73 @@ ApplicationWindow {
                         width: (parent.width - parent.spacing) * 0.8
                         height: parent.height
                         radius: mainArea.radius
+                        color: "transparent"
 
-                        gradient: RadialGradient {
-                            centerX: 200
-                            centerY: 200
-                            centerRadius: 100
+                        // gradient: RadialGradient {
+                        //     centerX: 200
+                        //     centerY: 200
+                        //     centerRadius: 100
 
-                            GradientStop { position: 0.0; color: "#2E3139" }
-                            GradientStop { position: 1.0; color: "#2F323A" }
+                        //     GradientStop { position: 0.0; color: "#2E3139" }
+                        //     GradientStop { position: 1.0; color: "#2F323A" }
+                        // }
+
+                        Component {
+                            id: defaultBlueprint
+
+                            Rectangle {
+                                radius: mainArea.radius
+                                color: "transparent"
+                            }
+                        }
+
+                        Component {
+                            id: scopeBlueprint
+                            Scope {}
+                        }
+
+                        /*
+                         *  note: the history model lives HERE, not inside HttpHistory.qml, because the tab is
+                         *        built by a Loader -- and a Loader destroys its item every time the user switches
+                         *        away from the tab. A model owned by the tab would take the whole capture history
+                         *        with it each time. Owned here, it outlives the tab.
+                         *  note: this is also the object the proxy should write to once the networking layer is
+                         *        connected -- httpHistoryModel.addEntry(method, url, status, hasParams, mime)
+                        */
+
+                        // note/todo: unknown component because the QML Module (GUI) can not be found; uncomment when issue is fixed
+                        // HttpHistoryRectangleModel {
+                        //     id: httpHistoryModel
+                        // }
+
+                        Component {
+                            id: httpHistoryBlueprint
+
+                            HttpHistory {
+                                // note: see line 3618 to discover why this line is commented out
+                                // historyModel: httpHistoryModel
+                            }
+                        }
+
+                        Component {
+                            id: interceptBlueprint
+
+                            Intercept {}
                         }
 
                         Loader {
                             id: tabLoader
                             anchors.fill: parent
 
-                            sourceComponent: httpHistoryBlueprint
+                            sourceComponent: {
+                                if (httpHistoryTabButton.checked) {
+                                    return httpHistoryBlueprint
+                                } else if (interceptTabButton.checked) {
+                                    return interceptBlueprint
+                                } else {
+                                    return defaultBlueprint
+                                }
+                            }
                         }
                     }
                     // tabPanel: end

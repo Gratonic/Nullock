@@ -1,7 +1,7 @@
 qt_add_qml_module(guiModule
     URI GUI
     VERSION 1.0
-    
+
     SOURCES
     Models/DevicesHub/devices_hub_model.cpp
     Models/DevicesHub/devices_hub_model.hpp
@@ -17,7 +17,7 @@ qt_add_qml_module(guiModule
     Models/RepeaterHub/repeater_hub_model.hpp
     Models/Workspace/workspace_model.cpp
     Models/Workspace/workspace_model.hpp
-    
+
     QML_FILES
     Main/nullock.qml
     Components/DevicesHub/DevicesConsole.qml
@@ -36,6 +36,12 @@ qt_add_qml_module(guiModule
     Components/Workspace/ReportGenerator.qml
     Components/Workspace/Settings.qml
     Components/Workspace/Themes.qml
+)
+
+# note: qt_add_qml_module generates a type-registration .cpp that includes each QML_ELEMENT
+# header by BASENAME, so the directories holding those headers have to be on the include path
+target_include_directories(guiModule PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/Models/Proxy
 )
 
 target_link_libraries(guiModule PRIVATE

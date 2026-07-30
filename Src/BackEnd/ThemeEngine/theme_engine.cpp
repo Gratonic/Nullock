@@ -62,6 +62,7 @@ void ThemeEngine::loadFonts(const QVariantMap& font_path) {
 void ThemeEngine::loadTheme(const QString name) {
     QFile theme_file("qrc:/themes/" + name + "_theme.json");
 
+    // check if the theme file exists
     if (!theme_file.open(QIODevice::ReadOnly)) {
         qWarning("failed to load JSON theme file");
     }

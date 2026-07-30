@@ -1,0 +1,311 @@
+{
+    "theme": {
+        "name": "default",
+
+        "colors": {
+            "primary": {
+                "general": "#48B584",
+
+                "text": "#48B584",
+                "onHover": "#8048B584"
+            },
+
+            "secondary": {
+                "general": "#FF6C50",
+
+                "text": "#FF6C50",
+                "onHover": "#80FF6C50"
+            },
+
+            "tertiary": {
+                "general": "#C34143",
+
+                "text": "#C34143",
+                "onHover": "#80C34143"
+            },
+
+            "miscellaneous": {
+                "general": "#EDEAE8",
+
+                "text": "#EDEAE8",
+                "onHover": "#80EDEAE8",
+
+                "title_text": "#929292",
+                "title_onHover": "#80929292"
+            },
+
+            "background": {
+                "appBar": "#22232B",
+                "contentArea": "#25272D"
+            },
+
+            "panel": {
+                "color0": "#2E3139",
+                "color1": "#2F323A"
+            },
+
+            "button": {
+                "nullockButton": {
+                    "onHover": "#80929292",
+                    "onColorFlashActive": "#929292",
+
+                    "onHoverText": "#8048B584",
+                    "onColorFlashActiveText": "#48B584"
+                },
+
+                "projectButton": {
+                    "onHover": "#80929292",
+                    "onColorFlashActive": "#929292",
+
+                    "onHoverText": "#8048B584",
+                    "onColorFlashActiveText": "#48B584"
+                },
+
+                "helpButton": {
+                    "onHover": "#80929292",
+                    "onColorFlashActive": "#929292",
+
+                    "onHoverText": "#8048B584",
+                    "onColorFlashActiveText": "#48B584"
+                },
+
+                "extensionsButton": {
+                    "onHover": "#80929292",
+                    "onColorFlashActive": "#929292",
+
+                    "onHoverText": "#8048B584",
+                    "onColorFlashActiveText": "#48B584"
+                },
+
+                "hideButton": {
+                    "color": "#22232B",
+                    "onHover": "#FF6C50"
+                },
+
+                "resizeButton": {
+                    "color": "#22232B",
+                    "onHover": "#48B584"
+                },
+
+                "closeButton": {
+                    "color": "#22232B",
+                    "onHover": "#C34143"
+                },
+
+                "sendToRepeaterButton": {
+                    "color": "#22232B",
+                    "onHover": "#8022232B",
+
+                    "border": "#FF6C50",
+                    "border_onHover": "#80FF6C50"
+                },
+
+                "sendToIntruderButton": {
+                    "color": "#22232B",
+                    "onHover": "#8022232B",
+
+                    "border": "#FF6C50",
+                    "border_onHover": "#80FF6C50"
+                },
+
+                "sitemapTabButton": {
+                    "color0_onHover": "#8022232B",
+                    "color0_onCheck": "#22232B",
+
+                    "color1_onHover": "#8022232B",
+                    "color1_onCheck": "#22232B"
+                },
+
+                "scopeTabButton": {
+                    "color0_onHover": "#8022232B",
+                    "color0_onCheck": "#22232B",
+
+                    "color1_onHover": "#8022232B",
+                    "color1_onCheck": "#22232B"
+                },
+
+                "httpHistoryTabButton": {
+                    "color0_onHover": "#8022232B",
+                    "color0_onCheck": "#22232B",
+
+                    "color1_onHover": "#8022232B",
+                    "color1_onCheck": "#22232B"
+                },
+
+                "interceptTabButton": {
+                    "color0_onHover": "#8022232B",
+                    "color0_onCheck": "#22232B",
+
+                    "color1_onHover": "#8022232B",
+                    "color1_onCheck": "#22232B"
+                },
+
+                "repeaterTabButton": {
+                    "color0_onHover": "#8022232B",
+                    "color0_onCheck": "#22232B",
+
+                    "color1_onHover": "#8022232B",
+                    "color1_onCheck": "#22232B"
+                },
+
+                "repeaterConsoleTabButton": {
+                    "color0_onHover": "#8022232B",
+                    "color0_onCheck": "#22232B",
+
+                    "color1_onHover": "#8022232B",
+                    "color1_onCheck": "#22232B"
+                },
+
+                "intruderTabButton": {
+                    "color0_onHover": "#8022232B",
+                    "color0_onCheck": "#22232B",
+
+                    "color1_onHover": "#8022232B",
+                    "color1_onCheck": "#22232B"
+                },
+
+                "intruderConsoleTabButton": {
+                    "color0_onHover": "#8022232B",
+                    "color0_onCheck": "#22232B",
+
+                    "color1_onHover": "#8022232B",
+                    "color1_onCheck": "#22232B"
+                },
+
+                "extensionsTabButton": {
+                    "color0_onHover": "#8022232B",
+                    "color0_onCheck": "#22232B",
+
+                    "color1_onHover": "#8022232B",
+                    "color1_onCheck": "#22232B"
+                },
+
+                "extensionsConsoleTabButton": {
+                    "color0_onHover": "#8022232B",
+                    "color0_onCheck": "#22232B",
+
+                    "color1_onHover": "#8022232B",
+                    "color1_onCheck": "#22232B"
+                },
+
+                "devicesTabButton": {
+                    "color0_onHover": "#8022232B",
+                    "color0_onCheck": "#22232B",
+
+                    "color1_onHover": "#8022232B",
+                    "color1_onCheck": "#22232B"
+                },
+
+                "devicesConsoleTabButton": {
+                    "color0_onHover": "#8022232B",
+                    "color0_onCheck": "#22232B",
+
+                    "color1_onHover": "#8022232B",
+                    "color1_onCheck": "#22232B"
+                },
+
+                "reportGeneratorTabButton": {
+                    "color0_onHover": "#8022232B",
+                    "color0_onCheck": "#22232B",
+
+                    "color1_onHover": "#8022232B",
+                    "color1_onCheck": "#22232B"
+                },
+
+                "notesTabButton": {
+                    "color0_onHover": "#8022232B",
+                    "color0_onCheck": "#22232B",
+
+                    "color1_onHover": "#8022232B",
+                    "color1_onCheck": "#22232B"
+                },
+
+                "themesTabButton": {
+                    "color0_onHover": "#8022232B",
+                    "color0_onCheck": "#22232B",
+
+                    "color1_onHover": "#8022232B",
+                    "color1_onCheck": "#22232B"
+                },
+
+                "settingsTabButton": {
+                    "color0_onHover": "#8022232B",
+                    "color0_onCheck": "#22232B",
+
+                    "color1_onHover": "#8022232B",
+                    "color1_onCheck": "#22232B"
+                }
+            },
+
+            "popup": {
+                "nullockButtonPopupMenu": {
+                    "background": "#25272D",
+                    "border": "#EDEAE8"
+                },
+
+                "projectButtonPopupMenu": {
+                    "background": "#25272D",
+                    "border": "#EDEAE8"
+                },
+
+                "helpButtonPopupMenu": {
+                    "background": "#25272D",
+                    "border": "#EDEAE8"
+                },
+
+                "extensionsButtonPopupMenu": {
+                    "background": "#25272D",
+                    "border": "#EDEAE8"
+                },
+
+                "projectComboBoxPopup": {
+                    "color": "#25272D",
+                    "border": "#48B584"
+                },
+
+                "scopeComboBoxPopup": {
+                    "color": "#25272D",
+                    "border": "#48B584"
+                }
+            },
+
+            "comboBox": {
+                "projectComboBox": {
+                    "border": "#48B584",
+                    "onHover": "#8048B584"
+                },
+
+                "scopeComboBox": {
+                    "border": "#48B584",
+                    "onHover": "#8048B584"
+                }
+            },
+
+            "SearchField": {
+                "keywordSearchBox": {
+                    "icon": "#FF6C50",
+                    "icon_background_onClick": "#80929292"
+                }
+            }
+        },
+
+        "typography": {
+            "font_family": {
+                "primary": "Georgian",
+                "secondary": "Gotham"
+            },
+
+            "font_path": {
+                "Georgian-Regular": "qrc:/fonts/Georgian-Regular",
+                "Georgian-Light": "qrc:/fonts/Georgian-Light",
+                "Georgian-Medium": "qrc:/fonts/Georgian-Medium",
+                "Georgian-Bold": "qrc:/fonts/Georgian-Bold",
+
+                "Gotham-Regular": "qrc:/fonts/Gotham-Regular",
+                "Gotham-Light": "qrc:/fonts/Gotham-Light",
+                "Gotham-Medium": "qrc:/fonts/Gotham-Medium",
+                "Gotham-Bold": "qrc:/fonts/Gotham-Bold"
+            }
+        }
+    }
+}

@@ -1,12 +1,13 @@
 # main executable
 add_executable(Nullock
     nullock.cpp
-    AppController/app_controller.cpp
+    ./AppController/app_controller.cpp
+    ./AppController/app_controller.hpp
 
     ../Core/Resources/icons.qrc
 )
 
-target_link_directories(Nullock 
+target_include_directories(Nullock
     PRIVATE ${CMAKE_SOURCE_DIR}/Src/BackEnd/ThemeEngine/
 )
 
@@ -26,7 +27,7 @@ target_link_libraries(Nullock
     # nulleLib
     # utilsLib
 
-    # FrontEnd libs/modules 
+    # FrontEnd libs/modules
     guiModule
     # uiResourcesLib
     # FrontEndResources
