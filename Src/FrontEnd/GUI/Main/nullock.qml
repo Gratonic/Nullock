@@ -63,6 +63,10 @@ ApplicationWindow {
     flags: Qt.FramelessWindowHint
     color: "transparent"
 
+    // note: this property is for accessing the ThemeEngine and the associated JSON theme data
+    property var theme: App.ThemeEngineInstance
+
+
     // ensures the user does not make the window too small
     minimumWidth: 800
     minimumHeight: 600

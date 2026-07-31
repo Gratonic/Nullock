@@ -54,7 +54,7 @@ Item {
     // are defined by alignment, not by ruled lines -- 8 vertical rules per row across 400
     // rows is a lot of ink competing with the data the user is actually scanning.
     readonly property color hairline:   "#33363E"
-    readonly property color headerFill: "#22232B"
+    readonly property color headerFill: "#2A2D33"
     readonly property color zebraFill:  "#0AFFFFFF"   // ~4% white, just enough to group rows
     readonly property color textPrimary: "#EDEAE8"
     readonly property color textMuted:   "#929292"
@@ -148,8 +148,9 @@ Item {
     // panes render RichText -- an unescaped "<img src=x onerror=...>" in a response would be
     // parsed as markup by the pane itself.
     function highlight(raw_text) {
-        if (!raw_text || raw_text.length === 0)
+        if (!raw_text || raw_text.length === 0) {
             return "";
+        }
 
         var escaped = raw_text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
         var lines = escaped.split("\n");
@@ -172,13 +173,13 @@ Item {
                 out.push('<span style="color:#EDEAE8">' + line + '</span>');
             }
         }
+
         return '<pre style="margin:0">' + out.join("\n") + '</pre>';
     }
 
     Item {
         id: httpHistoryArea
         anchors.fill: parent
-        anchors.margins: 15
 
         // =====================================================================
         // History table -- the top half
@@ -188,7 +189,7 @@ Item {
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
-            // note: 50% of the tab panel, as asked. The panes below take the rest.
+            // note: 50% of the tab panel. The panes below take the rest.
             height: parent.height * 0.5
 
             color: "transparent"
@@ -465,11 +466,11 @@ Item {
         Row {
             id: paneRow
             anchors.top: historyTable.bottom
-            anchors.topMargin: 12
+            anchors.topMargin: 15
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.bottom: parent.bottom
-            spacing: 12
+            spacing: 15
 
             component MessagePane: Rectangle {
                 // note: id rather than parent.parent chains -- those resolve to QQuickItem

@@ -6,8 +6,8 @@ qt_add_qml_module(themeEngineLib
         theme_engine.cpp
         theme_engine.hpp
 
-    # RESOURCES
-    #     theme.qrc
+    RESOURCES
+        themes.qrc
     #     RESOURCES font.qrc
 )
 

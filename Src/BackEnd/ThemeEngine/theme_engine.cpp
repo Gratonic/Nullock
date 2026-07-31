@@ -6,6 +6,8 @@
 #include "theme_engine.hpp"
 #include "utils.hpp"
 
+#include <QDebug>
+
 ThemeEngine::ThemeEngine(QObject *parent) {
     loadTheme("default");
 }
@@ -59,6 +61,8 @@ void ThemeEngine::loadFonts(const QVariantMap& font_path) {
     }
 }
 
+// for some reason Qt is unable to find the theme file despit it existing and the contructed properly
+// note: the themes.qrc file appears to be correct but may be wrong
 void ThemeEngine::loadTheme(const QString name) {
     QFile theme_file("qrc:/themes/" + name + "_theme.json");
 
