@@ -234,7 +234,7 @@ ApplicationWindow {
             id: appBar
             height: 0.07 * parent.height // 7% of parent
             radius: mainArea.radius
-            color: "#22232B"
+            color: theme["colors.background.appBar"]
 
             anchors.top: parent.top
             anchors.left: parent.left

@@ -30,7 +30,7 @@ QVariantMap ThemeEngine::flatten(const QVariantMap& raw_theme, const QString pre
         QString key = prefix.isEmpty() ? i.key() : prefix + "." + i.key();
 
         if (i.value().typeId() == QMetaType::QVariantMap) {
-            QVariantMap nested = flatten(i.value().toMap(), i.key());
+            QVariantMap nested = flatten(i.value().toMap(), key);
 
             // note: this loop is only reached once all keys have been created
             for (auto nestedI = nested.begin(); nestedI != nested.end(); ++nestedI) {
@@ -72,7 +72,7 @@ void ThemeEngine::loadTheme(const QString name)
         qWarning() << "Failed to load theme:" << path
                    << "-" << theme_file.errorString();
 
-        // in order to avoid parsing an unopen file...
+        // avoids parsing an unopened file...
         return;
     }
 
