@@ -7,8 +7,7 @@ qt_add_qml_module(themeEngineLib
         theme_engine.hpp
 
     RESOURCES
-        themes.qrc
-    #     RESOURCES font.qrc
+        ../../Core/Resources/themes.qrc
 )
 
 target_link_libraries(themeEngineLib

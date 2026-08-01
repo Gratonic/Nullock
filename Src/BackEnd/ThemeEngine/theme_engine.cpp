@@ -63,16 +63,22 @@ void ThemeEngine::loadFonts(const QVariantMap& font_path) {
 
 // for some reason Qt is unable to find the theme file despit it existing and the contructed properly
 // note: the themes.qrc file appears to be correct but may be wrong
-void ThemeEngine::loadTheme(const QString name) {
-    QFile theme_file("qrc:/themes/" + name + "_theme.json");
+void ThemeEngine::loadTheme(const QString name)
+{
+    const QString path = QStringLiteral(":/themes/%1_theme.json").arg(name);
+    QFile theme_file(path);
 
-    // check if the theme file exists
     if (!theme_file.open(QIODevice::ReadOnly)) {
-        qWarning("failed to load JSON theme file");
+        qWarning() << "Failed to load theme:" << path
+                   << "-" << theme_file.errorString();
+
+        // in order to avoid parsing an unopen file...
+        return;
     }
 
     // create a JSON object with the theme_file
-    QJsonDocument theme_doc = QJsonDocument::fromJson(theme_file.readAll());
+    QJsonParseError err;
+    const QJsonDocument theme_doc = QJsonDocument::fromJson(theme_file.readAll(), &err);
     QJsonObject theme_obj = theme_doc.object();
 
     QVariantMap theme_map = theme_obj.toVariantMap();
