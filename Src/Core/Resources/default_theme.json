@@ -44,7 +44,7 @@
                 "color1": "#2F323A"
             },
 
-            "button": {
+            "buttons": {
                 "nullockButton": {
                     "onHover": "#80929292",
                     "onColorFlashActive": "#929292",
@@ -237,7 +237,7 @@
                 }
             },
 
-            "popup": {
+            "popups": {
                 "nullockButtonPopupMenu": {
                     "background": "#25272D",
                     "border": "#EDEAE8"
@@ -269,22 +269,36 @@
                 }
             },
 
-            "comboBox": {
+            "comboBoxes": {
                 "projectComboBox": {
                     "border": "#48B584",
-                    "onHover": "#8048B584"
+                    "border_onHover": "#8048B584",
+
+                    "background_onHover": "#80929292",
+
+                    "text": "#48B584",
+                    "text_onHover": "#8048B584"
                 },
 
                 "scopeComboBox": {
                     "border": "#48B584",
-                    "onHover": "#8048B584"
+                    "border_onHover": "#8048B584",
+
+                    "background_onHover": "#80929292",
+
+                    "text": "#48B584",
+                    "text_onHover": "#8048B584"
                 }
             },
 
-            "SearchField": {
+            "searchFields": {
                 "keywordSearchBox": {
                     "icon": "#FF6C50",
-                    "icon_background_onClick": "#80929292"
+                    "icon_background_onClick": "#80929292",
+
+                    "border": "#FF6C50",
+
+                    "placeholder": "#929292"
                 }
             }
         },

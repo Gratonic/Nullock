@@ -250,7 +250,7 @@ ApplicationWindow {
                 anchors.right: parent.right
                 anchors.bottom: parent.bottom
 
-                color: "#22232B"
+                color: theme["colors.background.appBar"]
             }
         }
 
@@ -327,9 +327,9 @@ ApplicationWindow {
                     font.weight: Font.ExtraLight
                     color: {
                         if (nullockButton.hovered && !nullockButton.colorFlashActive) {
-                            return "#8048B584"
+                            return theme["colors.buttons.nullockButton.onHoverText"]
                         } else {
-                            return "#48B584"
+                            return theme["colors.buttons.nullockButton.onColorFlashActiveText"]
                         }
                     }
 
@@ -340,9 +340,9 @@ ApplicationWindow {
                 background: Rectangle {
                     color: {
                         if (nullockButton.hovered && !nullockButton.colorFlashActive) {
-                            return "#80929292"
+                            return theme["colors.buttons.nullockButton.onHover"]
                         } else if (nullockButton.colorFlashActive) {
-                            return "#929292"
+                            return theme["colors.buttons.nullockButton.onColorFlashActive"]
                         } else {
                             return "transparent"
                         }
@@ -359,10 +359,10 @@ ApplicationWindow {
                     y: nullockButton.height
 
                     background: Rectangle {
-                        color: "#25272D"
+                        color: theme["colors.popups.nullockButtonPopupMenu.background"]
 
                         border.width: 1
-                        border.color: "#EDEAE8"
+                        border.color: theme["colors.popups.nullockButtonPopupMenu.border"]
                     }
 
                     contentItem: Column {
@@ -372,10 +372,10 @@ ApplicationWindow {
                             id: sitemapMenuItem
                             text: "Sitemap"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                             }
@@ -390,10 +390,10 @@ ApplicationWindow {
                             id: scopeMenuItem
                             text: "Scope"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                             }
@@ -408,10 +408,10 @@ ApplicationWindow {
                             id: httpHistoryMenuItem
                             text: "HTTP History"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                             }
@@ -426,10 +426,10 @@ ApplicationWindow {
                             id: interceptMenuItem
                             text: "Intercept"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                             }
@@ -444,10 +444,10 @@ ApplicationWindow {
                             id: repeaterMenuItem
                             text: "Repeater"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                             }
@@ -462,10 +462,10 @@ ApplicationWindow {
                             id: repeaterConsoleMenuItem
                             text: "Repeater Console"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                             }
@@ -480,10 +480,10 @@ ApplicationWindow {
                             id: intruderMenuItem
                             text: "Intruder"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                             }
@@ -498,10 +498,10 @@ ApplicationWindow {
                             id: intruderConsoleMenuItem
                             text: "Intruder Console"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                             }
@@ -516,9 +516,9 @@ ApplicationWindow {
                             id: extensionsMenuItem
                             text: "Extensions"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
                             palette.highlightedText: "#8048B584"
 
                             onClicked: {
@@ -534,10 +534,10 @@ ApplicationWindow {
                             id: extensionsConsoleMenuItem
                             text: "Extensions Console"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                             }
@@ -552,10 +552,10 @@ ApplicationWindow {
                             id: devicesMenuItem
                             text: "Devices"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                             }
@@ -570,10 +570,10 @@ ApplicationWindow {
                             id: devicesConsoleMenuItem
                             text: "Devices Console"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                             }
@@ -588,10 +588,10 @@ ApplicationWindow {
                             id: reportGeneratorMenuItem
                             text: "Report Generator"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                             }
@@ -606,10 +606,10 @@ ApplicationWindow {
                             id: notesMenuItem
                             text: "Notes"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                             }
@@ -624,10 +624,10 @@ ApplicationWindow {
                             id: themesMenuItem
                             text: "Themes"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                             }
@@ -642,10 +642,10 @@ ApplicationWindow {
                             id: settingsMenuItem
                             text: "Settings"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                             }
@@ -694,9 +694,9 @@ ApplicationWindow {
                     font.weight: Font.ExtraLight
                     color: {
                         if (projectButton.hovered && !projectButton.colorFlashActive || projectButtonPopupMenu.hovered) {
-                            return "#8048B584"
+                            return theme["colors.buttons.projectButton.onHoverText"]
                         } else {
-                            return "#48B584"
+                            return theme["colors.buttons.projectButton.onColorFlashActiveText"]
                         }
                     }
 
@@ -707,9 +707,9 @@ ApplicationWindow {
                 background: Rectangle {
                     color: {
                         if (projectButton.hovered && !projectButton.colorFlashActive) {
-                            return "#80929292"
+                            return theme["colors.buttons.projectButton.onHover"]
                         } else if (projectButton.colorFlashActive) {
-                            return "#929292"
+                            return theme["colors.buttons.projectButton.onColorFlashActive"]
                         } else {
                             return "transparent"
                         }
@@ -726,10 +726,10 @@ ApplicationWindow {
                     y: projectButton.height
 
                     background: Rectangle {
-                        color: "#25272D"
+                        color: theme["colors.popups.projectButtonPopupMenu.background"]
 
                         border.width: 1
-                        border.color: "#EDEAE8"
+                        border.color: theme["colors.popups.projectButtonPopupMenu.border"]
                     }
 
                     contentItem: Column {
@@ -739,10 +739,10 @@ ApplicationWindow {
                             id: newProjectMenuItem
                             text: "New Project"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                                 var component = Qt.createComponent("nullock.qml");
@@ -764,10 +764,10 @@ ApplicationWindow {
                             id: openProjectMenuItem
                             text: "Open"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                                 openProjectFileDialog.open()
@@ -784,17 +784,17 @@ ApplicationWindow {
                         Text {
                             id: projectButtonPopupMenuDivider
                             text: "-----------------------------"
-                            color: "#48B584"
+                            color: theme["colors.primary.text"]
                         }
 
                         MenuItem {
                             id: saveMenuItem
                             text: "Save"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                                 projectButtonPopupMenu.close()
@@ -810,10 +810,10 @@ ApplicationWindow {
                             id: saveAsMenuItem
                             text: "Save as..."
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                                 openProjectFileDialog.open()
@@ -866,9 +866,9 @@ ApplicationWindow {
                     font.weight: Font.ExtraLight
                     color: {
                         if (helpButton.hovered && !helpButton.colorFlashActive) {
-                            return "#8048B584"
+                            return theme["colors.buttons.helpButton.onHoverText"]
                         } else {
-                            return "#48B584"
+                            return theme["colors.buttons.helpButton.onColorFlashActiveText"]
                         }
                     }
 
@@ -879,9 +879,9 @@ ApplicationWindow {
                 background: Rectangle {
                     color: {
                         if (helpButton.hovered && !helpButton.colorFlashActive) {
-                            return "#80929292"
+                            return theme["colors.buttons.helpButton.onHover"]
                         } else if (helpButton.colorFlashActive) {
-                            return "#929292"
+                            return theme["colors.buttons.helpButton.onColorFlashActive"]
                         } else {
                             return "transparent"
                         }
@@ -898,10 +898,10 @@ ApplicationWindow {
                     y: helpButton.height
 
                     background: Rectangle {
-                        color: "#25272D"
+                        color: theme["colors.popups.helpButtonPopupMenu.background"]
 
                         border.width: 1
-                        border.color: "#EDEAE8"
+                        border.color: theme["colors.popups.helpButtonPopupMenu.border"]
                     }
 
                     contentItem: Column {
@@ -911,10 +911,10 @@ ApplicationWindow {
                             id: uiHelpMenuItem
                             text: "UI"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                                 helpButtonPopupMenu.close()
@@ -930,10 +930,10 @@ ApplicationWindow {
                             id: cliHelpMenuItem
                             text: "CLI"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                                 helpButtonPopupMenu.close()
@@ -949,10 +949,10 @@ ApplicationWindow {
                             id: extensionsApiHelpMenuItem
                             text: "Extensions API"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                                 helpButtonPopupMenu.close()
@@ -968,10 +968,10 @@ ApplicationWindow {
                             id: proxyApiHelpMenuItem
                             text: "Proxy API"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                                 helpButtonPopupMenu.close()
@@ -1021,9 +1021,9 @@ ApplicationWindow {
                     font.weight: Font.ExtraLight
                     color: {
                         if (extensionsButton.hovered && !extensionsButton.colorFlashActive) {
-                            return "#8048B584"
+                            return theme["colors.buttons.extensionsButton.onHoverText"]
                         } else {
-                            return "#48B584"
+                            return theme["colors.buttons.extensionsButton.onColorFlashActiveText"]
                         }
                     }
 
@@ -1034,9 +1034,9 @@ ApplicationWindow {
                 background: Rectangle {
                     color: {
                         if (extensionsButton.hovered && !extensionsButton.colorFlashActive) {
-                            return "#80929292"
+                            return theme["colors.buttons.extensionsButton.onHover"]
                         } else if (extensionsButton.colorFlashActive) {
-                            return "#929292"
+                            return theme["colors.buttons.extensionsButton.onColorFlashActive"]
                         } else {
                             return "transparent"
                         }
@@ -1053,10 +1053,10 @@ ApplicationWindow {
                     y: extensionsButton.height
 
                     background: Rectangle {
-                        color: "#25272D"
+                        color: theme["colors.popups.extensionsButtonPopupMenu.background"]
 
                         border.width: 1
-                        border.color: "#EDEAE8"
+                        border.color: theme["colors.popups.extensionsButtonPopupMenu.border"]
                     }
 
                     contentItem: Column {
@@ -1066,10 +1066,10 @@ ApplicationWindow {
                             id: extensionsPlaceholderMenuItem
                             text: "Extension Name"
 
-                            palette.text: "#48B584"
+                            palette.text: theme["colors.primary.text"]
 
-                            palette.highlight: "#80929292"
-                            palette.highlightedText: "#8048B584"
+                            palette.highlight: theme["colors.miscellaneous.title_onHover"]
+                            palette.highlightedText: theme["colors.primary.onHover"]
 
                             onClicked: {
                                 extensionsButtonPopupMenu.close()
@@ -1123,8 +1123,8 @@ ApplicationWindow {
                 width: 25
                 height: 25
                 background: Rectangle {
-                    color: "#22232B"
-                    border.color: hideButton.hovered ? "#FF6C50" : "#22232B"
+                    color: theme["colors.buttons.hideButton.color"]
+                    border.color: hideButton.hovered ? theme["colors.buttons.hideButton.onHover"] : theme["colors.buttons.hideButton.color"]
                     border.width: 1
                     radius: 180
                 }
@@ -1132,7 +1132,7 @@ ApplicationWindow {
                 contentItem: Text {
                     text: "🗕"
                     font.pixelSize: 20
-                    color: "#EDEAE8"
+                    color: theme["colors.miscellaneous.text"]
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                 }
@@ -1151,8 +1151,8 @@ ApplicationWindow {
                 width: 25
                 height: 25
                 background: Rectangle {
-                    color: "#22232B"
-                    border.color: resizeButton.hovered ? "#48B584" : "#22232B"
+                    color: theme["colors.buttons.resizeButton.color"]
+                    border.color: resizeButton.hovered ? theme["colors.buttons.resizeButton.onHover"] : theme["colors.buttons.resizeButton.color"]
                     border.width: 1
                     radius: 180
                 }
@@ -1160,7 +1160,7 @@ ApplicationWindow {
                 contentItem: Text {
                     text: root.visibility === Window.Maximized ? "⛶" : "□"
                     font.pixelSize: 20
-                    color: "#EDEAE8"
+                    color: theme["colors.miscellaneous.text"]
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                 }
@@ -1185,8 +1185,8 @@ ApplicationWindow {
                 width: 25
                 height: 25
                 background: Rectangle {
-                    color: "#22232B"
-                    border.color: closeButton.hovered ? "#C34143" : "#22232B"
+                    color: theme["colors.buttons.closeButton.color"]
+                    border.color: closeButton.hovered ? theme["colors.buttons.closeButton.onHover"] : theme["colors.buttons.closeButton.color"]
                     border.width: 1
                     radius: 180
                 }
@@ -1194,7 +1194,7 @@ ApplicationWindow {
                 contentItem: Text {
                     text: "🗙"
                     font.pixelSize: 20
-                    color: "#EDEAE8"
+                    color: theme["colors.miscellaneous.text"]
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                 }
@@ -1218,11 +1218,11 @@ ApplicationWindow {
             anchors.right: parent.right
             bottomLeftRadius: mainArea.radius
             bottomRightRadius: mainArea.radius
-            color: "#25272D"
+            color: theme["colors.background.contentArea"]
 
             // fixes some weird overlap glitching
             border.width: 10
-            border.color: "#25272D"
+            border.color: theme["colors.background.contentArea"]
 
             Column {
                 anchors.fill: parent
@@ -1253,9 +1253,9 @@ ApplicationWindow {
                         Text {
                             id: titleText
                             text: "NULLOCK"
-                            color: "#48B584"
+                            color: theme["colors.primary.text"]
                             font.pixelSize: 24
-                            font.family: "georgia"
+                            font.family: "georgia" // theme["typography.font_family.primary"] // note: fix this
                             font.weight: Font.ExtraLight
 
                             anchors.leftMargin: 5
@@ -1287,9 +1287,9 @@ ApplicationWindow {
                                     height: parent.height
                                     palette.buttonText: {
                                         if (projectComboBox.hovered) {
-                                            return "#8048B584"
+                                            return theme["colors.comboBoxes.projectComboBox.text_onHover"]
                                         } else {
-                                            return "#48B584"
+                                            return theme["colors.comboBoxes.projectComboBox.text"]
                                         }
                                     }
 
@@ -1307,9 +1307,9 @@ ApplicationWindow {
                                         color: "transparent"
                                         border.color: {
                                             if (projectComboBox.hovered) {
-                                                return "#8048B584"
+                                                return theme["colors.comboBoxes.projectComboBox.border_onHover"]
                                             } else {
-                                                return "#48B584"
+                                                return theme["colors.comboBoxes.projectComboBox.border"]
                                             }
                                         }
 
@@ -1318,9 +1318,10 @@ ApplicationWindow {
                                     }
 
                                     popup.background: Rectangle {
-                                        color: "#25272D"
+                                        id: projectComboBoxPopup
+                                        color: theme["colors.popups.projectComboBoxPopup.color"]
                                         radius: 3
-                                        border.color: "#48B584"
+                                        border.color: theme["colors.popups.projectComboBoxPopup.border"]
                                         border.width: 1
                                     }
 
@@ -1332,12 +1333,12 @@ ApplicationWindow {
                                         width: projectComboBox.width
                                         highlighted: projectComboBox.highlightedIndex === index
                                         background: Rectangle {
-                                            color: highlighted ? "#80929292" : "transparent"
+                                            color: highlighted ? theme["colors.comboBoxes.projectComboBox.background_onHover"] : "transparent"
                                         }
 
                                         contentItem: Text {
                                             text: modelData
-                                            color: highlighted ? "#8048B584" : "#48B584"
+                                            color: highlighted ? theme["colors.comboBoxes.projectComboBox.text_onHover"] : theme["colors.comboBoxes.projectComboBox.text"]
 
                                             font.pixelSize: 15
                                             font.family: "georgia"
@@ -1377,9 +1378,9 @@ ApplicationWindow {
 
                                         color: {
                                             if (sendToRepeaterButton.hovered && !sendToRepeaterButton.colorFlashActive) {
-                                                return "#80FF6C50"
+                                                return theme["colors.secondary.onHover"]
                                             } else {
-                                                return "#FF6C50"
+                                                return theme["colors.secondary.text"]
                                             }
                                         }
 
@@ -1392,17 +1393,17 @@ ApplicationWindow {
                                         radius: 3
                                         color: {
                                             if (sendToRepeaterButton.hovered && !sendToRepeaterButton.colorFlashActive) {
-                                                return "#8022232B"
+                                                return theme["colors.buttons.sendToRepeaterButton.onHover"]
                                             } else {
-                                                return "#22232B"
+                                                return theme["colors.buttons.sendToRepeaterButton.color"]
                                             }
                                         }
 
                                         border.color: {
                                             if (sendToRepeaterButton.hovered && !sendToRepeaterButton.colorFlashActive) {
-                                                return "#80FF6C50"
+                                                return theme["colors.buttons.sendToRepeaterButton.border_onHover"]
                                             } else {
-                                                return "#FF6C50"
+                                                return theme["colors.buttons.sendToRepeaterButton.border"]
                                             }
                                         }
 
@@ -1433,8 +1434,8 @@ ApplicationWindow {
                                     width: (0.28 * parent.width) - 30 // note: 30 is removed for margin cost (7.5 * 4)
                                     height: parent.height
 
-                                    palette.buttonText: "#FF6C50" // icon color
-                                    palette.button: "#80929292" // button click background highlight
+                                    palette.buttonText: theme["colors.searchFields.keywordSearchBox.icon"] // icon color
+                                    palette.button: theme["colors.searchFields.keywordSearchBox.icon_background_onClick"] // button click background highlight
 
                                     anchors.centerIn: parent
 
@@ -1449,9 +1450,9 @@ ApplicationWindow {
 
                                         // note: when this TextField's text's (linked to keywordSearchBox.text) length is 0, this placeholderText will take it's place
                                         placeholderText: "keyword"
-                                        placeholderTextColor: "#929292"
+                                        placeholderTextColor: theme["colors.searchFields.keywordSearchBox.placeholder"]
 
-                                        color: "#929292"
+                                        color: theme["colors.searchFields.keywordSearchBox.placeholder"]
                                         font.pixelSize: 15
                                         font.weight: Font.Light
 
@@ -1462,7 +1463,7 @@ ApplicationWindow {
                                     background: Rectangle {
                                         radius: 3
                                         color: "transparent"
-                                        border.color: "#FF6C50"
+                                        border.color: theme["colors.searchFields.keywordSearchBox.border"]
                                         border.width: 1
                                     }
 
@@ -1494,9 +1495,9 @@ ApplicationWindow {
                                         font.weight: Font.Medium
                                         color: {
                                             if (sendToIntruderButton.hovered && !sendToIntruderButton.colorFlashActive) {
-                                                return "#80FF6C50"
+                                                return theme["colors.secondary.onHover"]
                                             } else {
-                                                return "#FF6C50"
+                                                return theme["colors.secondary.text"]
                                             }
                                         }
 
@@ -1509,17 +1510,17 @@ ApplicationWindow {
                                         radius: 3
                                         color: {
                                             if (sendToIntruderButton.hovered && !sendToIntruderButton.colorFlashActive) {
-                                                return "#8022232B"
+                                                return theme["colors.buttons.sendToIntruderButton.onHover"]
                                             } else {
-                                                return "#22232B"
+                                                return theme["colors.buttons.sendToIntruderButton.color"]
                                             }
                                         }
 
                                         border.color: {
                                             if (sendToIntruderButton.hovered && !sendToIntruderButton.colorFlashActive) {
-                                                return "#80FF6C50"
+                                                return theme["colors.buttons.sendToIntruderButton.border_onHover"]
                                             } else {
-                                                return "#FF6C50"
+                                                return theme["colors.buttons.sendToIntruderButton.border"]
                                             }
                                         }
 
@@ -1551,9 +1552,9 @@ ApplicationWindow {
                                     height: parent.height
                                     palette.buttonText: {
                                         if (scopeComboBox.hovered) {
-                                            return "#8048B584"
+                                            return theme["colors.comboBoxes.scopeComboBox.text_onHover"]
                                         } else {
-                                            return "#48B584"
+                                            return theme["colors.comboBoxes.scopeComboBox.text"]
                                         }
                                     }
 
@@ -1565,18 +1566,15 @@ ApplicationWindow {
                                     anchors.rightMargin: 0
                                     anchors.verticalCenter: parent.verticalCenter
 
-                                    palette.text: "#48B584"
-                                    model: ["In-Scope", "Option 1", "Option 2"]
-                                    palette.highlight: "#80929292"
-                                    palette.highlightedText: "#AA48B584"
+                                    model: ["In-Scope", "All", "Out-Of-Scope"]
 
                                     background: Rectangle {
                                         color: "transparent"
                                         border.color: {
                                             if (scopeComboBox.hovered) {
-                                                return "#8048B584"
+                                                return theme["colors.comboBoxes.scopeComboBox.border_onHover"]
                                             } else {
-                                                return "#48B584"
+                                                return theme["colors.comboBoxes.scopeComboBox.border"]
                                             }
                                         }
 
@@ -1585,9 +1583,10 @@ ApplicationWindow {
                                     }
 
                                     popup.background: Rectangle {
-                                        color: "#25272D"
+                                        id: scopeComboBoxPopup
+                                        color: theme["colors.popups.scopeComboBoxPopup.color"]
                                         radius: 3
-                                        border.color: "#48B584"
+                                        border.color: theme["colors.popups.scopeComboBoxPopup.border"]
                                         border.width: 1
                                     }
 
@@ -1599,12 +1598,12 @@ ApplicationWindow {
                                         width: scopeComboBox.width
                                         highlighted: scopeComboBox.highlightedIndex === index
                                         background: Rectangle {
-                                            color: highlighted ? "#80929292" : "transparent"
+                                            color: highlighted ? theme["colors.comboBoxes.scopeComboBox.background_onHover"] : "transparent"
                                         }
 
                                         contentItem: Text {
                                             text: modelData
-                                            color: highlighted ? "#8048B584" : "#48B584"
+                                            color: highlighted ? theme["colors.comboBoxes.scopeComboBox.text_onHover"] : theme["colors.comboBoxes.scopeComboBox.text"]
 
                                             font.pixelSize: 15
                                             font.family: "georgia"
