@@ -1647,8 +1647,8 @@ ApplicationWindow {
                             centerY: 200
                             centerRadius: 100
 
-                            GradientStop { position: 0.0; color: "#2E3139" }
-                            GradientStop { position: 1.0; color: "#2F323A" }
+                            GradientStop { position: 0.0; color: theme["colors.panel.color0"] }
+                            GradientStop { position: 1.0; color: theme["colors.panel.color1"] }
                         }
 
                         // Hubs and Buttons
@@ -1661,8 +1661,8 @@ ApplicationWindow {
                                 centerY: 200
                                 centerRadius: 100
 
-                                GradientStop { position: 0.0; color: "#2E3139" }
-                                GradientStop { position: 1.0; color: "#2F323A" }
+                                GradientStop { position: 0.0; color: theme["colors.panel.color0"] }
+                                GradientStop { position: 1.0; color: theme["colors.panel.color1"] }
                             }
 
                             // ensures only one button can be seen as clicked at a time (dark background with orange text)
@@ -1704,7 +1704,7 @@ ApplicationWindow {
                                             height: (hubArea.smallContentSpace * (1/5)) + hubArea.smallExtraContentSpace
 
                                             text: qsTr("Overview")
-                                            color: "#929292"
+                                            color: theme["colors.miscellaneous.title_text"]
                                             font.pixelSize: 12
                                             font.weight: Font.Medium
                                         }
@@ -1723,11 +1723,11 @@ ApplicationWindow {
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (sitemapTabButton.checked && !sitemapTabButton.hovered || sitemapTabButton.pressed && !sitemapTabButton.hovered) {
-                                                        return "#FF6C50"
+                                                        return theme["colors.buttons.sitemapTabButton.text_onCheck"]
                                                     } else if (sitemapTabButton.hovered) {
-                                                        return "#80FF6C50"
+                                                        return theme["colors.buttons.sitemapTabButton.text_onHover"]
                                                     } else {
-                                                        return "#EDEAE8"
+                                                        return theme["colors.buttons.sitemapTabButton.text"]
                                                     }
                                                 }
 
@@ -1773,35 +1773,13 @@ ApplicationWindow {
                                             background: Rectangle {
                                                 anchors.fill: parent
                                                 radius: 3
-
-                                                gradient: RadialGradient {
-                                                    centerX: 200
-                                                    centerY: 200
-                                                    centerRadius: 100
-
-                                                    GradientStop {
-                                                        position: 0.0
-                                                        color: {
-                                                            if (sitemapTabButton.checked || sitemapTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (sitemapTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
-                                                    }
-                                                    GradientStop {
-                                                        position: 1.0
-                                                        color: {
-                                                            if (sitemapTabButton.checked || sitemapTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (sitemapTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
+                                                color: {
+                                                    if (sitemapTabButton.checked || sitemapTabButton.pressed) {
+                                                        return theme["colors.buttons.sitemapTabButton.background_onCheck"]
+                                                    } else if (sitemapTabButton.hovered) {
+                                                        return theme["colors.buttons.sitemapTabButton.background_onHover"]
+                                                    } else {
+                                                        return "transparent"
                                                     }
                                                 }
                                             }
@@ -1831,11 +1809,11 @@ ApplicationWindow {
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (scopeTabButton.checked && !scopeTabButton.hovered || scopeTabButton.pressed && !scopeTabButton.hovered) {
-                                                        return "#FF6C50"
+                                                        return theme["colors.buttons.scopeTabButton.text_onCheck"]
                                                     } else if (scopeTabButton.hovered) {
-                                                        return "#80FF6C50"
+                                                        return theme["colors.buttons.scopeTabButton.text_onHover"]
                                                     } else {
-                                                        return "#EDEAE8"
+                                                        return theme["colors.buttons.scopeTabButton.text"]
                                                     }
                                                 }
 
@@ -1881,35 +1859,13 @@ ApplicationWindow {
                                             background: Rectangle {
                                                 anchors.fill: parent
                                                 radius: 3
-
-                                                gradient: RadialGradient {
-                                                    centerX: 200
-                                                    centerY: 200
-                                                    centerRadius: 100
-
-                                                    GradientStop {
-                                                        position: 0.0
-                                                        color: {
-                                                            if (scopeTabButton.checked || scopeTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (scopeTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
-                                                    }
-                                                    GradientStop {
-                                                        position: 1.0
-                                                        color: {
-                                                            if (scopeTabButton.checked || scopeTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (scopeTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
+                                                color: {
+                                                    if (scopeTabButton.checked || scopeTabButton.pressed) {
+                                                        return theme["colors.buttons.scopeTabButton.background_onCheck"]
+                                                    } else if (scopeTabButton.hovered) {
+                                                        return theme["colors.buttons.scopeTabButton.background_onHover"]
+                                                    } else {
+                                                        return "transparent"
                                                     }
                                                 }
                                             }
@@ -1942,7 +1898,7 @@ ApplicationWindow {
                                             height: (hubArea.smallContentSpace * (1/5)) + hubArea.smallExtraContentSpace
 
                                             text: qsTr("Proxy")
-                                            color: "#929292"
+                                            color: theme["colors.miscellaneous.title_text"]
                                             font.pixelSize: 12
                                             font.weight: Font.Medium
                                         }
@@ -1961,11 +1917,11 @@ ApplicationWindow {
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (httpHistoryTabButton.checked && !httpHistoryTabButton.hovered || httpHistoryTabButton.pressed && !httpHistoryTabButton.hovered) {
-                                                        return "#FF6C50"
+                                                        return theme["colors.buttons.httpHistoryTabButton.text_onCheck"]
                                                     } else if (httpHistoryTabButton.hovered) {
-                                                        return "#80FF6C50"
+                                                        return theme["colors.buttons.httpHistoryTabButton.text_onHover"]
                                                     } else {
-                                                        return "#EDEAE8"
+                                                        return theme["colors.buttons.httpHistoryTabButton.text"]
                                                     }
                                                 }
 
@@ -2012,35 +1968,13 @@ ApplicationWindow {
                                             background: Rectangle {
                                                 anchors.fill: parent
                                                 radius: 3
-
-                                                gradient: RadialGradient {
-                                                    centerX: 200
-                                                    centerY: 200
-                                                    centerRadius: 100
-
-                                                    GradientStop {
-                                                        position: 0.0
-                                                        color: {
-                                                            if (httpHistoryTabButton.checked || httpHistoryTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (httpHistoryTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
-                                                    }
-                                                    GradientStop {
-                                                        position: 1.0
-                                                        color: {
-                                                            if (httpHistoryTabButton.checked || httpHistoryTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (httpHistoryTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
+                                                color: {
+                                                    if (httpHistoryTabButton.checked || httpHistoryTabButton.pressed) {
+                                                        return theme["colors.buttons.httpHistoryTabButton.background_onCheck"]
+                                                    } else if (httpHistoryTabButton.hovered) {
+                                                        return theme["colors.buttons.httpHistoryTabButton.background_onHover"]
+                                                    } else {
+                                                        return "transparent"
                                                     }
                                                 }
                                             }
@@ -2070,11 +2004,11 @@ ApplicationWindow {
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (interceptTabButton.checked && !interceptTabButton.hovered || interceptTabButton.pressed && !interceptTabButton.hovered) {
-                                                        return "#FF6C50"
+                                                        return theme["colors.buttons.interceptTabButton.text_onCheck"]
                                                     } else if (interceptTabButton.hovered) {
-                                                        return "#80FF6C50"
+                                                        return theme["colors.buttons.interceptTabButton.text_onHover"]
                                                     } else {
-                                                        return "#EDEAE8"
+                                                        return theme["colors.buttons.interceptTabButton.text"]
                                                     }
                                                 }
 
@@ -2120,35 +2054,13 @@ ApplicationWindow {
                                             background: Rectangle {
                                                 anchors.fill: parent
                                                 radius: 3
-
-                                                gradient: RadialGradient {
-                                                    centerX: 200
-                                                    centerY: 200
-                                                    centerRadius: 100
-
-                                                    GradientStop {
-                                                        position: 0.0
-                                                        color: {
-                                                            if (interceptTabButton.checked || interceptTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (interceptTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
-                                                    }
-                                                    GradientStop {
-                                                        position: 1.0
-                                                        color: {
-                                                            if (interceptTabButton.checked || interceptTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (interceptTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
+                                                color: {
+                                                    if (interceptTabButton.checked || interceptTabButton.pressed) {
+                                                        return theme["colors.buttons.interceptTabButton.background_onCheck"]
+                                                    } else if (interceptTabButton.hovered) {
+                                                        return theme["colors.buttons.interceptTabButton.background_onHover"]
+                                                    } else {
+                                                        return "transparent"
                                                     }
                                                 }
                                             }
@@ -2181,7 +2093,7 @@ ApplicationWindow {
                                             height: (hubArea.smallContentSpace * (1/5)) + hubArea.smallExtraContentSpace
 
                                             text: qsTr("Repeater Hub")
-                                            color: "#929292"
+                                            color: theme["colors.miscellaneous.title_text"]
                                             font.pixelSize: 12
                                             font.weight: Font.Medium
                                         }
@@ -2200,11 +2112,11 @@ ApplicationWindow {
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (repeaterTabButton.checked && !repeaterTabButton.hovered || repeaterTabButton.pressed && !repeaterTabButton.hovered) {
-                                                        return "#FF6C50"
+                                                        return theme["colors.buttons.repeaterTabButton.text_onCheck"]
                                                     } else if (repeaterTabButton.hovered) {
-                                                        return "#80FF6C50"
+                                                        return theme["colors.buttons.repeaterTabButton.text_onHover"]
                                                     } else {
-                                                        return "#EDEAE8"
+                                                        return theme["colors.buttons.repeaterTabButton.text"]
                                                     }
                                                 }
 
@@ -2251,35 +2163,13 @@ ApplicationWindow {
                                             background: Rectangle {
                                                 anchors.fill: parent
                                                 radius: 3
-
-                                                gradient: RadialGradient {
-                                                    centerX: 200
-                                                    centerY: 200
-                                                    centerRadius: 100
-
-                                                    GradientStop {
-                                                        position: 0.0
-                                                        color: {
-                                                            if (repeaterTabButton.checked || repeaterTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (repeaterTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
-                                                    }
-                                                    GradientStop {
-                                                        position: 1.0
-                                                        color: {
-                                                            if (repeaterTabButton.checked || repeaterTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (repeaterTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
+                                                color: {
+                                                    if (repeaterTabButton.checked || repeaterTabButton.pressed) {
+                                                        return theme["colors.buttons.repeaterTabButton.background_onCheck"]
+                                                    } else if (repeaterTabButton.hovered) {
+                                                        return theme["colors.buttons.repeaterTabButton.background_onHover"]
+                                                    } else {
+                                                        return "transparent"
                                                     }
                                                 }
                                             }
@@ -2309,11 +2199,11 @@ ApplicationWindow {
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (repeaterConsoleTabButton.checked && !repeaterConsoleTabButton.hovered || repeaterConsoleTabButton.pressed && !repeaterConsoleTabButton.hovered) {
-                                                        return "#FF6C50"
+                                                        return theme["colors.buttons.repeaterConsoleTabButton.text_onCheck"]
                                                     } else if (repeaterConsoleTabButton.hovered) {
-                                                        return "#80FF6C50"
+                                                        return theme["colors.buttons.repeaterConsoleTabButton.text_onHover"]
                                                     } else {
-                                                        return "#EDEAE8"
+                                                        return theme["colors.buttons.repeaterConsoleTabButton.text"]
                                                     }
                                                 }
 
@@ -2359,35 +2249,13 @@ ApplicationWindow {
                                             background: Rectangle {
                                                 anchors.fill: parent
                                                 radius: 3
-
-                                                gradient: RadialGradient {
-                                                    centerX: 200
-                                                    centerY: 200
-                                                    centerRadius: 100
-
-                                                    GradientStop {
-                                                        position: 0.0
-                                                        color: {
-                                                            if (repeaterConsoleTabButton.checked || repeaterConsoleTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (repeaterConsoleTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
-                                                    }
-                                                    GradientStop {
-                                                        position: 1.0
-                                                        color: {
-                                                            if (repeaterConsoleTabButton.checked || repeaterConsoleTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (repeaterConsoleTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
+                                                color: {
+                                                    if (repeaterConsoleTabButton.checked || repeaterConsoleTabButton.pressed) {
+                                                        return theme["colors.buttons.repeaterConsoleTabButton.background_onCheck"]
+                                                    } else if (repeaterConsoleTabButton.hovered) {
+                                                        return theme["colors.buttons.repeaterConsoleTabButton.background_onHover"]
+                                                    } else {
+                                                        return "transparent"
                                                     }
                                                 }
                                             }
@@ -2420,7 +2288,7 @@ ApplicationWindow {
                                             height: (hubArea.smallContentSpace * (1/5)) * hubArea.smallExtraContentSpace
 
                                             text: qsTr("Intruder Hub")
-                                            color: "#929292"
+                                            color: theme["colors.miscellaneous.title_text"]
                                             font.pixelSize: 12
                                             font.weight: Font.Medium
                                         }
@@ -2439,11 +2307,11 @@ ApplicationWindow {
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (intruderTabButton.checked && !intruderTabButton.hovered || intruderTabButton.pressed && !intruderTabButton.hovered) {
-                                                        return "#FF6C50"
+                                                        return theme["colors.buttons.intruderTabButton.text_onCheck"]
                                                     } else if (intruderTabButton.hovered) {
-                                                        return "#80FF6C50"
+                                                        return theme["colors.buttons.intruderTabButton.text_onHover"]
                                                     } else {
-                                                        return "#EDEAE8"
+                                                        return theme["colors.buttons.intruderTabButton.text"]
                                                     }
                                                 }
 
@@ -2490,35 +2358,13 @@ ApplicationWindow {
                                             background: Rectangle {
                                                 anchors.fill: parent
                                                 radius: 3
-
-                                                gradient: RadialGradient {
-                                                    centerX: 200
-                                                    centerY: 200
-                                                    centerRadius: 100
-
-                                                    GradientStop {
-                                                        position: 0.0
-                                                        color: {
-                                                            if (intruderTabButton.checked || intruderTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (intruderTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
-                                                    }
-                                                    GradientStop {
-                                                        position: 1.0
-                                                        color: {
-                                                            if (intruderTabButton.checked || intruderTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (intruderTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
+                                                color: {
+                                                    if (intruderTabButton.checked || intruderTabButton.pressed) {
+                                                        return theme["colors.buttons.intruderTabButton.background_onCheck"]
+                                                    } else if (intruderTabButton.hovered) {
+                                                        return theme["colors.buttons.intruderTabButton.background_onHover"]
+                                                    } else {
+                                                        return "transparent"
                                                     }
                                                 }
                                             }
@@ -2548,11 +2394,11 @@ ApplicationWindow {
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (intruderConsoleTabButton.checked && !intruderConsoleTabButton.hovered || intruderConsoleTabButton.pressed && !intruderConsoleTabButton.hovered) {
-                                                        return "#FF6C50"
+                                                        return theme["colors.buttons.intruderConsoleTabButton.text_onCheck"]
                                                     } else if (intruderConsoleTabButton.hovered) {
-                                                        return "#80FF6C50"
+                                                        return theme["colors.buttons.intruderConsoleTabButton.text_onHover"]
                                                     } else {
-                                                        return "#EDEAE8"
+                                                        return theme["colors.buttons.intruderConsoleTabButton.text"]
                                                     }
                                                 }
 
@@ -2598,35 +2444,13 @@ ApplicationWindow {
                                             background: Rectangle {
                                                 anchors.fill: parent
                                                 radius: 3
-
-                                                gradient: RadialGradient {
-                                                    centerX: 200
-                                                    centerY: 200
-                                                    centerRadius: 100
-
-                                                    GradientStop {
-                                                        position: 0.0
-                                                        color: {
-                                                            if (intruderConsoleTabButton.checked || intruderConsoleTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (intruderConsoleTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
-                                                    }
-                                                    GradientStop {
-                                                        position: 1.0
-                                                        color: {
-                                                            if (intruderConsoleTabButton.checked || intruderConsoleTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (intruderConsoleTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
+                                                color: {
+                                                    if (intruderConsoleTabButton.checked || intruderConsoleTabButton.pressed) {
+                                                        return theme["colors.buttons.intruderConsoleTabButton.background_onCheck"]
+                                                    } else if (intruderConsoleTabButton.hovered) {
+                                                        return theme["colors.buttons.intruderConsoleTabButton.background_onHover"]
+                                                    } else {
+                                                        return "transparent"
                                                     }
                                                 }
                                             }
@@ -2659,7 +2483,7 @@ ApplicationWindow {
                                             height: (hubArea.smallContentSpace * (1/5)) + hubArea.smallExtraContentSpace
 
                                             text: qsTr("Extensions Hub")
-                                            color: "#929292"
+                                            color: theme["colors.miscellaneous.title_text"]
                                             font.pixelSize: 12
                                             font.weight: Font.Medium
                                         }
@@ -2678,11 +2502,11 @@ ApplicationWindow {
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (extensionsTabButton.checked && !extensionsTabButton.hovered || extensionsTabButton.pressed && !extensionsTabButton.hovered) {
-                                                        return "#FF6C50"
+                                                        return theme["colors.buttons.extensionsTabButton.text_onCheck"]
                                                     } else if (extensionsTabButton.hovered) {
-                                                        return "#80FF6C50"
+                                                        return theme["colors.buttons.extensionsTabButton.text_onHover"]
                                                     } else {
-                                                        return "#EDEAE8"
+                                                        return theme["colors.buttons.extensionsTabButton.text"]
                                                     }
                                                 }
 
@@ -2729,35 +2553,13 @@ ApplicationWindow {
                                             background: Rectangle {
                                                 anchors.fill: parent
                                                 radius: 3
-
-                                                gradient: RadialGradient {
-                                                    centerX: 200
-                                                    centerY: 200
-                                                    centerRadius: 100
-
-                                                    GradientStop {
-                                                        position: 0.0
-                                                        color: {
-                                                            if (extensionsTabButton.checked || extensionsTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (extensionsTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
-                                                    }
-                                                    GradientStop {
-                                                        position: 1.0
-                                                        color: {
-                                                            if (extensionsTabButton.checked || extensionsTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (extensionsTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
+                                                color: {
+                                                    if (extensionsTabButton.checked || extensionsTabButton.pressed) {
+                                                        return theme["colors.buttons.extensionsTabButton.background_onCheck"]
+                                                    } else if (extensionsTabButton.hovered) {
+                                                        return theme["colors.buttons.extensionsTabButton.background_onHover"]
+                                                    } else {
+                                                        return "transparent"
                                                     }
                                                 }
                                             }
@@ -2787,11 +2589,11 @@ ApplicationWindow {
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (extensionsConsoleTabButton.checked && !extensionsConsoleTabButton.hovered || extensionsConsoleTabButton.pressed && !extensionsConsoleTabButton.hovered) {
-                                                        return "#FF6C50"
+                                                        return theme["colors.buttons.extensionsConsoleTabButton.text_onCheck"]
                                                     } else if (extensionsConsoleTabButton.hovered) {
-                                                        return "#80FF6C50"
+                                                        return theme["colors.buttons.extensionsConsoleTabButton.text_onHover"]
                                                     } else {
-                                                        return "#EDEAE8"
+                                                        return theme["colors.buttons.extensionsConsoleTabButton.text"]
                                                     }
                                                 }
 
@@ -2837,35 +2639,13 @@ ApplicationWindow {
                                             background: Rectangle {
                                                 anchors.fill: parent
                                                 radius: 3
-
-                                                gradient: RadialGradient {
-                                                    centerX: 200
-                                                    centerY: 200
-                                                    centerRadius: 100
-
-                                                    GradientStop {
-                                                        position: 0.0
-                                                        color: {
-                                                            if (extensionsConsoleTabButton.checked || extensionsConsoleTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (extensionsConsoleTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
-                                                    }
-                                                    GradientStop {
-                                                        position: 1.0
-                                                        color: {
-                                                            if (extensionsConsoleTabButton.checked || extensionsConsoleTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (extensionsConsoleTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
+                                                color: {
+                                                    if (extensionsConsoleTabButton.checked || extensionsConsoleTabButton.pressed) {
+                                                        return theme["colors.buttons.extensionsConsoleTabButton.background_onCheck"]
+                                                    } else if (extensionsConsoleTabButton.hovered) {
+                                                        return theme["colors.buttons.extensionsConsoleTabButton.background_onHover"]
+                                                    } else {
+                                                        return "transparent"
                                                     }
                                                 }
                                             }
@@ -2898,7 +2678,7 @@ ApplicationWindow {
                                             height: (hubArea.smallContentSpace * (1/5)) + hubArea.smallExtraContentSpace
 
                                             text: qsTr("Devices Hub")
-                                            color: "#929292"
+                                            color: theme["colors.miscellaneous.title_text"]
                                             font.pixelSize: 12
                                             font.weight: Font.Medium
                                         }
@@ -2917,11 +2697,11 @@ ApplicationWindow {
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (devicesTabButton.checked && !devicesTabButton.hovered || devicesTabButton.pressed && !devicesTabButton.hovered) {
-                                                        return "#FF6C50"
+                                                        return theme["colors.buttons.devicesTabButton.text_onCheck"]
                                                     } else if (devicesTabButton.hovered) {
-                                                        return "#80FF6C50"
+                                                        return theme["colors.buttons.devicesTabButton.text_onHover"]
                                                     } else {
-                                                        return "#EDEAE8"
+                                                        return theme["colors.buttons.devicesTabButton.text"]
                                                     }
                                                 }
 
@@ -2968,35 +2748,13 @@ ApplicationWindow {
                                             background: Rectangle {
                                                 anchors.fill: parent
                                                 radius: 3
-
-                                                gradient: RadialGradient {
-                                                    centerX: 200
-                                                    centerY: 200
-                                                    centerRadius: 100
-
-                                                    GradientStop {
-                                                        position: 0.0
-                                                        color: {
-                                                            if (devicesTabButton.checked || devicesTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (devicesTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
-                                                    }
-                                                    GradientStop {
-                                                        position: 1.0
-                                                        color: {
-                                                            if (devicesTabButton.checked || devicesTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (devicesTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
+                                                color: {
+                                                    if (devicesTabButton.checked || devicesTabButton.pressed) {
+                                                        return theme["colors.buttons.devicesTabButton.background_onCheck"]
+                                                    } else if (devicesTabButton.hovered) {
+                                                        return theme["colors.buttons.devicesTabButton.background_onHover"]
+                                                    } else {
+                                                        return "transparent"
                                                     }
                                                 }
                                             }
@@ -3026,11 +2784,11 @@ ApplicationWindow {
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (devicesConsoleTabButton.checked && devicesConsoleTabButton.hovered || devicesConsoleTabButton.pressed && devicesConsoleTabButton.hovered) {
-                                                        return "#FF6C50"
+                                                        return theme["colors.buttons.devicesConsoleTabButton.text_onCheck"]
                                                     } else if (devicesConsoleTabButton.hovered) {
-                                                        return "#80FF6C50"
+                                                        return theme["colors.buttons.devicesConsoleTabButton.text_onHover"]
                                                     } else {
-                                                        return "#EDEAE8"
+                                                        return theme["colors.buttons.devicesConsoleTabButton.text"]
                                                     }
                                                 }
 
@@ -3076,35 +2834,13 @@ ApplicationWindow {
                                             background: Rectangle {
                                                 anchors.fill: parent
                                                 radius: 3
-
-                                                gradient: RadialGradient {
-                                                    centerX: 200
-                                                    centerY: 200
-                                                    centerRadius: 100
-
-                                                    GradientStop {
-                                                        position: 0.0
-                                                        color: {
-                                                            if (devicesConsoleTabButton.checked || devicesConsoleTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (devicesConsoleTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
-                                                    }
-                                                    GradientStop {
-                                                        position: 1.0
-                                                        color: {
-                                                            if (devicesConsoleTabButton.checked || devicesConsoleTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (devicesConsoleTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
+                                                color: {
+                                                    if (devicesConsoleTabButton.checked || devicesConsoleTabButton.pressed) {
+                                                        return theme["colors.buttons.devicesConsoleTabButton.background_onCheck"]
+                                                    } else if (devicesConsoleTabButton.hovered) {
+                                                        return theme["colors.buttons.devicesConsoleTabButton.background_onHover"]
+                                                    } else {
+                                                        return "transparent"
                                                     }
                                                 }
                                             }
@@ -3137,7 +2873,7 @@ ApplicationWindow {
                                             height: extensionsTabButtonText.height
 
                                             text: qsTr("Workspace Hub")
-                                            color: "#929292"
+                                            color: theme["colors.miscellaneous.title_text"]
                                             font.pixelSize: 12
                                             font.weight: Font.Medium
                                         }
@@ -3156,11 +2892,11 @@ ApplicationWindow {
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (reportGeneratorTabButton.checked && !reportGeneratorTabButton.hovered || reportGeneratorTabButton.pressed && !reportGeneratorTabButton.hovered) {
-                                                        return "#FF6C50"
+                                                        return theme["colors.buttons.reportGeneratorTabButton.text_onCheck"]
                                                     } else if (reportGeneratorTabButton.hovered) {
-                                                        return "#80FF6C50"
+                                                        return theme["colors.buttons.reportGeneratorTabButton.text_onHover"]
                                                     } else {
-                                                        return "#EDEAE8"
+                                                        return theme["colors.buttons.reportGeneratorTabButton.text"]
                                                     }
                                                 }
 
@@ -3206,35 +2942,13 @@ ApplicationWindow {
                                             background: Rectangle {
                                                 anchors.fill: parent
                                                 radius: 3
-
-                                                gradient: RadialGradient {
-                                                    centerX: 200
-                                                    centerY: 200
-                                                    centerRadius: 100
-
-                                                    GradientStop {
-                                                        position: 0.0
-                                                        color: {
-                                                            if (reportGeneratorTabButton.checked || reportGeneratorTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (reportGeneratorTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
-                                                    }
-                                                    GradientStop {
-                                                        position: 1.0
-                                                        color: {
-                                                            if (reportGeneratorTabButton.checked || reportGeneratorTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (reportGeneratorTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
+                                                color: {
+                                                    if (reportGeneratorTabButton.checked || reportGeneratorTabButton.pressed) {
+                                                        return theme["colors.buttons.reportGeneratorTabButton.background_onCheck"]
+                                                    } else if (reportGeneratorTabButton.hovered) {
+                                                        return theme["colors.buttons.reportGeneratorTabButton.background_onHover"]
+                                                    } else {
+                                                        return "transparent"
                                                     }
                                                 }
                                             }
@@ -3264,11 +2978,11 @@ ApplicationWindow {
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (notesTabButton.checked && !notesTabButton.hovered || notesTabButton.pressed && !notesTabButton.hovered) {
-                                                        return "#FF6C50"
+                                                        return theme["colors.buttons.notesTabButton.text_onCheck"]
                                                     } else if (notesTabButton.hovered) {
-                                                        return "#80FF6C50"
+                                                        return theme["colors.buttons.notesTabButton.text_onHover"]
                                                     } else {
-                                                        return "#EDEAE8"
+                                                        return theme["colors.buttons.notesTabButton.text"]
                                                     }
                                                 }
 
@@ -3314,35 +3028,13 @@ ApplicationWindow {
                                             background: Rectangle {
                                                 anchors.fill: parent
                                                 radius: 3
-
-                                                gradient: RadialGradient {
-                                                    centerX: 200
-                                                    centerY: 200
-                                                    centerRadius: 100
-
-                                                    GradientStop {
-                                                        position: 0.0
-                                                        color: {
-                                                            if (notesTabButton.checked || notesTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (notesTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
-                                                    }
-                                                    GradientStop {
-                                                        position: 1.0
-                                                        color: {
-                                                            if (notesTabButton.checked || notesTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (notesTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
+                                                color: {
+                                                    if (notesTabButton.checked || notesTabButton.pressed) {
+                                                        return theme["colors.buttons.notesTabButton.background_onCheck"]
+                                                    } else if (notesTabButton.hovered) {
+                                                        return theme["colors.buttons.notesTabButton.background_onHover"]
+                                                    } else {
+                                                        return "transparent"
                                                     }
                                                 }
                                             }
@@ -3372,11 +3064,11 @@ ApplicationWindow {
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (themesTabButton.checked && !themesTabButton.hovered || themesTabButton.pressed && !themesTabButton.hovered) {
-                                                        return "#FF6C50"
+                                                        return theme["colors.buttons.themesTabButton.text_onCheck"]
                                                     } else if (themesTabButton.hovered) {
-                                                        return "#80FF6C50"
+                                                        return theme["colors.buttons.themesTabButton.text_onHover"]
                                                     } else {
-                                                        return "#EDEAE8"
+                                                        return theme["colors.buttons.themesTabButton.text"]
                                                     }
                                                 }
 
@@ -3422,35 +3114,13 @@ ApplicationWindow {
                                             background: Rectangle {
                                                 anchors.fill: parent
                                                 radius: 3
-
-                                                gradient: RadialGradient {
-                                                    centerX: 200
-                                                    centerY: 200
-                                                    centerRadius: 100
-
-                                                    GradientStop {
-                                                        position: 0.0
-                                                        color: {
-                                                            if (themesTabButton.checked || themesTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (themesTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
-                                                    }
-                                                    GradientStop {
-                                                        position: 1.0
-                                                        color: {
-                                                            if (themesTabButton.checked || themesTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (themesTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
+                                                color: {
+                                                    if (themesTabButton.checked || themesTabButton.pressed) {
+                                                        return theme["colors.buttons.themesTabButton.background_onCheck"]
+                                                    } else if (themesTabButton.hovered) {
+                                                        return theme["colors.buttons.themesTabButton.background_onHover"]
+                                                    } else {
+                                                        return "transparent"
                                                     }
                                                 }
                                             }
@@ -3480,11 +3150,11 @@ ApplicationWindow {
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (settingsTabButton.checked && !settingsTabButton.hovered || settingsTabButton.pressed && !settingsTabButton.hovered) {
-                                                        return "#FF6C50"
+                                                        return theme["colors.buttons.settingsTabButton.text_onCheck"]
                                                     } else if (settingsTabButton.hovered) {
-                                                        return "#80FF6C50"
+                                                        return theme["colors.buttons.settingsTabButton.text_onHover"]
                                                     } else {
-                                                        return "#EDEAE8"
+                                                        return theme["colors.buttons.settingsTabButton.text"]
                                                     }
                                                 }
 
@@ -3530,35 +3200,13 @@ ApplicationWindow {
                                             background: Rectangle {
                                                 anchors.fill: parent
                                                 radius: 3
-
-                                                gradient: RadialGradient {
-                                                    centerX: 200
-                                                    centerY: 200
-                                                    centerRadius: 100
-
-                                                    GradientStop {
-                                                        position: 0.0
-                                                        color: {
-                                                            if (settingsTabButton.checked || settingsTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (settingsTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
-                                                    }
-                                                    GradientStop {
-                                                        position: 1.0
-                                                        color: {
-                                                            if (settingsTabButton.checked || settingsTabButton.pressed) {
-                                                                return "#22232B"
-                                                            } else if (settingsTabButton.hovered) {
-                                                                return "#8022232B"
-                                                            } else {
-                                                                return "transparent"
-                                                            }
-                                                        }
+                                                color: {
+                                                    if (settingsTabButton.checked || settingsTabButton.pressed) {
+                                                        return theme["colors.buttons.settingsTabButton.background_onCheck"]
+                                                    } else if (settingsTabButton.hovered) {
+                                                        return theme["colors.buttons.settingsTabButton.background_onHover"]
+                                                    } else {
+                                                        return "transparent"
                                                     }
                                                 }
                                             }

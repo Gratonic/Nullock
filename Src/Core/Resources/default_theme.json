@@ -109,131 +109,147 @@
                 },
 
                 "sitemapTabButton": {
-                    "color0_onHover": "#8022232B",
-                    "color0_onCheck": "#22232B",
+                    "background_onHover": "#8022232B",
+                    "background_onCheck": "#22232B",
 
-                    "color1_onHover": "#8022232B",
-                    "color1_onCheck": "#22232B"
+                    "text": "#EDEAE8",
+                    "text_onHover": "#80FF6C50",
+                    "text_onCheck": "#FF6C50"
                 },
 
                 "scopeTabButton": {
-                    "color0_onHover": "#8022232B",
-                    "color0_onCheck": "#22232B",
+                    "background_onHover": "#8022232B",
+                    "background_onCheck": "#22232B",
 
-                    "color1_onHover": "#8022232B",
-                    "color1_onCheck": "#22232B"
+                    "text": "#EDEAE8",
+                    "text_onHover": "#80FF6C50",
+                    "text_onCheck": "#FF6C50"
                 },
 
                 "httpHistoryTabButton": {
-                    "color0_onHover": "#8022232B",
-                    "color0_onCheck": "#22232B",
+                    "background_onHover": "#8022232B",
+                    "background_onCheck": "#22232B",
 
-                    "color1_onHover": "#8022232B",
-                    "color1_onCheck": "#22232B"
+                    "text": "#EDEAE8",
+                    "text_onHover": "#80FF6C50",
+                    "text_onCheck": "#FF6C50"
                 },
 
                 "interceptTabButton": {
-                    "color0_onHover": "#8022232B",
-                    "color0_onCheck": "#22232B",
+                    "background_onHover": "#8022232B",
+                    "background_onCheck": "#22232B",
 
-                    "color1_onHover": "#8022232B",
-                    "color1_onCheck": "#22232B"
+                    "text": "#EDEAE8",
+                    "text_onHover": "#80FF6C50",
+                    "text_onCheck": "#FF6C50"
                 },
 
                 "repeaterTabButton": {
-                    "color0_onHover": "#8022232B",
-                    "color0_onCheck": "#22232B",
+                    "background_onHover": "#8022232B",
+                    "background_onCheck": "#22232B",
 
-                    "color1_onHover": "#8022232B",
-                    "color1_onCheck": "#22232B"
+                    "text": "#EDEAE8",
+                    "text_onHover": "#80FF6C50",
+                    "text_onCheck": "#FF6C50"
                 },
 
                 "repeaterConsoleTabButton": {
-                    "color0_onHover": "#8022232B",
-                    "color0_onCheck": "#22232B",
+                    "background_onHover": "#8022232B",
+                    "background_onCheck": "#22232B",
 
-                    "color1_onHover": "#8022232B",
-                    "color1_onCheck": "#22232B"
+                    "text": "#EDEAE8",
+                    "text_onHover": "#80FF6C50",
+                    "text_onCheck": "#FF6C50"
                 },
 
                 "intruderTabButton": {
-                    "color0_onHover": "#8022232B",
-                    "color0_onCheck": "#22232B",
+                    "background_onHover": "#8022232B",
+                    "background_onCheck": "#22232B",
 
-                    "color1_onHover": "#8022232B",
-                    "color1_onCheck": "#22232B"
+                    "text": "#EDEAE8",
+                    "text_onHover": "#80FF6C50",
+                    "text_onCheck": "#FF6C50"
                 },
 
                 "intruderConsoleTabButton": {
-                    "color0_onHover": "#8022232B",
-                    "color0_onCheck": "#22232B",
+                    "background_onHover": "#8022232B",
+                    "background_onCheck": "#22232B",
 
-                    "color1_onHover": "#8022232B",
-                    "color1_onCheck": "#22232B"
+                    "text": "#EDEAE8",
+                    "text_onHover": "#80FF6C50",
+                    "text_onCheck": "#FF6C50"
                 },
 
                 "extensionsTabButton": {
-                    "color0_onHover": "#8022232B",
-                    "color0_onCheck": "#22232B",
+                    "background_onHover": "#8022232B",
+                    "background_onCheck": "#22232B",
 
-                    "color1_onHover": "#8022232B",
-                    "color1_onCheck": "#22232B"
+                    "text": "#EDEAE8",
+                    "text_onHover": "#80FF6C50",
+                    "text_onCheck": "#FF6C50"
                 },
 
                 "extensionsConsoleTabButton": {
-                    "color0_onHover": "#8022232B",
-                    "color0_onCheck": "#22232B",
+                    "background_onHover": "#8022232B",
+                    "background_onCheck": "#22232B",
 
-                    "color1_onHover": "#8022232B",
-                    "color1_onCheck": "#22232B"
+                    "text": "#EDEAE8",
+                    "text_onHover": "#80FF6C50",
+                    "text_onCheck": "#FF6C50"
                 },
 
                 "devicesTabButton": {
-                    "color0_onHover": "#8022232B",
-                    "color0_onCheck": "#22232B",
+                    "background_onHover": "#8022232B",
+                    "background_onCheck": "#22232B",
 
-                    "color1_onHover": "#8022232B",
-                    "color1_onCheck": "#22232B"
+                    "text": "#EDEAE8",
+                    "text_onHover": "#80FF6C50",
+                    "text_onCheck": "#FF6C50"
                 },
 
                 "devicesConsoleTabButton": {
-                    "color0_onHover": "#8022232B",
-                    "color0_onCheck": "#22232B",
+                    "background_onHover": "#8022232B",
+                    "background_onCheck": "#22232B",
 
-                    "color1_onHover": "#8022232B",
-                    "color1_onCheck": "#22232B"
+                    "text": "#EDEAE8",
+                    "text_onHover": "#80FF6C50",
+                    "text_onCheck": "#FF6C50"
                 },
 
                 "reportGeneratorTabButton": {
-                    "color0_onHover": "#8022232B",
-                    "color0_onCheck": "#22232B",
+                    "background_onHover": "#8022232B",
+                    "background_onCheck": "#22232B",
 
-                    "color1_onHover": "#8022232B",
-                    "color1_onCheck": "#22232B"
+                    "text": "#EDEAE8",
+                    "text_onHover": "#80FF6C50",
+                    "text_onCheck": "#FF6C50"
                 },
 
                 "notesTabButton": {
-                    "color0_onHover": "#8022232B",
-                    "color0_onCheck": "#22232B",
+                    "background_onHover": "#8022232B",
+                    "background_onCheck": "#22232B",
 
-                    "color1_onHover": "#8022232B",
-                    "color1_onCheck": "#22232B"
+                    "text": "#EDEAE8",
+                    "text_onHover": "#80FF6C50",
+                    "text_onCheck": "#FF6C50"
                 },
 
                 "themesTabButton": {
-                    "color0_onHover": "#8022232B",
-                    "color0_onCheck": "#22232B",
+                    "background_onHover": "#8022232B",
+                    "background_onCheck": "#22232B",
 
-                    "color1_onHover": "#8022232B",
-                    "color1_onCheck": "#22232B"
+                    "text": "#EDEAE8",
+                    "text_onHover": "#80FF6C50",
+                    "text_onCheck": "#FF6C50"
                 },
 
                 "settingsTabButton": {
-                    "color0_onHover": "#8022232B",
-                    "color0_onCheck": "#22232B",
+                    "background_onHover": "#8022232B",
+                    "background_onCheck": "#22232B",
 
-                    "color1_onHover": "#8022232B",
-                    "color1_onCheck": "#22232B"
+                    "text": "#EDEAE8",
+                    "text_onHover": "#80FF6C50",
+                    "text_onCheck": "#FF6C50"
                 }
             },
 
