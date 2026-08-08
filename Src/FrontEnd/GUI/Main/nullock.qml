@@ -323,8 +323,8 @@ ApplicationWindow {
                 contentItem: Text {
                     text: "Nullock"
                     font.pixelSize: 15
-                    font.family: "georgia"
-                    font.weight: Font.ExtraLight
+                    font.family: theme["typography.font_family.primary"]
+                    font.weight: Font.Light
                     color: {
                         if (nullockButton.hovered && !nullockButton.colorFlashActive) {
                             return theme["colors.buttons.nullockButton.onHoverText"]
@@ -690,8 +690,8 @@ ApplicationWindow {
                 contentItem: Text {
                     text: "Project"
                     font.pixelSize: 15
-                    font.family: "georgia"
-                    font.weight: Font.ExtraLight
+                    font.family: theme["typography.font_family.primary"]
+                    font.weight: Font.Light
                     color: {
                         if (projectButton.hovered && !projectButton.colorFlashActive || projectButtonPopupMenu.hovered) {
                             return theme["colors.buttons.projectButton.onHoverText"]
@@ -862,8 +862,8 @@ ApplicationWindow {
                 contentItem: Text {
                     text: "Help"
                     font.pixelSize: 15
-                    font.family: "georgia"
-                    font.weight: Font.ExtraLight
+                    font.family: theme["typography.font_family.primary"]
+                    font.weight: Font.Light
                     color: {
                         if (helpButton.hovered && !helpButton.colorFlashActive) {
                             return theme["colors.buttons.helpButton.onHoverText"]
@@ -1017,8 +1017,8 @@ ApplicationWindow {
                 contentItem: Text {
                     text: "Extensions"
                     font.pixelSize: 15
-                    font.family: "georgia"
-                    font.weight: Font.ExtraLight
+                    font.family: theme["typography.font_family.primary"]
+                    font.weight: Font.Light
                     color: {
                         if (extensionsButton.hovered && !extensionsButton.colorFlashActive) {
                             return theme["colors.buttons.extensionsButton.onHoverText"]
@@ -1255,8 +1255,8 @@ ApplicationWindow {
                             text: "NULLOCK"
                             color: theme["colors.primary.text"]
                             font.pixelSize: 24
-                            font.family: "georgia" // theme["typography.font_family.primary"] // note: fix this
-                            font.weight: Font.ExtraLight
+                            font.family: theme["typography.font_family.primary"]
+                            font.weight: Font.Light
 
                             anchors.leftMargin: 5
                             anchors.left: parent.left
@@ -1294,8 +1294,8 @@ ApplicationWindow {
                                     }
 
                                     font.pixelSize: 15
-                                    font.family: "georgia"
-                                    font.weight: Font.ExtraLight
+                                    font.family: theme["typography.font_family.primary"]
+                                    font.weight: Font.Light
 
                                     anchors.left: parent.left
                                     anchors.leftMargin: 0
@@ -1374,6 +1374,7 @@ ApplicationWindow {
                                     contentItem: Text {
                                         id: sendToRepeaterButtonText
                                         font.pixelSize: 15
+                                        font.family: theme["typography.font_family.secondary"]
                                         font.weight: Font.Medium
 
                                         color: {
@@ -1454,6 +1455,7 @@ ApplicationWindow {
 
                                         color: theme["colors.searchFields.keywordSearchBox.placeholder"]
                                         font.pixelSize: 15
+                                        font.family: theme["typography.font_family.secondary"]
                                         font.weight: Font.Light
 
                                         // removes the source/default TextField background
@@ -1492,6 +1494,7 @@ ApplicationWindow {
                                     contentItem: Text {
                                         id: sendToIntruderButtonText
                                         font.pixelSize: 15
+                                        font.family: theme["typography.font_family.secondary"]
                                         font.weight: Font.Medium
                                         color: {
                                             if (sendToIntruderButton.hovered && !sendToIntruderButton.colorFlashActive) {
@@ -1559,8 +1562,8 @@ ApplicationWindow {
                                     }
 
                                     font.pixelSize: 15
-                                    font.family: "georgia"
-                                    font.weight: Font.ExtraLight
+                                    font.family: theme["typography.font_family.primary"]
+                                    font.weight: Font.Light
 
                                     anchors.right: parent.right
                                     anchors.rightMargin: 0
@@ -1706,6 +1709,7 @@ ApplicationWindow {
                                             text: qsTr("Overview")
                                             color: theme["colors.miscellaneous.title_text"]
                                             font.pixelSize: 12
+                                            font.family: theme["typography.font_family.secondary"]
                                             font.weight: Font.Medium
                                         }
 
@@ -1720,6 +1724,7 @@ ApplicationWindow {
                                             contentItem: Text {
                                                 id: sitemapTabButtonText
                                                 font.pixelSize: 11
+                                                font.family: theme["typography.font_family.secondary"]
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (sitemapTabButton.checked && !sitemapTabButton.hovered || sitemapTabButton.pressed && !sitemapTabButton.hovered) {
@@ -1806,6 +1811,7 @@ ApplicationWindow {
                                             contentItem: Text {
                                                 id: scopeTabButtonText
                                                 font.pixelSize: 11
+                                                font.family: theme["typography.font_family.secondary"]
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (scopeTabButton.checked && !scopeTabButton.hovered || scopeTabButton.pressed && !scopeTabButton.hovered) {
@@ -1900,6 +1906,7 @@ ApplicationWindow {
                                             text: qsTr("Proxy")
                                             color: theme["colors.miscellaneous.title_text"]
                                             font.pixelSize: 12
+                                            font.family: theme["typography.font_family.secondary"]
                                             font.weight: Font.Medium
                                         }
 
@@ -1914,6 +1921,7 @@ ApplicationWindow {
                                             contentItem: Text {
                                                 id: httpHistoryTabButtonText
                                                 font.pixelSize: 11
+                                                font.family: theme["typography.font_family.secondary"]
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (httpHistoryTabButton.checked && !httpHistoryTabButton.hovered || httpHistoryTabButton.pressed && !httpHistoryTabButton.hovered) {
@@ -2001,6 +2009,7 @@ ApplicationWindow {
                                             contentItem: Text {
                                                 id: interceptTabButtonText
                                                 font.pixelSize: 11
+                                                font.family: theme["typography.font_family.secondary"]
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (interceptTabButton.checked && !interceptTabButton.hovered || interceptTabButton.pressed && !interceptTabButton.hovered) {
@@ -2095,6 +2104,7 @@ ApplicationWindow {
                                             text: qsTr("Repeater Hub")
                                             color: theme["colors.miscellaneous.title_text"]
                                             font.pixelSize: 12
+                                            font.family: theme["typography.font_family.secondary"]
                                             font.weight: Font.Medium
                                         }
 
@@ -2109,6 +2119,7 @@ ApplicationWindow {
                                             contentItem: Text {
                                                 id: repeaterTabButtonText
                                                 font.pixelSize: 11
+                                                font.family: theme["typography.font_family.secondary"]
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (repeaterTabButton.checked && !repeaterTabButton.hovered || repeaterTabButton.pressed && !repeaterTabButton.hovered) {
@@ -2196,6 +2207,7 @@ ApplicationWindow {
                                             contentItem: Text {
                                                 id: repeaterConsoleTabButtonText
                                                 font.pixelSize: 11
+                                                font.family: theme["typography.font_family.secondary"]
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (repeaterConsoleTabButton.checked && !repeaterConsoleTabButton.hovered || repeaterConsoleTabButton.pressed && !repeaterConsoleTabButton.hovered) {
@@ -2290,6 +2302,7 @@ ApplicationWindow {
                                             text: qsTr("Intruder Hub")
                                             color: theme["colors.miscellaneous.title_text"]
                                             font.pixelSize: 12
+                                            font.family: theme["typography.font_family.secondary"]
                                             font.weight: Font.Medium
                                         }
 
@@ -2304,6 +2317,7 @@ ApplicationWindow {
                                             contentItem: Text {
                                                 id: intruderTabButtonText
                                                 font.pixelSize: 11
+                                                font.family: theme["typography.font_family.secondary"]
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (intruderTabButton.checked && !intruderTabButton.hovered || intruderTabButton.pressed && !intruderTabButton.hovered) {
@@ -2391,6 +2405,7 @@ ApplicationWindow {
                                             contentItem: Text {
                                                 id: intruderConsoleTabButtonText
                                                 font.pixelSize: 11
+                                                font.family: theme["typography.font_family.secondary"]
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (intruderConsoleTabButton.checked && !intruderConsoleTabButton.hovered || intruderConsoleTabButton.pressed && !intruderConsoleTabButton.hovered) {
@@ -2485,6 +2500,7 @@ ApplicationWindow {
                                             text: qsTr("Extensions Hub")
                                             color: theme["colors.miscellaneous.title_text"]
                                             font.pixelSize: 12
+                                            font.family: theme["typography.font_family.secondary"]
                                             font.weight: Font.Medium
                                         }
 
@@ -2499,6 +2515,7 @@ ApplicationWindow {
                                             contentItem: Text {
                                                 id: extensionsTabButtonText
                                                 font.pixelSize: 11
+                                                font.family: theme["typography.font_family.secondary"]
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (extensionsTabButton.checked && !extensionsTabButton.hovered || extensionsTabButton.pressed && !extensionsTabButton.hovered) {
@@ -2680,6 +2697,7 @@ ApplicationWindow {
                                             text: qsTr("Devices Hub")
                                             color: theme["colors.miscellaneous.title_text"]
                                             font.pixelSize: 12
+                                            font.family: theme["typography.font_family.secondary"]
                                             font.weight: Font.Medium
                                         }
 
@@ -2694,6 +2712,7 @@ ApplicationWindow {
                                             contentItem: Text {
                                                 id: devicesTabButtonText
                                                 font.pixelSize: 11
+                                                font.family: theme["typography.font_family.secondary"]
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (devicesTabButton.checked && !devicesTabButton.hovered || devicesTabButton.pressed && !devicesTabButton.hovered) {
@@ -2781,6 +2800,7 @@ ApplicationWindow {
                                             contentItem: Text {
                                                 id: devicesConsoleTabButtonText
                                                 font.pixelSize: 11
+                                                font.family: theme["typography.font_family.secondary"]
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (devicesConsoleTabButton.checked && devicesConsoleTabButton.hovered || devicesConsoleTabButton.pressed && devicesConsoleTabButton.hovered) {
@@ -2875,6 +2895,7 @@ ApplicationWindow {
                                             text: qsTr("Workspace Hub")
                                             color: theme["colors.miscellaneous.title_text"]
                                             font.pixelSize: 12
+                                            font.family: theme["typography.font_family.secondary"]
                                             font.weight: Font.Medium
                                         }
 
@@ -2889,6 +2910,7 @@ ApplicationWindow {
                                             contentItem: Text {
                                                 id: reportGeneratorTabButtonText
                                                 font.pixelSize: 11
+                                                font.family: theme["typography.font_family.secondary"]
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (reportGeneratorTabButton.checked && !reportGeneratorTabButton.hovered || reportGeneratorTabButton.pressed && !reportGeneratorTabButton.hovered) {
@@ -2975,6 +2997,7 @@ ApplicationWindow {
                                             contentItem: Text {
                                                 id: notesTabButtonText
                                                 font.pixelSize: 11
+                                                font.family: theme["typography.font_family.secondary"]
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (notesTabButton.checked && !notesTabButton.hovered || notesTabButton.pressed && !notesTabButton.hovered) {
@@ -3061,6 +3084,7 @@ ApplicationWindow {
                                             contentItem: Text {
                                                 id: themesTabButtonText
                                                 font.pixelSize: 11
+                                                font.family: theme["typography.font_family.secondary"]
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (themesTabButton.checked && !themesTabButton.hovered || themesTabButton.pressed && !themesTabButton.hovered) {
@@ -3147,6 +3171,7 @@ ApplicationWindow {
                                             contentItem: Text {
                                                 id: settingsTabButtonText
                                                 font.pixelSize: 11
+                                                font.family: theme["typography.font_family.secondary"]
                                                 font.weight: Font.Medium
                                                 color: {
                                                     if (settingsTabButton.checked && !settingsTabButton.hovered || settingsTabButton.pressed && !settingsTabButton.hovered) {

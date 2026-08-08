@@ -53,7 +53,7 @@ void ThemeEngine::loadFonts(const QVariantMap& font_path) {
             int id = QFontDatabase::addApplicationFont(path);
 
             if (id == -1) {
-                qWarning("failed to load font");
+                qWarning() << "Font failed to load:" << path;
             } else {
                 QFontDatabase::applicationFontFamilies(id);
             }
@@ -89,7 +89,7 @@ void ThemeEngine::loadTheme(const QString name)
 
     // for fonts...
     QVariantMap fonts = raw_theme["typography"].toMap();
-    QVariantMap fonts_path = fonts["fonts_path"].toMap();
+    QVariantMap fonts_path = fonts["font_path"].toMap();
 
     loadFonts(fonts_path);
 }

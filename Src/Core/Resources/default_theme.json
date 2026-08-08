@@ -321,20 +321,23 @@
 
         "typography": {
             "font_family": {
-                "primary": "Georgian",
+                "primary": "Noto Serif Georgian",
                 "secondary": "Gotham"
             },
 
             "font_path": {
-                "Georgian-Regular": "qrc:/fonts/Georgian-Regular",
-                "Georgian-Light": "qrc:/fonts/Georgian-Light",
-                "Georgian-Medium": "qrc:/fonts/Georgian-Medium",
-                "Georgian-Bold": "qrc:/fonts/Georgian-Bold",
-
-                "Gotham-Regular": "qrc:/fonts/Gotham-Regular",
-                "Gotham-Light": "qrc:/fonts/Gotham-Light",
-                "Gotham-Medium": "qrc:/fonts/Gotham-Medium",
-                "Gotham-Bold": "qrc:/fonts/Gotham-Bold"
+                "Georgian": [
+                    ":/fonts/NotoSerifGeorgian-Regular.ttf",
+                    ":/fonts/NotoSerifGeorgian-Light.ttf",
+                    ":/fonts/NotoSerifGeorgian-Medium.ttf",
+                    ":/fonts/NotoSerifGeorgian-Bold.ttf"
+                ],
+                "Gotham": [
+                    ":/fonts/Gotham-Regular.ttf",
+                    ":/fonts/Gotham-Light.ttf",
+                    ":/fonts/Gotham-Medium.ttf",
+                    ":/fonts/Gotham-Bold.ttf"
+                ]
             }
         }
     }

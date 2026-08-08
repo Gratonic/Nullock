@@ -575,6 +575,8 @@ Item {
                     text: qsTr("Select a request")
                     color: httpHistoryItem.textMuted
                     font.pixelSize: 12
+                    font.family: theme["typography.font_family.primary"]
+                    font.weight: Font.Medium
                 }
             }
 
