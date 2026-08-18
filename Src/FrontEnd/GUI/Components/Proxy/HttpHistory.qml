@@ -1,4 +1,4 @@
-// note: lets the row delegate refer to ids declared out here (the list, the column widths).
+// note: lets the row delegate refer to ID's declared out here (the list, the column widths).
 // Without it qmllint flags every one of those as an unqualified access.
 pragma ComponentBehavior: Bound
 
@@ -39,12 +39,10 @@ Item {
     readonly property int flagColumnWidth:      48
     readonly property int rowInset:             14
 
-    readonly property int fixedColumnsWidth: numberColumnWidth + methodColumnWidth
-                                           + statusColumnWidth + paramsColumnWidth
-                                           + mimeColumnWidth + timestampColumnWidth
-                                           + flagColumnWidth
+    readonly property int fixedColumnsWidth: numberColumnWidth + methodColumnWidth + statusColumnWidth + paramsColumnWidth + mimeColumnWidth + timestampColumnWidth + flagColumnWidth
 
     function urlColumnWidth(total_width) {
+        // note: Math.max() is used to ensure the returned width is at least 80
         return Math.max(80, total_width - fixedColumnsWidth - rowInset * 2);
     }
 
@@ -82,10 +80,10 @@ Item {
 
     function flagColor(flag_value) {
         switch (flag_value) {
-        case 1:  return flagInfo;
-        case 2:  return flagWarning;
-        case 3:  return flagCritical;
-        default: return flagIdle;
+            case 1:  return flagInfo;
+            case 2:  return flagWarning;
+            case 3:  return flagCritical;
+            default: return flagIdle;
         }
     }
 
@@ -109,10 +107,10 @@ Item {
     // the POST/PUT/PATCH/DELETE rows are the ones worth finding.
     function methodColor(verb) {
         switch (verb) {
-        case "GET":
-        case "HEAD":
-        case "OPTIONS": return textMuted;
-        default:        return textPrimary;
+            case "GET":
+            case "HEAD":
+            case "OPTIONS": return textMuted;
+            default:        return textPrimary;
         }
     }
 
@@ -159,16 +157,12 @@ Item {
         for (var i = 0; i < lines.length; ++i) {
             var line = lines[i];
             if (i === 0) {
-                out.push('<span style="color:#B084E0">'
-                         + line.replace(/(HTTP\/[0-9.]+)/g,
-                                        '</span><span style="color:#48B584">$1</span><span style="color:#B084E0">')
-                         + '</span>');
+                out.push('<span style="color:#B084E0">' + line.replace(/(HTTP\/[0-9.]+)/g, '</span><span style="color:#48B584">$1</span><span style="color:#B084E0">') + '</span>');
                 continue;
             }
             var colon = line.indexOf(":");
             if (colon > 0) {
-                out.push('<span style="color:#FF6C50">' + line.substring(0, colon)
-                         + '</span><span style="color:#EDEAE8">' + line.substring(colon) + '</span>');
+                out.push('<span style="color:#FF6C50">' + line.substring(0, colon) + '</span><span style="color:#EDEAE8">' + line.substring(colon) + '</span>');
             } else {
                 out.push('<span style="color:#EDEAE8">' + line + '</span>');
             }
@@ -190,7 +184,7 @@ Item {
             anchors.left: parent.left
             anchors.right: parent.right
             // note: 50% of the tab panel. The panes below take the rest.
-            height: parent.height * 0.5
+            height: 0.5 * parent.height
 
             color: "transparent"
             border.color: httpHistoryItem.hairline
@@ -276,9 +270,7 @@ Item {
 
                 ScrollBar.vertical: ScrollBar {
                     id: historyScroll
-                    policy: historyList.contentHeight > historyList.height
-                                ? ScrollBar.AsNeeded
-                                : ScrollBar.AlwaysOff
+                    policy: historyList.contentHeight > historyList.height ? ScrollBar.AsNeeded : ScrollBar.AlwaysOff
                     width: 10
                     anchors.right: parent.right
                     anchors.rightMargin: 3
@@ -286,9 +278,7 @@ Item {
                     contentItem: Rectangle {
                         implicitWidth: 4
                         radius: 2
-                        color: historyScroll.pressed ? "#FF6C50"
-                             : historyScroll.hovered ? "#EDEAE8"
-                             : "#80929292"
+                        color: historyScroll.pressed ? "#FF6C50" : historyScroll.hovered ? "#EDEAE8" : "#80929292"
                         opacity: historyScroll.active ? 1.0 : 0.4
                         Behavior on color   { ColorAnimation  { duration: 120 } }
                         Behavior on opacity { NumberAnimation { duration: 150 } }
@@ -317,10 +307,7 @@ Item {
                     // hover sit on top of it.
                     Rectangle {
                         anchors.fill: parent
-                        color: historyRow.ListView.isCurrentItem ? httpHistoryItem.headerFill
-                             : rowHover.hovered                  ? "#8022232B"
-                             : (historyRow.index % 2 === 1)      ? httpHistoryItem.zebraFill
-                             : "transparent"
+                        color: historyRow.ListView.isCurrentItem ? httpHistoryItem.headerFill : rowHover.hovered ? "#8022232B" : (historyRow.index % 2 === 1) ? httpHistoryItem.zebraFill : "transparent"
                     }
 
                     /*
@@ -340,8 +327,7 @@ Item {
                         width: 3
                         height: parent.height
                         visible: historyRow.ListView.isCurrentItem || historyRow.isCritical
-                        color: historyRow.ListView.isCurrentItem ? "#FF6C50"
-                                                                 : httpHistoryItem.flagCritical
+                        color: historyRow.ListView.isCurrentItem ? "#FF6C50" : httpHistoryItem.flagCritical
                     }
 
                     HoverHandler {
@@ -363,7 +349,7 @@ Item {
                             horizontalAlignment: Text.AlignRight
                             rightPadding: 12
                             color: httpHistoryItem.textMuted
-                            font.family: "monospace"
+                            font.family: theme["typography.font_family.secondary"]
                         }
                         Cell {
                             text: historyRow.method
@@ -382,7 +368,7 @@ Item {
                             horizontalAlignment: Text.AlignRight
                             rightPadding: 12
                             color: httpHistoryItem.statusColor(historyRow.status)
-                            font.family: "monospace"
+                            font.family: theme["typography.font_family.secondary"]
                             font.weight: Font.Medium
                         }
                         Cell {
@@ -400,7 +386,7 @@ Item {
                             text: historyRow.timestamp
                             cellWidth: httpHistoryItem.timestampColumnWidth
                             color: httpHistoryItem.textMuted
-                            font.family: "monospace"
+                            font.family: theme["typography.font_family.secondary"]
                             font.pixelSize: 11
                         }
 
@@ -448,7 +434,7 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: qsTr("No traffic captured yet")
                     color: httpHistoryItem.textPrimary
-                    font.family: "georgia"
+                    font.family: theme["typography.font_family.primary"]
                     font.pixelSize: 15
                 }
                 Text {
@@ -499,7 +485,7 @@ Item {
                         anchors.verticalCenter: parent.verticalCenter
                         text: paneRoot.title
                         color: httpHistoryItem.textPrimary
-                        font.family: "georgia"
+                        font.family: theme["typography.font_family.primary"]
                         font.pixelSize: 14
                     }
 
@@ -560,7 +546,7 @@ Item {
                         wrapMode: TextArea.NoWrap
                         textFormat: TextArea.RichText
                         text: httpHistoryItem.highlight(paneRoot.bodyText)
-                        font.family: "monospace"
+                        font.family: theme["typography.font_family.secondary"]
                         font.pixelSize: 12
                         color: httpHistoryItem.textPrimary
                         background: Item {}
@@ -592,20 +578,14 @@ Item {
                 width: (paneRow.width - paneRow.spacing) / 2
                 height: paneRow.height
                 title: qsTr("Request")
-                bodyText: (httpHistoryItem.historyModel
-                           && httpHistoryItem.historyModel.requestTextAt)
-                              ? httpHistoryItem.historyModel.requestTextAt(httpHistoryItem.selectedRow)
-                              : ""
+                bodyText: (httpHistoryItem.historyModel && httpHistoryItem.historyModel.requestTextAt) ? httpHistoryItem.historyModel.requestTextAt(httpHistoryItem.selectedRow) : ""
             }
 
             MessagePane {
                 width: (paneRow.width - paneRow.spacing) / 2
                 height: paneRow.height
                 title: qsTr("Response")
-                bodyText: (httpHistoryItem.historyModel
-                           && httpHistoryItem.historyModel.responseTextAt)
-                              ? httpHistoryItem.historyModel.responseTextAt(httpHistoryItem.selectedRow)
-                              : ""
+                bodyText: (httpHistoryItem.historyModel && httpHistoryItem.historyModel.responseTextAt) ? httpHistoryItem.historyModel.responseTextAt(httpHistoryItem.selectedRow) : ""
             }
         }
     }

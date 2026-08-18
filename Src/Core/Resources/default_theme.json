@@ -316,6 +316,13 @@
 
                     "placeholder": "#929292"
                 }
+            },
+
+            "flags": {
+                "bugFreeFlag": "#EDEAE8",
+                "infoLeakFlag": "#5A9FBF",
+                "bugFlag": "#D89B3C",
+                "criticalBugFlag": "#E4696B"
             }
         },
 

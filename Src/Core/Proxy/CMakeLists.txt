@@ -7,3 +7,9 @@ add_library(proxyLib SHARED
     proxy.cpp
     proxy.hpp
 )
+
+target_link_libraries(proxyLib
+    # Qt6 libs
+    PRIVATE Qt6::Core
+    PRIVATE Qt6::Quick
+)
