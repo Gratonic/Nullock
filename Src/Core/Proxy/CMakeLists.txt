@@ -2,7 +2,7 @@
 
 # TODO: link OpenSSL lib; for all proxy networking (must not use Qt6::Network)
 
-# Create static library for Proxy
+# Create shared library for the proxy (.so)
 add_library(proxyLib SHARED
     proxy.cpp
     proxy.hpp
@@ -12,4 +12,7 @@ target_link_libraries(proxyLib
     # Qt6 libs
     PRIVATE Qt6::Core
     PRIVATE Qt6::Quick
+
+    # for CLI parsing
+    PRIVATE lyra
 )

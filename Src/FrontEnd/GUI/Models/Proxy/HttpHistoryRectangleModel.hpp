@@ -35,19 +35,19 @@ Q_ENUM_NS(Flag)
 
 // note: one captured request/response pair, i.e. one row ("rectangle") in the table
 struct HttpHistoryEntry {
-    int       id         = 0;      // stable identity, never reused
-    int       number     = 0;      // 1-based position, as the user counts them
-    QString   method;              // GET, POST, ...
-    QString   url;                 // the "UserResourceLocater" from the original sketch
-    int       status     = 0;      // 0 while the response has not landed yet
-    bool      has_params = false;  // carries a query string and/or parameters in the body
-    QString   mime;                // short display form -- PNG, TEXT, JSON, ...
-    QDateTime timestamp;           // when the request left us
-    int       flag       = HttpHistoryFlag::None;
+    int id = 0;                       // stable identity, never reused
+    int number = 0;                   // 1-based position, as the user counts them
+    QString method;                   // GET, POST, ...
+    QString url;                      // the "UserResourceLocater" from the original sketch
+    int status = 0;                   // 0 while the response has not landed yet
+    bool has_params = false;          // carries a query string and/or parameters in the body
+    QString mime;                     // short display form -- PNG, TEXT, JSON, ...
+    QDateTime timestamp;              // when the request left us
+    int flag = HttpHistoryFlag::None;
 
     // note: the raw text the Request / Response panes under the table show
-    QString   request_text;
-    QString   response_text;
+    QString request_text;
+    QString response_text;
 };
 
 class HttpHistoryRectangleModel : public QAbstractListModel {
@@ -94,14 +94,7 @@ public:
      *        in -- so when the networking layer lands it only has to call this one method
      *  note: request_text / response_text are the raw HTTP the two panes under the table show
     */
-    Q_INVOKABLE void addEntry(const QString method,
-                              const QString url,
-                              const int status,
-                              const bool has_params,
-                              const QString mime,
-                              const QString request_text = QString(),
-                              const QString response_text = QString(),
-                              const int flag = HttpHistoryFlag::None);
+    Q_INVOKABLE void addEntry(const QString method, const QString url, const int status, const bool has_params, const QString mime, const QString request_text = QString(), const QString response_text = QString(), const int flag = HttpHistoryFlag::None);
 
     // note: called from QML when the user clicks a row's flag to override NullE
     Q_INVOKABLE void setFlag(const int row, const int flag);

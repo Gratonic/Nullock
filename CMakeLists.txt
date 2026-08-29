@@ -19,6 +19,16 @@ find_package(Qt6 REQUIRED COMPONENTS
     Network
 )
 
+# install lyra for CLI parsing
+include(FetchContent)
+
+FetchContent_Declare(lyra
+    GIT_REPOSITORY https://github.com/bfgroup/Lyra.git
+    GIT_TAG develop
+)
+
+FetchContent_MakeAvailable(lyra)
+
 # add source subdirectory
 add_subdirectory(Src)
 
