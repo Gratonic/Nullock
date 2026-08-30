@@ -5,7 +5,7 @@
 /* main/core classes */
 class Proxy {
 public:
-    std::string parse_args(int argc, char* argv[]);
+    void parse_args(int argc, char* argv[]);
 private:
     // :: command group structs ::
     class App {

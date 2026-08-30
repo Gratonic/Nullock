@@ -66,7 +66,7 @@ nullock devices --show <device MAC address>
 -----------------------------------------------
 */
 
-std::string Proxy::parse_args(int argc, char* argv[]) {
+void Proxy::parse_args(int argc, char* argv[]) {
     /* for tracking which command the user decided to use... */
     bool proxy_cmd_selected = false;
     bool sitemap_cmd_selected = false;
@@ -263,6 +263,87 @@ std::string Proxy::parse_args(int argc, char* argv[]) {
             ["-s"]["--show"]
             .help("show a device and the device's associated information by specifying the device's mac address")
         );
+
+    /* commands */
+
+    // proxy command
+    auto proxy_cmd = lyra::command("proxy")
+        .require(1, 1)
+        | lyra::group([&proxy_cmd_selected](const lyra::group&) { proxy_cmd_selected = true; })
+        | proxy_arg_group_0 | proxy_arg_group_1;
+
+    // sitemap command
+    auto sitemap_cmd = lyra::command("sitemap")
+        .require(1, 1)
+        | lyra::group([&sitemap_cmd_selected](const lyra::group&) { sitemap_cmd_selected = true; })
+        | sitemap_arg_group_0;
+
+    // scope command
+    auto scope_cmd = lyra::command("scope")
+        .require(1, 1)
+        | lyra::group([&scope_cmd_selected](const lyra::group&) { scope_cmd_selected = true; })
+        | scope_arg_group_0 | scope_arg_group_1 | scope_arg_group_2;
+
+    // intercept command
+    auto intercept_cmd = lyra::command("intercept")
+        .require(1, 1)
+        | lyra::group([&intercept_cmd_selected](const lyra::group&) { intercept_cmd_selected = true; })
+        | intercept_arg_group_0 | intercept_arg_group_1 | intercept_arg_group_2 | intercept_arg_group_3;
+
+    // repeater command
+    auto repeater_cmd = lyra::command("repeater")
+        .require(1, 1)
+        | lyra::group([&repeater_cmd_selected](const lyra::group&) { repeater_cmd_selected = true; })
+        | repeater_arg_group_0 | repeater_arg_group_1;
+
+    // devices command
+    auto devices_cmd = lyra::command("devices")
+        .require(1, 1)
+        | lyra::group([&devices_cmd_selected](const lyra::group&) { devices_cmd_selected = true; })
+        | devices_arg_group_0 | devices_arg_group_1;
+
+    /* cli */
+    auto subcommands = lyra::group()
+        .require(1, 1)
+        | proxy_cmd
+        | sitemap_cmd
+        | scope_cmd
+        | intercept_cmd
+        | repeater_cmd
+        | devices_cmd;
+
+    auto cli = lyra::cli() | subcommands;
+
+    auto result = cli.parse({ argc, argv });
+
+    if (!result) {
+        std::cerr << "Error: " << result.message() << std::endl;
+        return;
+    }
+
+    if (proxy_cmd_selected) {
+        // code here...
+    }
+
+    if (sitemap_cmd_selected) {
+        // code here...
+    }
+
+    if (scope_cmd_selected) {
+        // code here...
+    }
+
+    if (intercept_cmd_selected) {
+        // code here...
+    }
+
+    if (repeater_cmd_selected) {
+        // code here...
+    }
+
+    if (devices_cmd_selected) {
+        // code here...
+    }
 }
 
 
