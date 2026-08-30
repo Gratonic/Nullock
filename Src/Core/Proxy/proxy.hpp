@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 
+/* main/core classes */
 class Proxy {
 public:
     std::string parse_args(int argc, char* argv[]);
@@ -24,19 +25,8 @@ private:
     };
 };
 
-class App {
-public:
-    void open_session(std::string session_file);
-
-    void list_sessions();
-
-    void show_session(std::string session_file);
-
-    void create_session(std::string session_file);
-    void delete_session(std::string session_file);
-};
-
-class ProxyCore {
+/* general API classes */
+class ProxyApi {
 public:
     void start_proxy(const std::string ip, const int port);
     void stop_proxy();
@@ -44,12 +34,12 @@ public:
     void proxy_status();
 };
 
-class Sitemap {
+class SitemapApi {
 public:
     void show();
 };
 
-class Scope {
+class ScopeApi {
 public:
     // note: any file passed to add is expected to contain url's
     void addUrl(const std::string url);
@@ -71,7 +61,7 @@ public:
     void showOutOfScope();
 };
 
-class InterceptTool {
+class InterceptApi{
 public:
     void on();
     void off();
@@ -89,7 +79,7 @@ public:
     void replaceFile(const std::string file_path);
 };
 
-class RepeaterTool {
+class RepeaterApi {
 public:
     void show();
 
@@ -98,23 +88,13 @@ public:
     void replayFile(const std::string file_path);
 };
 
-class DevicesTool {
+
+/* special API classes */
+// note: this api is souly handles the proxy interaction for devices
+class DeviceControllerApi {
 public:
     void list();
 
     void showId(const int id);
     void showMac(const std::string mac);
-};
-
-class NullE {
-public:
-    // note: any file passed to replace is expected to contain either url's or url's using regex
-    void scanUrl(const std::string url);
-    void scanRegex(const std::string regex);
-    void scanFile(const std::string file_path);
-
-    // note: any file passed to replace is expected to contain either url's or url's using regex
-    void showUrl(const std::string url);
-    void showRegex(const std::string regex);
-    void showFile(const std::string file_path);
 };

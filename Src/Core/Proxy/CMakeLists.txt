@@ -6,6 +6,16 @@
 add_library(proxyLib SHARED
     proxy.cpp
     proxy.hpp
+
+    ScopeTool/scope_tool.hpp
+    SitemapTool/sitemap_tool.hpp
+    InterceptTool/intercept_tool.hpp
+    RepeaterTool/repeater_tool.hpp
+
+    ScopeTool/scope_tool.cpp
+    SitemapTool/sitemap_tool.cpp
+    InterceptTool/intercept_tool.cpp
+    RepeaterTool/repeater_tool.cpp
 )
 
 target_link_libraries(proxyLib

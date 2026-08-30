@@ -7,15 +7,6 @@
 
 /*
 CLI Overview:
-// app command(s) - 2 argument group(s)
-nullock app --open "session_name" || nullock app --open "session_file.txt"
-nullock app --list
-nullock app --show "session_file.txt" || nullock app --show <session name>
-
-nullock app --create <session name>
-nullock app --delete "session_file.txt" || nullock app --delete <session name>
-
------------------------------------------------
 
 // proxy command(s) - 2 argument group(s)
 nullock proxy --start ip:port
@@ -65,38 +56,26 @@ nullock repeater --remove <tab name>
 
 -----------------------------------------------
 
-// device console command(s) - 1 argument group(s)
+// devices command(s) - 2 argument group(s)
+nullock devices --connect <device MAC address>
+nullock devices --disconnect <device MAC address
+
 nullock devices --list
 nullock devices --show <device MAC address>
 
 -----------------------------------------------
-
-// NullE control command(s) - 1 argument group(s)
-nullock nullE --scan "target.com" || nullock nullE --scan "target_file.txt"
-nullock nullE --show "target.com/*" || nullock nullE --show "target_file.txt"
-nullock nullE --refresh
 */
 
 std::string Proxy::parse_args(int argc, char* argv[]) {
     /* for tracking which command the user decided to use... */
-    bool app_cmd_selected = false;
     bool proxy_cmd_selected = false;
     bool sitemap_cmd_selected = false;
     bool scope_cmd_selected = false;
     bool intercept_cmd_selected = false;
     bool repeater_cmd_selected = false;
     bool devices_cmd_selected = false;
-    bool nullE_cmd_selected = false;
 
     /* for storing the value(s) passed to argument(s)... */
-
-    // app command
-    std::string app_open;
-    std::string app_show;
-    std::string app_create;
-    std::string app_delete;
-
-    bool app_list;
 
     // proxy command
     std::string proxy_start;
@@ -133,44 +112,13 @@ std::string Proxy::parse_args(int argc, char* argv[]) {
     bool repeater_show;
 
     // devices command
+    std::string devices_connect;
+    std::string devices_disconnect;
     std::string devices_show;
 
     bool devices_list;
 
-    // nullE command
-    std::string nullE_scan;
-    std::string nullE_show;
-
-    bool nullE_refresh;
-
     /* argument groups for commands; note: numbers are used in the varaiable names for easy future maintainability) */
-
-    // app command argument group(s)
-    auto app_arg_group_0 = lyra::group()
-        .require(0, 1) // no lower-limit, allow no more than one argument
-        .add_argument(lyra::opt(app_open, "name or file path")
-            ["-o"]["--open"]
-            .help("open a known session by providing the session's name or file path")
-        )
-        .add_argument(lyra::opt(app_list)
-            ["-l"]["--list"]
-            .help("list all known sessions and their basic information")
-        )
-        .add_argument(lyra::opt(app_show, "name or file path")
-            ["-s"]["--show"]
-            .help("show the details of a known session by providing the session's name or file path")
-        );
-
-    auto app_arg_group_1 = lyra::group()
-        .require(0, 1) // no lower-limit, allow no more than one argument
-        .add_argument(lyra::opt(app_create, "name")
-            ["-c"]["--create"]
-            .help("create a new session by providing a name for the session")
-        )
-        .add_argument(lyra::opt(app_delete, "name or file path")
-            ["-d"]["--delete"]
-            .help("delete a known session by providing the session's name or file path")
-        );
 
     // proxy command argument group(s)
     auto proxy_arg_group_0 = lyra::group()
@@ -296,6 +244,17 @@ std::string Proxy::parse_args(int argc, char* argv[]) {
     // devices command argument group(s)
     auto devices_arg_group_0 = lyra::group()
         .require(0, 1) // no lower-limit, allow no more than one argument
+        .add_argument(lyra::opt(devices_connect, "mac address")
+            ["-c"]["--connect"]
+            .help("connect a device by providing the device's mac address")
+        )
+        .add_argument(lyra::opt(devices_disconnect, "mac address")
+            ["-d"]["--disconnect"]
+            .help("disconnect a device by providing the device's mac address")
+        );
+
+    auto devices_arg_group_1 = lyra::group()
+        .require(0, 1) // no lower-limit, allow no more than one argument
         .add_argument(lyra::opt(devices_list)
             ["-l"]["--list"]
             .help("list of the external devices connected to the proxy")
@@ -304,25 +263,7 @@ std::string Proxy::parse_args(int argc, char* argv[]) {
             ["-s"]["--show"]
             .help("show a device and the device's associated information by specifying the device's mac address")
         );
-
-    // nullE command argument group(s)
-    auto nullE_arg_group_0 = lyra::group()
-        .require(0, 1) // no lower-limit, allow no more than one argument
-        .add_argument(lyra::opt(nullE_scan, "url or file path")
-            ["-S"]["--scan"]
-            .help("scan a target or targets for CWEs/CVEs using the Nullock Evaluator (NullE) by providing a url or file path...ex: target.com/* or https://foo.bar")
-        )
-        .add_argument(lyra::opt(nullE_show, "url or file path")
-            ["-s"]["--show"]
-            .help("show any CWEs/CVEs discovered using the Nullock Evaluator (NullE) for a target or targets in the session history by providing a url or file path...ex: target.com/* or https://foo.bar")
-        )
-        .add_argument(lyra::opt(nullE_refresh)
-            ["-r"]["--refresh"]
-            .help("refresh the Nullock Evaluator's (NullE) global CWE/CVE database to ensure latest CWEs/CVEs are included")
-        );
 }
-
-
 
 
 
