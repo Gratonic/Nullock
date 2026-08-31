@@ -13,6 +13,7 @@ nullock proxy --start ip:port
 nullock proxy --stop
 
 nullock proxy --status
+nullock proxy --history
 
 -----------------------------------------------
 
@@ -82,6 +83,7 @@ void Proxy::parse_args(int argc, char* argv[]) {
 
     bool proxy_stop;
     bool proxy_status;
+    bool proxy_history;
 
     // sitemap command
     bool sitemap_show;
@@ -104,9 +106,8 @@ void Proxy::parse_args(int argc, char* argv[]) {
     bool intercept_show;
 
     // repeater command
-    std::string repeater_add;
-    std::string repeater_remove;
-
+    int repeater_add; // entry id
+    int repeater_remove; // tab id
     int repeater_replay; // tab id
 
     bool repeater_show;
@@ -137,6 +138,10 @@ void Proxy::parse_args(int argc, char* argv[]) {
         .add_argument(lyra::opt(proxy_status)
             ["-st"]["--status"]
             .help("show the current status of the proxy and some basic information about it")
+        )
+        .add_argument(lyra::opt(proxy_history)
+            ["-h"]["--history"]
+            .help("show the proxy history - shows entry ids and urls for each entry")
         );
 
     // sitemap command argument group(s)
@@ -232,11 +237,11 @@ void Proxy::parse_args(int argc, char* argv[]) {
 
     auto repeater_arg_group_1 = lyra::group()
         .require(0, 1) // no lower-limit, allow no more than one argument
-        .add_argument(lyra::opt(repeater_add, "tab name")
+        .add_argument(lyra::opt(repeater_add, "entry id")
             ["-a"]["--add"]
-            .help("add a tab and give the tab a worthy name")
+            .help("add a tab by providing a http entry id (can be found by displaying the proxy history)")
         )
-        .add_argument(lyra::opt(repeater_remove, "tab name")
+        .add_argument(lyra::opt(repeater_remove, "tab id")
             ["-r"]["--remove"]
             .help("remove a tab by providing the tab name")
         );
