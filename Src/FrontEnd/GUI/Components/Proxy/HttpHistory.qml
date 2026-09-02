@@ -540,7 +540,7 @@ Item {
                     clip: true
                     visible: httpHistoryItem.hasSelection
 
-                    TextArea {
+                    TextArea { // qrc:/qt/qml/org/kde/breeze/TextArea.qml:92:9: Unable to assign TextArea_QMLTYPE_3 to QQuickTextInput
                         readOnly: true
                         selectByMouse: true
                         wrapMode: TextArea.NoWrap
